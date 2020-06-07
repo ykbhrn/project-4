@@ -12,7 +12,7 @@ class Register extends React.Component {
       password: '',
       password_confirmation: '',
       sports: [],
-      user_type: '1',
+      user_type: '',
       bio: '',
       profile_image: ''
     },
@@ -62,9 +62,9 @@ class Register extends React.Component {
       }
       if (response.status === 422) throw new Error()
     } catch (err) {
-      console.log('response: ', err.response.data.errors)
+      console.log('response: ', err.response.data)
       //need to send handleErrors function the errors array from the 422 response as args
-      this.handleErrors(err.response.data.errors)
+      this.handleErrors(err.response.data)
       this.setState({ loading: false })
     }
   }
@@ -80,11 +80,8 @@ class Register extends React.Component {
     if (errors.username){
       username = 'Your Username Is Required'
     }
-    if (errors.email && errors.email.kind === 'required'){
-      email = 'Your email Is Required'
-    }
-    if (errors.email && errors.email.kind === 'unique'){
-      email = 'You already have an account, go to sign in'
+    if (errors.email){
+      email = errors.email
     }
     if (errors.password) {
       password = 'Password is required'
@@ -93,10 +90,10 @@ class Register extends React.Component {
       passwordConfirmation = 'Password confirmation does not match'
     }
     if (errors.sports) {
-      sports = 'Choose your sports'
+      sports = 'Please choose your sports'
     }
     if (errors.user_type) {
-      userType = 'Choose your sports'
+      userType = 'Are you looking for trainings or offering trainings? Please choose'
     }
 
     this.setState({ errors: { username, email, password, password_confirmation: passwordConfirmation, sports, user_type: userType } })
@@ -184,17 +181,8 @@ class Register extends React.Component {
                   <SportSelect
                     handleSelect={this.handleSelect}
                   />
+                  {errors.sports && <small className="help is-danger">{errors.sports}</small>}
                 </div>
-                {/* <div className="control">
-                  <input
-                    className={`input ${errors.sports ? 'is-danger' : ''}`}
-                    placeholder="Whats your sports"
-                    name="sports"
-                    onChange={this.handleChange}
-                    value={formData.sports}
-                  />
-                </div> */}
-                {errors.sports && <small className="help is-danger">{errors.sports}</small>}
 
                 <div className='register-forms'>
                   Are you interested to find trainings and advices(student) or offer trainings(athlete)?
@@ -216,16 +204,8 @@ class Register extends React.Component {
                       ></input>
                       <span className="register-forms-span">Athlete</span>
                     </label>
-                    {/* <input
-                    className={`input ${errors.user_type ? 'is-danger' : ''}`}
-                    placeholder="Are you Athlete or student?"
-                    name="user_type"
-                    onChange={this.handleChange}
-                    value={formData.user_type}
-                  /> */}
-                    {/* </div> */}
-                    {errors.user_type && <small className="help is-danger">{errors.user_type}</small>}
                   </div>
+                  {errors.user_type && <small className="help is-danger">{errors.user_type}</small>}
                 </div>
               </div>
 

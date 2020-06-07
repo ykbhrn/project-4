@@ -22,9 +22,11 @@ class Navbar extends React.Component{
       <nav className="navbar is-dark">
         <div className="container">
           <div className="navbar-brand">
-            {isAuthenticated() && <Link to="/" className="navbar-item">
-              Home
-            </Link>}
+            <Link to="/" className="navbar-item">
+              <img src="../images/gym.png" alt="gyminy home" />
+            </Link>
+           
+
             <span onClick={this.handleToggle} className={`navbar-burger ${isOpen ? 'is-active' : ''}`}>
               <span></span>
               <span></span>
