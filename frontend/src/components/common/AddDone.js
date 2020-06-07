@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 
 
-class NotFound extends React.Component {
+class AddDone extends React.Component {
   state = {
     // backgroundImage: '',
     redirect: false,
@@ -26,21 +26,35 @@ class NotFound extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect){
-      return <Redirect to="/" />
+      if (this.props.match.params.type === 'training') {
+        return <Redirect to="/profile" />
+      } else if (this.props.match.params.type === 'register') {
+        return <Redirect to="/portfolio" />
+      }
+      
     }
+  }
+
+  handleType = () => {
+    let showType
+    if (this.props.match.params.type === 'training') {
+      return showType = 'Training Slot'
+    } else if (this.props.match.params.type === 'register') {
+      return showType = 'Welcome, Your Account'
+    } 
   }
 
   render() {
     return (
-      <section className="hero is-dark is-fullheight-with-navbar">
+      <section className="hero is-light is-fullheight-with-navbar">
         {this.renderRedirect()}
         <div className="hero-body done">
           <div>
             <h1 className="title is-1">
-              Error 404
+              {this.handleType()} Was Successfully Created
             </h1>
             <h2 className="subtitle">
-              Page Not Found
+              
             </h2>
       
           </div>
@@ -51,4 +65,4 @@ class NotFound extends React.Component {
   }
 }
 
-export default NotFound
+export default AddDone

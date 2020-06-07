@@ -80,3 +80,9 @@
 .card{
   padding: 10px;
 }
+
+.done{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}

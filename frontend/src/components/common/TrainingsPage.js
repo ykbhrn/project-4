@@ -45,13 +45,12 @@ class TrainingsPage extends React.Component {
       const response = await addTraining(this.state.formData)
       if (response.status === 201){
         this.setState({ redirect: true })
-        console.log('Done')
       }
       if (response.status === 422) throw new Error()
     } catch (err) {
       console.log('response: ', err.response.data)
       this.handleErrors(err.response.data)
-      console.log('Doesnt work')
+      
     }
   }
 
@@ -83,7 +82,7 @@ class TrainingsPage extends React.Component {
       description = 'Describe Your Training Please'
     }
     if (errors.sports) {
-      sports = 'What Is The Training Category?'
+      sports = 'Choose Training Categories Please.'
     }
     
     this.setState({ errors: { name, date, time, description, sports } })
@@ -91,7 +90,7 @@ class TrainingsPage extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect){
-      return <Redirect to="/trainings" />
+      return <Redirect to="/done/training" />
     }
   }
 

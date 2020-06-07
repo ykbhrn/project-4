@@ -11,7 +11,8 @@ import MyProfilePage from './components/common/MyProfilePage'
 import TrainingsPage from './components/common/TrainingsPage'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
-import ErrorPage from './components/common/ErrorPage'
+import NotFound from './components/common/ErrorPage'
+import AddDone from './components/common/AddDone'
 
 
 const App = () => (
@@ -26,7 +27,8 @@ const App = () => (
       <Route path="/login" component={Login} />
       <Route path='/profile' component={MyProfilePage} />
       <Route path='/trainings' component={TrainingsPage} />
-      <Route path="/*" component={ErrorPage} />
+      <Route path='/done/:type' component={AddDone} />
+      <Route path="/*" component={NotFound} />
     </Switch>
   </BrowserRouter>
 )

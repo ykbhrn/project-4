@@ -26,6 +26,7 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
         <div className="field">
           <div className="control">
             <input
+              type='date'
               className={`input ${errorDate ? 'is-danger' : ''}`}
               placeholder="Date Of The Training"
               name="date"
@@ -39,6 +40,7 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
         <div className="field">
           <div className="control">
             <input
+              type='time'
               className={`input ${errorTime ? 'is-danger' : ''}`}
               placeholder="Training Time"
               name="time"
@@ -63,7 +65,7 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
         </div>
 
         <div className='register-forms'>
-                   What sports you are interested in? 
+          What Is The Training Category? 
           <SportSelect
             handleSelect={handleSelect}
           />
