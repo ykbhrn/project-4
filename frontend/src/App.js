@@ -8,6 +8,7 @@ import SinglePortfolio from './components/portfolio/SinglePortfolio'
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
 import MyProfilePage from './components/common/MyProfilePage'
+import TrainingsPage from './components/common/TrainingsPage'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import ErrorPage from './components/common/ErrorPage'
@@ -24,6 +25,7 @@ const App = () => (
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
       <Route path='/profile' component={MyProfilePage} />
+      <Route path='/trainings' component={TrainingsPage} />
       <Route path="/*" component={ErrorPage} />
     </Switch>
   </BrowserRouter>

@@ -74,7 +74,7 @@ class ProfilePage extends React.Component {
               this.clickShow('training')
             }}
           >
-          Your Trainings
+          Next Trainings
           </div>
           <div className={`${this.state.showChoices ? 'profile-choices' : 'small-profile-choices'}`}
             onClick={() => {
@@ -102,7 +102,7 @@ class ProfilePage extends React.Component {
         
         {this.state.showTrainings &&
         <>
-          <h1 className="title is-2 has-text-centered">Your Trainings</h1>
+          <h1 className="title is-2 has-text-centered">Next Trainings</h1>
           <hr />  
           <div className="columns is-multiline scene_element scene_element--fadein">
 
@@ -113,9 +113,9 @@ class ProfilePage extends React.Component {
                 name={training.name}
                 date={training.date}
                 time={training.time}
-                sports={training.sports[0]}
+                sports={training.sports.map(sport => ( `${sport.name}  `))}
                 description={training.description}
-                username={this.state.user.username}
+                username={training.owner.username}
               />
             ))}
             

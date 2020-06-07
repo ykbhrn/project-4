@@ -10,7 +10,7 @@ from .serializers import TrainingSerializer, PopulatedTrainingSerializer
 
 class TrainingListView(APIView):
 
-  permission_classes = (IsAuthenticatedOrReadOnly,)
+  # permission_classes = (IsAuthenticatedOrReadOnly,)
 
   def get(self, _request):
     trainings = Training.objects.all()

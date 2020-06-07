@@ -42,3 +42,7 @@ export const getAllSports = () => {
 export const getAllTrainings = () => {
   return axios.get('/api/trainings')
 }
+
+export const addTraining = formData => {
+  return axios.post('/api/trainings/', formData, withHeaders())
+}
