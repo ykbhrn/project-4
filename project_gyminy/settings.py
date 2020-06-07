@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'sports',
     'user_type',
     'jwt_auth',
+    'trainings',
     'images',
     'videos',
     'articles',

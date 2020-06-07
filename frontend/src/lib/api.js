@@ -38,3 +38,7 @@ export const loginUser = formData => {
 export const getAllSports = () => {
   return axios.get('/api/sports')
 }
+
+export const getAllTrainings = () => {
+  return axios.get('/api/trainings')
+}

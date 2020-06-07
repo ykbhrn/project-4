@@ -9,6 +9,7 @@ from django.core.exceptions import ValidationError
 from images.serializers import ImageSerializer
 from videos.serializers import VideoSerializer
 from articles.serializers import ArticleSerializer
+from trainings.serializers import TrainingSerializer
 
 User = get_user_model()
 
@@ -19,6 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True, required=False)
     videos = VideoSerializer(many=True, required=False)
     articles = ArticleSerializer(many=True, required=False)
+    trainings = TrainingSerializer(many=True, required=False)
 
     def validate(self, data):
         password = data.pop('password')

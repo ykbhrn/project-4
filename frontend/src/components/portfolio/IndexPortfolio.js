@@ -1,11 +1,17 @@
 import React from 'react'
 import { getAllImages, getAllVideos } from '../../lib/api'
 import { Link } from 'react-router-dom'
+import Images from '../common/Images'
+import Videos from '../common/Videos'
+import Articles from '../common/Articles'
 
 class IndexPortfolio extends React.Component {
   state = {
     images: [],
-    videos: []
+    videos: [],
+    showImages: true,
+    showVideos: false,
+    showArticles: false
   }
 
   async componentDidMount() {
@@ -18,6 +24,16 @@ class IndexPortfolio extends React.Component {
     }
   }
 
+  clickShow = (type) => {
+    if (type === 'videos'){
+      this.setState({ showVideos: true, showImages: false, showArticles: false })
+    } else if (type === 'images'){
+      this.setState({ showImages: true, showVideos: false, showArticles: false })
+    } else if (type === 'articles'){
+      this.setState({ showArticles: true, showVideos: false, showImages: false })
+    }
+  }
+
   render() {
     // if (!this.state.images) return null
     console.log(this.state.videos)
@@ -25,53 +41,63 @@ class IndexPortfolio extends React.Component {
       <>
         <div className="section">
           <section className="section m-scene">
+
+            <div className="profile-choices-container">
+
+              <div className='small-profile-choices'
+                onClick={() => {
+                  this.clickShow('images')
+                }}
+              >
+          Photos
+              </div>
+
+              <div className='small-profile-choices'
+                onClick={() => {
+                  this.clickShow('videos')
+                }}
+              >
+          Videos
+              </div>
+              <div className='small-profile-choices'
+                onClick={() => {
+                  this.clickShow('articles')
+                }}
+              >
+          Articles
+              </div>
+
+            </div>
+
             <div className="container">
+
+              {this.state.showImages &&
               <div className="columns is-multiline scene_element scene_element--fadein">
-              Images:
                 {this.state.images.map(image => (
-                  <div 
+                  <Images
                     key={image.id}
-                    className="column column is-one-quarter-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile">
-                    <div className="card">  
-                      <Link to={`/portfolio/${image.id}`}>   
-                        <div>
-                          <div className="card-header">
-                            <h4 className="card-header-title">{image.title}</h4>
-                          </div>
-                          <div className="card-image">
-                            <figure className="image image is-1by1">
-                              <img src={image.url} alt={image.title} />
-                            </figure>
-                          </div>
-                        </div>   
-                      </Link>                
-                    </div>
-                  </div>
+                    id={image.id}
+                    title={image.title}
+                    url={image.url}
+                    description={image.description}
+                  />
                 ))}
               </div>
+              }
+
+              {this.state.showVideos &&
               <div className="columns is-multiline scene_element scene_element--fadein">
-                 Videos:
                 {this.state.videos.map(video => (
-                  <div 
+                  <Videos
                     key={video.id}
-                    className="column column is-one-quarter-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile">
-                    <div className="card">  
-                      <Link to={`/portfolio/videos/${video.id}`}>   
-                        <div>
-                          <div className="card-header">
-                            <h4 className="card-header-title">{video.title}</h4>
-                          </div>
-                          <div className="card-image">
-                            <figure className="image image is-1by1">
-                              <img src={video.url} alt={video.title} />
-                            </figure>
-                          </div>
-                        </div>   
-                      </Link>                
-                    </div>
-                  </div>
+                    id={video.id}
+                    title={video.title}
+                    url={video.url}
+                    description={video.description}
+                  />
                 ))}
               </div>
+              }
               
             </div>
           </section>
