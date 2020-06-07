@@ -2,7 +2,7 @@ import React from 'react'
 import { registerUser, loginUser } from '../../lib/api'
 import { Redirect, Link } from 'react-router-dom'
 import { setToken } from '../../lib/auth'
-
+import SportSelect from '../common/SportSelect'
 
 class Register extends React.Component {
   state = {
@@ -11,8 +11,8 @@ class Register extends React.Component {
       email: '',
       password: '',
       password_confirmation: '',
-      // sports: [],
-      user_type: '',
+      sports: [],
+      user_type: '1',
       bio: '',
       profile_image: ''
     },
@@ -23,7 +23,7 @@ class Register extends React.Component {
       email: '',
       password: '',
       password_confirmation: '',
-      // sports: '',
+      sports: '',
       user_type: ''
     }
   }
@@ -35,6 +35,17 @@ class Register extends React.Component {
     this.setState({ formData, errors })
   }
 
+  // const sports = { ...this.state.formData.sports, [event.target.name]: event.target.value }
+  // this.state.formData.sports.push( event.target.value )
+  // this.setState({ sports })
+
+    handleSelect = event => {
+      const sport = this.state.formData.sports.concat(event.target.value)
+      const formData = {
+        ...this.state.formData, sports: sport 
+      }
+      this.setState({ formData })
+    }
 
 
   handleSubmit = async event => {
@@ -63,7 +74,7 @@ class Register extends React.Component {
     let email = ''
     let password = ''
     let passwordConfirmation = ''
-    // let sports = ''
+    let sports = ''
     let userType = ''
 
     if (errors.username){
@@ -81,14 +92,14 @@ class Register extends React.Component {
     if (errors.password_confirmation){
       passwordConfirmation = 'Password confirmation does not match'
     }
-    // if (errors.sports) {
-    //   sports = 'Choose your sports'
-    // }
+    if (errors.sports) {
+      sports = 'Choose your sports'
+    }
     if (errors.user_type) {
       userType = 'Choose your sports'
     }
 
-    this.setState({ errors: { username, email, password, password_confirmation: passwordConfirmation, user_type: userType } })
+    this.setState({ errors: { username, email, password, password_confirmation: passwordConfirmation, sports, user_type: userType } })
   }
 
   renderRedirect = () => {
@@ -100,14 +111,14 @@ class Register extends React.Component {
 
   render() {
     const { formData, errors } = this.state
-    console.log(this.state)
+    console.log(this.state.formData.sports)
     return (
-      <section className="section">
-        {this.renderRedirect()}
-        <div className="">
+      <div className="register-container">
+        <section className="register-section">
+          {this.renderRedirect()}
           <div className="columns">
             <form onSubmit={this.handleSubmit} className="column">
-              <h1 className="has-text-centered">Sign Up Here</h1><br />
+              <div className="has-text-centered title">Sign Up</div>
 
               <div className="field">
                 {/* <label className="label">Name</label> */}
@@ -167,8 +178,14 @@ class Register extends React.Component {
                 {errors.password_confirmation && <small className="help is-danger">{errors.password_confirmation}</small>}
               </div>
 
-              {/* <div className="field">
-                <div className="control">
+              <div className="register-forms-container field">
+                <div className='register-forms'>
+                   What sports you are interested in? 
+                  <SportSelect
+                    handleSelect={this.handleSelect}
+                  />
+                </div>
+                {/* <div className="control">
                   <input
                     className={`input ${errors.sports ? 'is-danger' : ''}`}
                     placeholder="Whats your sports"
@@ -176,21 +193,40 @@ class Register extends React.Component {
                     onChange={this.handleChange}
                     value={formData.sports}
                   />
-                </div>
+                </div> */}
                 {errors.sports && <small className="help is-danger">{errors.sports}</small>}
-              </div> */}
 
-              <div className="field">
-                <div className="control">
-                  <input
+                <div className='register-forms'>
+                  Are you interested to find trainings and advices(student) or offer trainings(athlete)?
+                  <div className="control">
+                    <label className='radio'>
+                      <input type="radio" 
+                        name="user_type"
+                        value="1"
+                        onChange={this.handleChange}
+                      ></input>
+                      <span className="register-forms-span">Student</span>
+                    </label>
+                   
+                    <label className='radio'>
+                      <input type="radio" 
+                        name="user_type"
+                        value="2"
+                        onChange={this.handleChange}
+                      ></input>
+                      <span className="register-forms-span">Athlete</span>
+                    </label>
+                    {/* <input
                     className={`input ${errors.user_type ? 'is-danger' : ''}`}
                     placeholder="Are you Athlete or student?"
                     name="user_type"
                     onChange={this.handleChange}
                     value={formData.user_type}
-                  />
+                  /> */}
+                    {/* </div> */}
+                    {errors.user_type && <small className="help is-danger">{errors.user_type}</small>}
+                  </div>
                 </div>
-                {errors.user_type && <small className="help is-danger">{errors.user_type}</small>}
               </div>
 
               <div className="field">
@@ -218,17 +254,12 @@ class Register extends React.Component {
               </div>
 
               <div className="field">
-                <button type="submit"  className={`button is-fullwidth register-button ${this.state.loading ? 'is-loading' : ''}`}>Register</button>
+                <button type="submit"  className={`button is-fullwidth is-dark register-button ${this.state.loading ? 'is-loading' : ''}`}>Register</button>
               </div>
-              <Link to='/login'>
-                <div className="field">
-                  <button type="button" className="button is-fullwidth is-dark is-outlined">Have an account? Sign in Here</button>
-                </div>
-              </Link>
             </form>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     )
   }
 }

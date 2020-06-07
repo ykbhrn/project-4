@@ -8,8 +8,6 @@ from .serializers import PopulatedSportSerializer
 
 class SportListView(APIView):
 
-    permission_classes = (IsAuthenticated, )
-
     def get(self, _request):
         sports = Sport.objects.all()
         serialized_sports = PopulatedSportSerializer(sports, many=True)
