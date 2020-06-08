@@ -27,7 +27,7 @@ class TrainingListView(APIView):
 
 class TrainingDetailView(APIView):
 
-  permission_classes = (IsAuthenticatedOrReadOnly,)
+  # permission_classes = (IsAuthenticatedOrReadOnly,)
 
   def get_training(self, pk):
     try:
@@ -46,13 +46,13 @@ class TrainingDetailView(APIView):
 
   def put(self, request, pk):
     training_to_update = self.get_training(pk)
-    self.is_training_owner(training_to_update, request.user)
-    request.data['owner'] = request.user.id
-    updated_training = TrainingSerializer(training_to_update, data=request.data)
-    if updated_training.is_valid():
-      updated_training.save()
-      return Response(updated_training.data, status=status.HTTP_202_ACCEPTED)
-    return Response(updated_training.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+    serialized_training = PopulatedTrainingSerializer(training_to_update)
+    training_to_update.bookings = training_to_update.bookings + 1
+    if training_to_update.bookings == training_to_update.limit:
+      training_to_update.isFull = True
+    training_to_update.save(update_fields=["bookings", "isFull"])
+    return Response( serialized_training.data ,status=status.HTTP_202_ACCEPTED)
+
 
   def delete(self, request, pk):
     training_to_delete = self.get_training(pk)

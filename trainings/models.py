@@ -8,6 +8,9 @@ class Training(models.Model):
   date = models.CharField(max_length=20)
   time = models.CharField(max_length=20)
   description = models.CharField(max_length=1000)
+  bookings = models.IntegerField(default=0)
+  limit = models.IntegerField(default=1)
+  isFull = models.BooleanField(default=False)
   owner = models.ForeignKey(
     User,
     related_name='trainings',

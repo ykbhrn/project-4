@@ -30,6 +30,8 @@ class AddDone extends React.Component {
         return <Redirect to="/profile" />
       } else if (this.props.match.params.type === 'register') {
         return <Redirect to="/portfolio" />
+      } else if (this.props.match.params.type === 'booking') {
+        return <Redirect to="/profile" />
       }
       
     }
@@ -38,9 +40,11 @@ class AddDone extends React.Component {
   handleType = () => {
     let showType
     if (this.props.match.params.type === 'training') {
-      return showType = 'Training Slot'
+      return showType = 'Training Slot Was Successfully Created'
     } else if (this.props.match.params.type === 'register') {
-      return showType = 'Welcome, Your Account'
+      return showType = 'Welcome, Your Account Was Successfully Created'
+    }  else if (this.props.match.params.type === 'booking') {
+      return showType = 'Training Slot Was Booked, Enjoy Your Training'
     } 
   }
 
@@ -51,7 +55,7 @@ class AddDone extends React.Component {
         <div className="hero-body done">
           <div>
             <h1 className="title is-1">
-              {this.handleType()} Was Successfully Created
+              {this.handleType()} 
             </h1>
             <h2 className="subtitle">
               
