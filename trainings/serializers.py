@@ -14,10 +14,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 class TrainingSerializer(serializers.ModelSerializer):
 
-  class Meta:
-    model = Training
-    fields = '__all__'
+    class Meta:
+      model = Training
+      fields = '__all__'
 
 class PopulatedTrainingSerializer(TrainingSerializer):
   owner = UserSerializer()
   sports = SportSerializer(many=True)
+  students = UserSerializer(many=True)
+ 
+
+ 

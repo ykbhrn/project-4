@@ -16,6 +16,11 @@ class Training(models.Model):
     related_name='trainings',
     on_delete=models.CASCADE
   )
+  students = models.ManyToManyField(
+    User,
+    related_name='student_trainings',
+    blank=True
+  )
   sports = models.ManyToManyField(
     'sports.Sport',
     related_name='trainings'

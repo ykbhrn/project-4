@@ -44,13 +44,19 @@ class TrainingDetailView(APIView):
     serialized_training = PopulatedTrainingSerializer(training)
     return Response(serialized_training.data, status=status.HTTP_200_OK)
 
+
+# Make Booking/ if bookings are = training limit capacity, then show training isFull/ and add student user who made a booking to the student list in the training model
   def put(self, request, pk):
     training_to_update = self.get_training(pk)
-    serialized_training = PopulatedTrainingSerializer(training_to_update)
+    serialized_training = PopulatedTrainingSerializer(data=training_to_update)
+    training_to_update.students.add( request.user.id )
     training_to_update.bookings = training_to_update.bookings + 1
     if training_to_update.bookings == training_to_update.limit:
-      training_to_update.isFull = True
+        training_to_update.isFull = True
+
     training_to_update.save(update_fields=["bookings", "isFull"])
+    if serialized_training.is_valid():
+        serialized_training.save(update_fields=["students"])
     return Response( serialized_training.data ,status=status.HTTP_202_ACCEPTED)
 
 
