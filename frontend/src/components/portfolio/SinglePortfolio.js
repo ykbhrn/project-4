@@ -34,8 +34,10 @@ class SinglePortfolio extends React.Component {
     return (
       <section className="section m-scene">
         <div className="container">
-          <h2 className="title has-text-centered">{portfolio.title}</h2>
+
+          <h2 className="title has-text-centered">{portfolio.owner.username}</h2>
           <hr />
+          
           <div className="columns scene_element scene_element--fadein">
             <div className="column is-half">
               <figure className="image">
@@ -43,19 +45,12 @@ class SinglePortfolio extends React.Component {
               </figure>
               <br />
             </div>
+
             <div className="column is-half">
               <h4 className="title is-4">Description</h4>
               <p>{portfolio.description}</p>
-              <hr />
-              <div className="added-by">
-                <h4 className="title is-6">Added By</h4>
-              </div>
-      
-              {/* <Link to={`/profile/${plant.user._id}`}> */}
-              <p>{portfolio.owner.username}</p>
-              {/* </Link> */}
-              <hr />
             </div>
+
           </div>
         </div>
       </section>

@@ -5,6 +5,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 // import Home from './components/common/Home'
 import IndexPortfolio from './components/portfolio/IndexPortfolio'
 import SinglePortfolio from './components/portfolio/SinglePortfolio'
+import AddPortfolio from './components/portfolio/AddPortfolio'
+import AddArticle from './components/portfolio/AddArticle'
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
 import MyProfilePage from './components/common/MyProfilePage'
@@ -28,6 +30,8 @@ const App = () => (
       <Route path='/profile' component={MyProfilePage} />
       <Route path='/trainings' component={TrainingsPage} />
       <Route path='/done/:type' component={AddDone} />
+      <Route path='/add/:portfolio' component={AddPortfolio} />
+      <Route path='/newarticle' component={AddArticle} />
       <Route path="/*" component={NotFound} />
     </Switch>
   </BrowserRouter>

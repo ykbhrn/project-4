@@ -46,3 +46,19 @@ export const getAllTrainings = () => {
 export const addTraining = formData => {
   return axios.post('/api/trainings/', formData, withHeaders())
 }
+
+export const addImages = formData => {
+  return axios.post('/api/images/', formData, withHeaders())
+}
+
+export const addVideos = formData => {
+  return axios.post('/api/videos/', formData, withHeaders())
+}
+
+export const addArticles = formData => {
+  return axios.post('/api/articles/', formData, withHeaders())
+}
+
+export const getAllArticles = () => {
+  return axios.get('/api/articles')
+}

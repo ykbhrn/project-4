@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Trainings from './Trainings'
 import Images from './Images'
 import Videos from './Videos'
-import Articles from './Articles'
+import Articles from '../portfolio/Articles'
 
 class ProfilePage extends React.Component {
 
@@ -74,28 +74,28 @@ class ProfilePage extends React.Component {
               this.clickShow('training')
             }}
           >
-          Next Trainings
+            <span className={`${ this.state.showTrainings ? 'selected-menu-choice' : ''}`}>Next Trainings</span>
           </div>
           <div className={`${this.state.showChoices ? 'profile-choices' : 'small-profile-choices'}`}
             onClick={() => {
               this.clickShow('images')
             }}
           >
-          Your Photos
+            <span className={`${ this.state.showImages ? 'selected-menu-choice' : ''}`}>Your Photos</span>
           </div>
           <div className={`${this.state.showChoices ? 'profile-choices' : 'small-profile-choices'}`}
             onClick={() => {
               this.clickShow('videos')
             }}
           >
-          Your Videos
+            <span className={`${ this.state.showVideos ? 'selected-menu-choice' : ''}`}>Your Videos</span>
           </div>
           <div className={`${this.state.showChoices ? 'profile-choices' : 'small-profile-choices'}`}
             onClick={() => {
               this.clickShow('articles')
             }}
           >
-          Your Articles
+            <span className={`${ this.state.showArticles ? 'selected-menu-choice' : ''}`}>Your Articles</span>
           </div>
         </div>
 
