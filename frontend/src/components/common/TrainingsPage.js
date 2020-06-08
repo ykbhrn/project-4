@@ -2,6 +2,7 @@ import React from 'react'
 import { addTraining, getPortfolio, getAllTrainings, bookTraining } from '../../lib/api'
 import { Redirect, Link } from 'react-router-dom'
 import AddTraining from './AddTraining'
+import Trainings from '../common/Trainings'
 
 class TrainingsPage extends React.Component {
   state = {
@@ -16,6 +17,8 @@ class TrainingsPage extends React.Component {
     },
     showRequests: true,
     showAdd: false,
+    showBookedTrainings: false,
+    showNotBookedTrainings: false,
     redirect: false,
     studentRedirect: false,
     isStudent: false,
@@ -48,7 +51,7 @@ class TrainingsPage extends React.Component {
   async handleBooking(id) {
     try {
       const res = await bookTraining(id)
-      this.setState( { studentRedirect: true } )
+      this.setState({ studentRedirect: true })
       console.log(res.data)
     } catch (err) {
       console.log(err)
@@ -87,9 +90,13 @@ class TrainingsPage extends React.Component {
 
   clickShow = (type) => {
     if (type === 'requests') {
-      this.setState({ showRequests: true, showAdd: false })
+      this.setState({ showRequests: true, showAdd: false, showBookedTrainings: false, showNotBookedTrainings: false })
     } else if (type === 'add') {
-      this.setState({ showAdd: true, showRequests: false })
+      this.setState({ showAdd: true, showRequests: false, showBookedTrainings: false, showNotBookedTrainings: false })
+    } else if (type === 'booked') {
+      this.setState({ showBookedTrainings: true, showRequests: false, showAdd: false, showNotBookedTrainings: false })
+    } else if (type === 'not') {
+      this.setState({ showNotBookedTrainings: true, showRequests: false, showBookedTrainings: false, showAdd: false })
     }
   }
 
@@ -122,7 +129,7 @@ class TrainingsPage extends React.Component {
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to="/done/training" />
-    } 
+    }
     if (this.state.studentRedirect) {
       return <Redirect to="/done/booking" />
     }
@@ -139,6 +146,14 @@ class TrainingsPage extends React.Component {
         <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
         <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
       </>
+    }
+  }
+
+  handleBookedTraining = (booking) => {
+    if (booking > 0) {
+      return true
+    } else if (booking == 0) {
+      return false
     }
   }
 
@@ -163,16 +178,87 @@ class TrainingsPage extends React.Component {
 
                 <div className='small-profile-choices'
                   onClick={() => {
+                    this.clickShow('booked')
+                  }}
+                >
+                  Booked Trainings
+                </div>
+
+                <div className='small-profile-choices'
+                  onClick={() => {
+                    this.clickShow('not')
+                  }}
+                >
+                  Not Booked Yet
+                </div>
+
+                <div className='small-profile-choices'
+                  onClick={() => {
                     this.clickShow('add')
                   }}
                 >
                   Add new training slots
                 </div>
               </div>
+
               {this.state.showRequests &&
                 <div>
                   Requests here
                 </div>
+              }
+
+              {this.state.showBookedTrainings &&
+                <>
+                  <h1 className="title is-2 has-text-centered">Next Trainings</h1>
+                  <hr />
+                  <div className="columns is-multiline scene_element scene_element--fadein">
+
+                    {this.state.user.trainings.map(training => (
+                      <>
+                        {this.handleBookedTraining(training.bookings) &&
+                          <Trainings
+                            key={training.id}
+                            id={training.id}
+                            name={training.name}
+                            date={training.date}
+                            time={training.time}
+                            sports={training.sports.map(sport => (`${sport.name}  `))}
+                            description={training.description}
+                            username={training.owner.username}
+                          />
+                        }
+                      </>
+                    ))}
+
+                  </div>
+                </>
+              }
+
+              {this.state.showNotBookedTrainings &&
+                <>
+                  <h1 className="title is-2 has-text-centered">Trainings Without Booking</h1>
+                  <hr />
+                  <div className="columns is-multiline scene_element scene_element--fadein">
+
+                    {this.state.user.trainings.map(training => (
+                      <>
+                        {!this.handleBookedTraining(training.bookings) &&
+                          <Trainings
+                            key={training.id}
+                            id={training.id}
+                            name={training.name}
+                            date={training.date}
+                            time={training.time}
+                            sports={training.sports.map(sport => (`${sport.name}  `))}
+                            description={training.description}
+                            username={training.owner.username}
+                          />
+                        }
+                      </>
+                    ))}
+
+                  </div>
+                </>
               }
 
               {this.state.showAdd &&
@@ -205,37 +291,37 @@ class TrainingsPage extends React.Component {
             {this.state.trainings.map(training => (
               <>
                 {!training.isFull &&
-                <div 
-                  key={training.id}
-                  className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
-                  <div className="card">
-                  id: {training.id}
-                    {/* < Link to={`/trainings/${training.id}`}> */}
-                    <h4 className="card-header-title">{training.name}</h4>
-                    <div>Instructor: <span className="card-header-title">{training.owner.username}</span></div>
-                    <div>Date: <span className="card-header-title">{training.date}</span></div>
-                    <div>Time: <span className="card-header-title">{training.time}</span></div>
-                    <div>Sport: <span className="card-header-title">{training.sports.map(sport => ( `${sport.name}  `))}</span></div>
-                    <div>Description: <span className="card-header-title">{training.description}</span></div>
-                    {this.capacityLimit(training.limit, training.bookings)}
-                    <div className="field">
-                      <button
-                        onClick={() => {
-                          this.handleBooking(training.id)
-                        }}
-                        className='button is-fullwidth is-dark'>Book Time Slot</button>
+                  <div
+                    key={training.id}
+                    className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
+                    <div className="card">
+                      id: {training.id}
+                      {/* < Link to={`/trainings/${training.id}`}> */}
+                      <h4 className="card-header-title">{training.name}</h4>
+                      <div>Instructor: <span className="card-header-title">{training.owner.username}</span></div>
+                      <div>Date: <span className="card-header-title">{training.date}</span></div>
+                      <div>Time: <span className="card-header-title">{training.time}</span></div>
+                      <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
+                      <div>Description: <span className="card-header-title">{training.description}</span></div>
+                      {this.capacityLimit(training.limit, training.bookings)}
+                      <div className="field">
+                        <button
+                          onClick={() => {
+                            this.handleBooking(training.id)
+                          }}
+                          className='button is-fullwidth is-dark'>Book Time Slot</button>
+                      </div>
+                      {/* </Link > */}
                     </div>
-                    {/* </Link > */}
                   </div>
-                </div>
                 }
-              </>  
+              </>
             ))}
 
           </div>
         }
       </>
-          
+
     )
   }
 
