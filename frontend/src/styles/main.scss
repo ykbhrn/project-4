@@ -47,7 +47,7 @@
 
 .profile-choices-container{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
  
 }
 
@@ -121,4 +121,8 @@
   {
     transform: scale( 0.8 );
   }
+}
+
+.portfolio-container{
+  padding: 0 90px;
 }

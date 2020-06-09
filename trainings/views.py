@@ -27,7 +27,7 @@ class TrainingListView(APIView):
 
 class TrainingDetailView(APIView):
 
-  # permission_classes = (IsAuthenticatedOrReadOnly,)
+  permission_classes = (IsAuthenticatedOrReadOnly, )
 
   def get_training(self, pk):
     try:
@@ -57,7 +57,7 @@ class TrainingDetailView(APIView):
     training_to_update.save(update_fields=["bookings", "isFull"])
     if serialized_training.is_valid():
         serialized_training.save(update_fields=["students"])
-    return Response( serialized_training.data ,status=status.HTTP_202_ACCEPTED)
+    return Response( status=status.HTTP_202_ACCEPTED)
 
 
   def delete(self, request, pk):

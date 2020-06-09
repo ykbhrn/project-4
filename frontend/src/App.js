@@ -15,6 +15,7 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import NotFound from './components/common/ErrorPage'
 import AddDone from './components/common/AddDone'
+import SecureRoute from './components/common/SecureRoute'
 
 
 const App = () => (
@@ -22,16 +23,16 @@ const App = () => (
     <Navbar />
     <Switch>
       <Route exact path='/' component={Home} />
-      <Route path='/portfolio/:videos/:id' component={SinglePortfolio} />
+      <SecureRoute path='/portfolio/:videos/:id' component={SinglePortfolio} />
       <Route path='/portfolio/:id' component={SinglePortfolio} />
       <Route path='/portfolio' component={IndexPortfolio} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
-      <Route path='/profile' component={MyProfilePage} />
-      <Route path='/trainings' component={TrainingsPage} />
-      <Route path='/done/:type' component={AddDone} />
-      <Route path='/add/:portfolio' component={AddPortfolio} />
-      <Route path='/newarticle' component={AddArticle} />
+      <SecureRoute path='/profile' component={MyProfilePage} />
+      <SecureRoute path='/trainings' component={TrainingsPage} />
+      <SecureRoute path='/done/:type' component={AddDone} />
+      <SecureRoute path='/add/:portfolio' component={AddPortfolio} />
+      <SecureRoute path='/newarticle' component={AddArticle} />
       <Route path="/*" component={NotFound} />
     </Switch>
   </BrowserRouter>

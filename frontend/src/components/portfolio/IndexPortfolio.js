@@ -83,7 +83,7 @@ class IndexPortfolio extends React.Component {
 
         </div>
 
-        <div className="container">
+        <div className="portfolio-container">
 
           {this.state.showImages &&
               <div className="columns is-multiline scene_element scene_element--fadein">

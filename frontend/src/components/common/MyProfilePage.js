@@ -16,14 +16,20 @@ class ProfilePage extends React.Component {
     showArticles: false,
     showVideos: false,
     showChoices: true,
-    bookedTraining: false
+    bookedTraining: false,
+    isStudent: false,
+    isAthlete: false
   }
 
   async componentDidMount() {
     try {
       const res = await getPortfolio()
       this.timeOfDay()
-      this.setState({ user: res.data })
+      if (res.data.user_type === 1) {
+        this.setState({ user: res.data, isStudent: true })
+      } else if (res.data.user_type === 2) {
+        this.setState({ user: res.data, isAthlete: true })
+      }
     } catch (err) {
       console.log(err)
     }
@@ -65,6 +71,25 @@ class ProfilePage extends React.Component {
     }
   }
 
+  handleAdd = () => {
+    if (this.state.showArticles || this.state.showVideos || this.state.showImages) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  portfolioUrl = () => {
+    let portfolioUrl
+    if (this.state.showImages) {
+      return portfolioUrl = '/add/images'
+    } else if (this.state.showVideos) {
+      return portfolioUrl = '/add/videos'
+    } else if (this.state.showArticles) {
+      return portfolioUrl = '/newarticle'
+    }
+  }
+
 
   render() {
     if (!this.state.user) return null
@@ -72,6 +97,14 @@ class ProfilePage extends React.Component {
 
     return (
       <section className="section m-scene">
+        {this.handleAdd() &&
+        <Link to={this.portfolioUrl}>
+          <div className='add-portfolio'>
+            <img src='./images/add.png'></img>
+          </div>
+        </Link>
+        }
+
         {this.state.showChoices &&
           <>
             <h1 className="title is-2 has-text-centered">{`${this.state.timeMessage} ${this.state.user.username}`}</h1>
@@ -100,22 +133,26 @@ class ProfilePage extends React.Component {
           > <span className={`${this.state.showVideos ? 'selected-menu-choice' : ''}`}>Your Videos</span>
           </div>
 
+          {this.state.isAthlete &&
           <div className={`${this.state.showChoices ? 'profile-choices' : 'small-profile-choices'}`}
             onClick={() => {
               this.clickShow('articles')
             }}
           > <span className={`${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Your Articles</span>
           </div>
-
+          }
         </div>
+      
+        <div className='portfolio-container'>
+          {this.state.showTrainings &&
+        <>
+  
+          <h1 className="title is-2 has-text-centered">Next Booked Trainings</h1>
+          <hr />
+          <div className="columns is-multiline scene_element scene_element--fadein">
 
-
-        {this.state.showTrainings &&
-          <>
-            <h1 className="title is-2 has-text-centered">Next Booked Trainings</h1>
-            <hr />
-            <div className="columns is-multiline scene_element scene_element--fadein">
-
+            {this.state.isAthlete &&
+            <>
               {this.state.user.trainings.map(training => (
                 <>
                   {this.handleBookedTraining(training.bookings) &&
@@ -132,12 +169,35 @@ class ProfilePage extends React.Component {
                   }
                 </>
               ))}
+            </>
+            }
 
-            </div>
-          </>
-        }
+            {this.state.isStudent &&
+            <>
+              {this.state.user.student_trainings.map(training => (
+                <>
+                  {this.handleBookedTraining(training.bookings) &&
+                    <Trainings
+                      key={training.id}
+                      id={training.id}
+                      name={training.name}
+                      date={training.date}
+                      time={training.time}
+                      sports={training.sports.map(sport => (`${sport.name}  `))}
+                      description={training.description}
+                      username={training.owner.username}
+                    />
+                  }
+                </>
+              ))}
+            </>
+            }
 
-        {/* {this.state.showOtherTrainings &&
+          </div>
+        </>
+          }
+
+          {/* {this.state.showOtherTrainings &&
           <>
             <h1 className="title is-2 has-text-centered">Trainings Without Booking</h1>
             <hr />  
@@ -164,7 +224,7 @@ class ProfilePage extends React.Component {
           </>
         }  */}
 
-        {this.state.showImages &&
+          {this.state.showImages &&
           <>
             <h1 className="title is-2 has-text-centered">Your Photos</h1>
             <hr />
@@ -180,9 +240,9 @@ class ProfilePage extends React.Component {
               ))}
             </div>
           </>
-        }
+          }
 
-        {this.state.showVideos &&
+          {this.state.showVideos &&
           <>
             <h1 className="title is-2 has-text-centered">Your Videos</h1>
             <hr />
@@ -200,16 +260,16 @@ class ProfilePage extends React.Component {
 
             </div>
           </>
-        }
+          }
 
-        {this.state.showArticles &&
+          {this.state.showArticles &&
           <>
             <h1 className="title is-2 has-text-centered">Your Articles</h1>
             <hr />
           </>
-        }
+          }
 
-
+        </div>
 
       </section>
     )

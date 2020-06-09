@@ -3,6 +3,7 @@ import { addTraining, getPortfolio, getAllTrainings, bookTraining } from '../../
 import { Redirect, Link } from 'react-router-dom'
 import AddTraining from './AddTraining'
 import Trainings from '../common/Trainings'
+import { getToken } from '../../lib/auth'
 
 class TrainingsPage extends React.Component {
   state = {
@@ -47,9 +48,16 @@ class TrainingsPage extends React.Component {
       console.log(err)
     }
   }
+  
 
   async handleBooking(id) {
     try {
+      // const withHeaders = () => {
+      //   return {
+      //     headers: { Authorization: `Bearer ${getToken()}` }
+      //   }
+      // }
+      // console.log(withHeaders().headers)
       const res = await bookTraining(id)
       this.setState({ studentRedirect: true })
       console.log(res.data)
@@ -159,167 +167,223 @@ class TrainingsPage extends React.Component {
 
   render() {
     console.log(this.state.trainings)
+    console.log(this.state.user)
     const { formData, errors } = this.state
     return (
       <>
         {this.renderRedirect()}
-        {this.state.isAthlete &&
-          <div className="section">
-            <section className="section m-scene">
-              <div className="profile-choices-container">
+        <section className="section m-scene">
 
-                <div className='small-profile-choices'
-                  onClick={() => {
-                    this.clickShow('requests')
-                  }}
-                >
-                  New training requests
-                </div>
-
-                <div className='small-profile-choices'
-                  onClick={() => {
-                    this.clickShow('booked')
-                  }}
-                >
-                  Booked Trainings
-                </div>
-
-                <div className='small-profile-choices'
-                  onClick={() => {
-                    this.clickShow('not')
-                  }}
-                >
-                  Not Booked Yet
-                </div>
-
-                <div className='small-profile-choices'
-                  onClick={() => {
-                    this.clickShow('add')
-                  }}
-                >
-                  Add new training slots
-                </div>
-              </div>
-
-              {this.state.showRequests &&
-                <div>
-                  Requests here
-                </div>
-              }
-
-              {this.state.showBookedTrainings &&
-                <>
-                  <h1 className="title is-2 has-text-centered">Next Trainings</h1>
-                  <hr />
-                  <div className="columns is-multiline scene_element scene_element--fadein">
-
-                    {this.state.user.trainings.map(training => (
-                      <>
-                        {this.handleBookedTraining(training.bookings) &&
-                          <Trainings
-                            key={training.id}
-                            id={training.id}
-                            name={training.name}
-                            date={training.date}
-                            time={training.time}
-                            sports={training.sports.map(sport => (`${sport.name}  `))}
-                            description={training.description}
-                            username={training.owner.username}
-                          />
-                        }
-                      </>
-                    ))}
-
-                  </div>
-                </>
-              }
-
-              {this.state.showNotBookedTrainings &&
-                <>
-                  <h1 className="title is-2 has-text-centered">Trainings Without Booking</h1>
-                  <hr />
-                  <div className="columns is-multiline scene_element scene_element--fadein">
-
-                    {this.state.user.trainings.map(training => (
-                      <>
-                        {!this.handleBookedTraining(training.bookings) &&
-                          <Trainings
-                            key={training.id}
-                            id={training.id}
-                            name={training.name}
-                            date={training.date}
-                            time={training.time}
-                            sports={training.sports.map(sport => (`${sport.name}  `))}
-                            description={training.description}
-                            username={training.owner.username}
-                          />
-                        }
-                      </>
-                    ))}
-
-                  </div>
-                </>
-              }
-
-              {this.state.showAdd &&
-                <AddTraining
-                  renderRedirect={this.renderRedirect}
-                  handleChange={this.handleChange}
-                  handleSelect={this.handleSelect}
-                  handleSubmit={this.handleSubmit}
-                  handleErrors={this.handleErrors}
-                  name={formData.name}
-                  date={formData.date}
-                  time={formData.time}
-                  description={formData.description}
-                  sports={formData.sports}
-                  errorName={errors.name}
-                  errorDate={errors.date}
-                  errorTime={errors.time}
-                  errorDescription={errors.description}
-                  errorSports={errors.sports}
-                />
-              }
-
-            </section>
-          </div>
-        }
-        {this.state.isStudent &&
-
-          <div className="columns is-multiline scene_element scene_element--fadein">
-
-            {this.state.trainings.map(training => (
+          {this.state.isAthlete &&
               <>
-                {!training.isFull &&
-                  <div
-                    key={training.id}
-                    className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
-                    <div className="card">
-                      id: {training.id}
-                      {/* < Link to={`/trainings/${training.id}`}> */}
-                      <h4 className="card-header-title">{training.name}</h4>
-                      <div>Instructor: <span className="card-header-title">{training.owner.username}</span></div>
-                      <div>Date: <span className="card-header-title">{training.date}</span></div>
-                      <div>Time: <span className="card-header-title">{training.time}</span></div>
-                      <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
-                      <div>Description: <span className="card-header-title">{training.description}</span></div>
-                      {this.capacityLimit(training.limit, training.bookings)}
-                      <div className="field">
-                        <button
-                          onClick={() => {
-                            this.handleBooking(training.id)
-                          }}
-                          className='button is-fullwidth is-dark'>Book Time Slot</button>
-                      </div>
-                      {/* </Link > */}
-                    </div>
+                <div className="profile-choices-container">
+                  <div className='small-profile-choices'
+                    onClick={() => {
+                      this.clickShow('requests')
+                    }}
+                  >
+                    <span className={`${this.state.showRequests ? 'selected-menu-choice' : ''}`}>New training requests</span>
+                  </div>
+
+                  <div className='small-profile-choices'
+                    onClick={() => {
+                      this.clickShow('booked')
+                    }}
+                  >
+                    <span className={`${this.state.showBookedTrainings ? 'selected-menu-choice' : ''}`}>Booked Trainings</span>
+                  </div>
+
+                  <div className='small-profile-choices'
+                    onClick={() => {
+                      this.clickShow('not')
+                    }}
+                  >
+                    <span className={`${this.state.showNotBookedTrainings ? 'selected-menu-choice' : ''}`}>Not Booked Yet</span>
+                  </div>
+
+                  <div className='small-profile-choices'
+                    onClick={() => {
+                      this.clickShow('add')
+                    }}
+                  >
+                    <span className={`${this.state.showAdd ? 'selected-menu-choice' : ''}`}>Add new training slots</span>
+                  </div>
+                </div>
+
+                {this.state.showRequests &&
+                  <div>
+                    Requests here
                   </div>
                 }
-              </>
-            ))}
 
-          </div>
-        }
+                {this.state.showBookedTrainings &&
+                  <>
+                    <h1 className="title is-2 has-text-centered">Next Trainings</h1>
+                    <hr />
+                    <div className="columns is-multiline scene_element scene_element--fadein">
+
+                      {this.state.user.trainings.map(training => (
+                        <>
+                          {this.handleBookedTraining(training.bookings) &&
+                            <Trainings
+                              key={training.id}
+                              id={training.id}
+                              name={training.name}
+                              date={training.date}
+                              time={training.time}
+                              sports={training.sports.map(sport => (`${sport.name}  `))}
+                              description={training.description}
+                              isFull={training.isFull} 
+                              bookings={training.bookings}
+                              limit={training.limit}
+                            />
+                          }
+                        </>
+                      ))}
+
+                    </div>
+                  </>
+                }
+
+                {this.state.showNotBookedTrainings &&
+                  <>
+                    <h1 className="title is-2 has-text-centered">Trainings Without Booking</h1>
+                    <hr />
+                    <div className="columns is-multiline scene_element scene_element--fadein">
+
+                      {this.state.user.trainings.map(training => (
+                        <>
+                          {!this.handleBookedTraining(training.bookings) &&
+                            <Trainings
+                              key={training.id}
+                              id={training.id}
+                              name={training.name}
+                              date={training.date}
+                              time={training.time}
+                              sports={training.sports.map(sport => (`${sport.name}  `))}
+                              description={training.description}
+                              limit={training.limit}
+                            />
+                          }
+                        </>
+                      ))}
+
+                    </div>
+                  </>
+                }
+
+                {this.state.showAdd &&
+                  <AddTraining
+                    renderRedirect={this.renderRedirect}
+                    handleChange={this.handleChange}
+                    handleSelect={this.handleSelect}
+                    handleSubmit={this.handleSubmit}
+                    handleErrors={this.handleErrors}
+                    name={formData.name}
+                    date={formData.date}
+                    time={formData.time}
+                    description={formData.description}
+                    sports={formData.sports}
+                    errorName={errors.name}
+                    errorDate={errors.date}
+                    errorTime={errors.time}
+                    errorDescription={errors.description}
+                    errorSports={errors.sports}
+                  />
+                }
+              </>
+          }
+          {this.state.isStudent &&
+              <>            
+                <div className="profile-choices-container">
+
+                  <div className='small-profile-choices'
+                    onClick={() => {
+                      this.clickShow('requests')
+                    }}
+                  >
+                    <span className={`${this.state.showRequests ? 'selected-menu-choice student-choice' : ''}`}>Find New Trainings</span>
+                  </div>
+                
+                  <div className='small-profile-choices'
+                    onClick={() => {
+                      this.clickShow('booked')
+                    }}
+                  >
+                    <span className={`${this.state.showBookedTrainings ? 'selected-menu-choice student-choice' : ''}`}>My Next Trainings</span>
+                  </div>
+                </div>
+
+                {this.state.showBookedTrainings &&
+                <div className="columns is-multiline scene_element scene_element--fadein">
+
+                  {this.state.user.student_trainings.map(training => (
+                    <>
+                      <div
+                        key={training.id}
+                        className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
+                        <div className="card">
+                            id: {training.id}
+                          {/* < Link to={`/trainings/${training.id}`}> */}
+                          <h4 className="card-header-title">{training.name}</h4>
+                          <div>Instructor: <span className="card-header-title">{training.owner.username}</span></div>
+                          <div>Date: <span className="card-header-title">{training.date}</span></div>
+                          <div>Time: <span className="card-header-title">{training.time}</span></div>
+                          <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
+                          <div>Description: <span className="card-header-title">{training.description}</span></div>
+                          {this.capacityLimit(training.limit, training.bookings)}
+                          <div className="field">
+                            <button
+                              onClick={() => {
+                                this.handleBooking(training.id)
+                              }}
+                              className='button is-fullwidth is-dark'>Book Time Slot</button>
+                          </div>
+                          {/* </Link > */}
+                        </div>
+                      </div>
+                    </>
+                  ))}
+                </div>
+                }
+
+                {this.state.showRequests &&
+                <div className="columns is-multiline scene_element scene_element--fadein">
+
+                  {this.state.trainings.map(training => (
+                    <>
+                      {!training.isFull &&
+                        <div
+                          key={training.id}
+                          className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
+                          <div className="card">
+                            id: {training.id}
+                            {/* < Link to={`/trainings/${training.id}`}> */}
+                            <h4 className="card-header-title">{training.name}</h4>
+                            <div>Instructor: <span className="card-header-title">{training.owner.username}</span></div>
+                            <div>Date: <span className="card-header-title">{training.date}</span></div>
+                            <div>Time: <span className="card-header-title">{training.time}</span></div>
+                            <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
+                            <div>Description: <span className="card-header-title">{training.description}</span></div>
+                            {this.capacityLimit(training.limit, training.bookings)}
+                            <div className="field">
+                              <button
+                                onClick={() => {
+                                  this.handleBooking(training.id)
+                                }}
+                                className='button is-fullwidth is-dark'>Book Time Slot</button>
+                            </div>
+                            {/* </Link > */}
+                          </div>
+                        </div>
+                      }
+                    </>
+                  ))}
+                </div>
+                }
+              </>
+          }
+        </section>
       </>
 
     )
