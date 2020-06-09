@@ -29,7 +29,7 @@ class AddDone extends React.Component {
       if (this.props.match.params.type === 'training') {
         return <Redirect to="/profile" />
       } else if (this.props.match.params.type === 'register') {
-        return <Redirect to="/portfolio" />
+        return  window.location.assign('/portfolio')
       } else if (this.props.match.params.type === 'booking') {
         return <Redirect to="/profile" />
       }

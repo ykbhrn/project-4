@@ -25,6 +25,7 @@ const App = () => (
       <Route exact path='/' component={Home} />
       <SecureRoute path='/portfolio/:videos/:id' component={SinglePortfolio} />
       <Route path='/portfolio/:id' component={SinglePortfolio} />
+      <Route path='/:reload/portfolio' component={IndexPortfolio} />
       <Route path='/portfolio' component={IndexPortfolio} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />

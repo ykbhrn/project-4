@@ -14,7 +14,7 @@ class Register extends React.Component {
       sports: [],
       user_type: '',
       bio: '',
-      profile_image: ''
+      profile_image: 'https://image.flaticon.com/icons/svg/17/17004.svg'
     },
     redirect: false,
     loading: false,
@@ -216,7 +216,6 @@ class Register extends React.Component {
                     placeholder="Your profile image"
                     name="profile_image"
                     onChange={this.handleChange}
-                    value={formData.profile_image}
                   />
                 </div>
               </div>

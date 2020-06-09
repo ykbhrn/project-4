@@ -28,12 +28,10 @@ render() {
     <>
       {this.renderRedirect()}
       <div className="columns is-vcentered">
-        <div className="column is-centered">
-        </div>
-        <div className="column">
-          <img src="../images/gym.png" alt="GYMINY"></img>
-          <Login />          
-        </div>
+      </div>
+      <div className="logo">
+          gyminy
+        <Login />          
       </div>
     </>
   )

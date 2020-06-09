@@ -72,13 +72,6 @@ class ProfilePage extends React.Component {
     }
   }
 
-  handleAdd = () => {
-    if (this.state.showArticles || this.state.showVideos || this.state.showImages) {
-      return true
-    } else {
-      return false
-    }
-  }
 
   portfolioUrl = () => {
     let portfolioUrl
@@ -104,11 +97,20 @@ class ProfilePage extends React.Component {
 
     return (
       <section className="section m-scene">
-        {this.handleAdd() &&
+
+        {this.state.showImages &&
         <Link to={this.portfolioUrl}>
-          <div className='add-portfolio'>
-            <img src='./images/add.png'></img>
-          </div>
+          <img className='add-portfolio' src='./images/addimage.png'></img>
+        </Link>
+        }
+        {this.state.showVideos &&
+        <Link to={this.portfolioUrl}>
+          <img className='add-portfolio' src='./images/addvideo.png'></img>
+        </Link>
+        }
+        {this.state.showArticles &&
+        <Link to={this.portfolioUrl}>
+          <img className='add-portfolio' src='./images/addarticle.png'></img>
         </Link>
         }
 

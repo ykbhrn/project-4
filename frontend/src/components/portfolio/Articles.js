@@ -20,18 +20,20 @@ class Articles extends React.Component {
     // if (!this.state.images) return null
     console.log(this.state.articles)
     return (
-      <div className="columns is-multiline scene_element scene_element--fadein">
+      <div className="article-container">
         {this.state.articles.map( article => (
-          <div 
-            key={article.id}
-            className = "column column is-one-quarter-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
+          <div key={article.id}>
             <div className="card-article">
+
               {/* < Link to = {`/portfolio/${id}`}> */} 
-              <figure className="image is-1by1">
-                <img src={article.imageUrl} alt={article.title} />
-              </figure>
-              {/* </Link >     */}
-              <div className="title-article-image title is-5">{article.title}</div>
+              <div className="article-title-image-container">
+                <img className='image-article' src={article.imageUrl} alt={article.title} />
+                {/* </Link >     */}
+                <div className="title-article title is-5">{article.title}</div>
+              </div>
+
+              <div className="article-subtitle">{article.text}</div>
+
             </div>
           </div>
         ))}

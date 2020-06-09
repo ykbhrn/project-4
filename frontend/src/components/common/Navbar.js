@@ -37,10 +37,12 @@ class Navbar extends React.Component{
       <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
+
+            {isAuthenticated() && 
             <Link to="/" className="navbar-item">
-              <img src="../images/gym.png" alt="gyminy home" />
+              <span className="logo-navbar">gyminy</span>
             </Link>
-           
+            }
 
             <span onClick={this.handleToggle} className={`navbar-burger ${isOpen ? 'is-active' : ''}`}>
               <span></span>

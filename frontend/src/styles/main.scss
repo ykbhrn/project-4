@@ -99,32 +99,33 @@ html{
 
 .add-portfolio{
   position: absolute;
-  top: 140px;
-  left: 10px;
+  top: 0px;
+  left: 42%;
   animation: heartbeat 4s infinite;
+  z-index: 1000;
 }
 
 @keyframes heartbeat
 {
   0%
   {
-    transform: scale( 0.8 );
+    transform: scale( 1 );
   }
   20%
   {
-    transform: scale( 0.75 );
+    transform: scale( 0.9 );
   }
   50%
   {
-    transform: scale( 0.8 );
+    transform: scale( 1 );
   }
   80%
   {
-    transform: scale( 0.75 );
+    transform: scale( 0.9 );
   }
   100%
   {
-    transform: scale( 0.8 );
+    transform: scale( 1 );
   }
 }
 
@@ -132,16 +133,45 @@ html{
   padding: 0 90px;
 }
 
-.card-article{
-  border: none;
+.article-container{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100vw;
+  padding: 0 40px;
 }
 
-.title-article-image{
+.card-article{
+  display: flex;
+  flex-direction: column;
   background: white;
+  padding: 20px;
+  width: 600px;
+  height: 400px;
+  margin-bottom: 30px;
+}
+
+.title-article{
+
   padding: 15px;
-  max-height: 90px;
   overflow: hidden;
 }
+
+.article-subtitle{
+  overflow: hidden;
+  padding: 15px 10px;
+}
+
+.image-article{
+  width: 200px;
+  height: 160px;
+}
+
+.article-title-image-container{
+  display: flex;
+}
+
 
 // .profile-image{
 //   width: 120px;
@@ -176,4 +206,14 @@ html{
   top: 140px;
   right: 10px;
   cursor: pointer;
+}
+
+.logo{
+  font-family: 'Cinzel', serif;
+  font-size: 90px;
+}
+
+.logo-navbar{
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
 }

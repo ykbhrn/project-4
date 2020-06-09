@@ -45,47 +45,59 @@ class IndexPortfolio extends React.Component {
     }
   }
 
+
   render() {
     // if (!this.state.images) return null
     console.log(this.state.videos)
     return (
-      <section className="section m-scene">
-        <div className="profile-choices-container">
+      <>
+        <section className="section m-scene">
+          <div className="profile-choices-container">
           
-          <Link to={this.portfolioUrl}>
-            <div className='add-portfolio'>
-              <img src='./images/add.png'></img>
-            </div>
-          </Link>
+            {this.state.showImages &&
+        <Link to={this.portfolioUrl}>
+          <img className='add-portfolio' src='./images/addimage.png'></img>
+        </Link>
+            }
+            {this.state.showVideos &&
+        <Link to={this.portfolioUrl}>
+          <img className='add-portfolio' src='./images/addvideo.png'></img>
+        </Link>
+            }
+            {this.state.showArticles &&
+        <Link to={this.portfolioUrl}>
+          <img className='add-portfolio' src='./images/addarticle.png'></img>
+        </Link>
+            }
 
-          <div className={`small-profile-choices ${ this.state.showImages ? 'selected-menu-choice' : ''}`}
-            onClick={() => {
-              this.clickShow('images')
-            }}
-          >
+            <div className={`small-profile-choices ${ this.state.showImages ? 'selected-menu-choice' : ''}`}
+              onClick={() => {
+                this.clickShow('images')
+              }}
+            >
           Photos
-          </div>
+            </div>
 
-          <div className={`small-profile-choices ${ this.state.showVideos ? 'selected-menu-choice' : ''}`}
-            onClick={() => {
-              this.clickShow('videos')
-            }}
-          >
+            <div className={`small-profile-choices ${ this.state.showVideos ? 'selected-menu-choice' : ''}`}
+              onClick={() => {
+                this.clickShow('videos')
+              }}
+            >
           Videos
-          </div>
-          <div className={`small-profile-choices ${ this.state.showArticles ? 'selected-menu-choice' : ''}`}
-            onClick={() => {
-              this.clickShow('articles')
-            }}
-          >
+            </div>
+            <div className={`small-profile-choices ${ this.state.showArticles ? 'selected-menu-choice' : ''}`}
+              onClick={() => {
+                this.clickShow('articles')
+              }}
+            >
           Articles
+            </div>
+
           </div>
 
-        </div>
+          <div className="portfolio-container">
 
-        <div className="portfolio-container">
-
-          {this.state.showImages &&
+            {this.state.showImages &&
               <div className="columns is-multiline scene_element scene_element--fadein">
                 {this.state.images.map(image => (
                   <Images
@@ -97,9 +109,9 @@ class IndexPortfolio extends React.Component {
                   />
                 ))}
               </div>
-          }
+            }
 
-          {this.state.showVideos &&
+            {this.state.showVideos &&
               <div className="columns is-multiline scene_element scene_element--fadein">
                 {this.state.videos.map(video => (
                   <Videos
@@ -111,15 +123,14 @@ class IndexPortfolio extends React.Component {
                   />
                 ))}
               </div>
-          }
-
-
-          {this.state.showArticles &&
-              <Articles />
-          }
+            }
               
-        </div>
-      </section>
+          </div>
+        </section>
+        {this.state.showArticles &&
+        <Articles />
+        }
+      </>
     )
   }
 
