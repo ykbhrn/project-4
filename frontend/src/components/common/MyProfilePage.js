@@ -129,21 +129,27 @@ class ProfilePage extends React.Component {
             onClick={() => {
               this.clickShow('training')
             }}
-          > <span className={`${this.state.showTrainings ? 'selected-menu-choice' : ''}`}>Next Trainings</span>
+          > 
+            {this.state.showChoices && <img src='./images/nexttrainings.png'></img>}
+            <span className={`${this.state.showTrainings ? 'selected-menu-choice' : ''}`}>Next Trainings</span>
           </div>
 
           <div className={`${this.state.showChoices ? 'profile-choices' : 'small-profile-choices'}`}
             onClick={() => {
               this.clickShow('images')
             }}
-          > <span className={`${this.state.showImages ? 'selected-menu-choice' : ''}`}>Your Photos</span>
+          >
+            {this.state.showChoices && <img src='./images/yourphotos.png'></img> }
+            <span className={`${this.state.showImages ? 'selected-menu-choice' : ''}`}>Your Photos</span>
           </div>
 
           <div className={`${this.state.showChoices ? 'profile-choices' : 'small-profile-choices'}`}
             onClick={() => {
               this.clickShow('videos')
             }}
-          > <span className={`${this.state.showVideos ? 'selected-menu-choice' : ''}`}>Your Videos</span>
+          > 
+            {this.state.showChoices && <img src='./images/yourvideos.png'></img> }
+            <span className={`${this.state.showVideos ? 'selected-menu-choice' : ''}`}>Your Videos</span>
           </div>
 
           {this.state.isAthlete &&
@@ -151,7 +157,9 @@ class ProfilePage extends React.Component {
             onClick={() => {
               this.clickShow('articles')
             }}
-          > <span className={`${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Your Articles</span>
+          > 
+            {this.state.showChoices && <img src='./images/yourarticles.png'></img> }
+            <span className={`${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Your Articles</span>
           </div>
           }
         </div>

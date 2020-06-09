@@ -26,13 +26,10 @@ class Articles extends React.Component {
             <div className="card-article">
 
               {/* < Link to = {`/portfolio/${id}`}> */} 
-              <div className="article-title-image-container">
-                <img className='image-article' src={article.imageUrl} alt={article.title} />
-                {/* </Link >     */}
-                <div className="title-article title is-5">{article.title}</div>
-              </div>
+              <img className='image-article' src={article.imageUrl} alt={article.title} />
+              {/* </Link >     */}
 
-              <div className="article-subtitle">{article.text}</div>
+              <div className="article-title">{article.text}</div>
 
             </div>
           </div>
