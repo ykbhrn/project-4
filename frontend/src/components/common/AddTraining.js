@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SportSelect from '../common/SportSelect'
 
-const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, handleErrors, name, date, time, description, sports, errorName, errorDate, errorTime, errorDescription, errorSports } ) => (
+const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, handleErrors, name, date, time, description, sports, limit, errorName, errorDate, errorTime, errorDescription, errorSports } ) => (
   
   <section className="section">
     {renderRedirect()}
@@ -49,6 +49,20 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
             />
           </div>
           {errorTime && <small className="help is-danger">{errorTime}</small>}
+        </div>
+
+        <div className="field">
+          <div className="control">
+            <input
+              type='number'
+              className='input'
+              placeholder="Training Capacity Limit"
+              name="limit"
+              onChange={handleChange}
+              defaultValue='1'
+              
+            />
+          </div>
         </div>
 
         <div className="field">

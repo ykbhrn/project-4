@@ -25,16 +25,13 @@ class Articles extends React.Component {
           <div 
             key={article.id}
             className = "column column is-one-quarter-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
-            <div className="card">
-              {/* < Link to = {`/portfolio/${id}`}> */}
-              <div className="card">
-                <div className="card-image">
-                  <figure className="image is-1by1">
-                    <img src={article.imageUrl} alt={article.title} />
-                  </figure>
-                </div>
-              </div>
+            <div className="card-article">
+              {/* < Link to = {`/portfolio/${id}`}> */} 
+              <figure className="image is-1by1">
+                <img src={article.imageUrl} alt={article.title} />
+              </figure>
               {/* </Link >     */}
+              <div className="title-article-image title is-5">{article.title}</div>
             </div>
           </div>
         ))}

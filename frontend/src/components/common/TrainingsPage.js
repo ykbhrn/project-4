@@ -14,6 +14,7 @@ class TrainingsPage extends React.Component {
       date: '',
       time: '',
       description: '',
+      limit: '',
       sports: []
     },
     showRequests: true,
@@ -282,6 +283,7 @@ class TrainingsPage extends React.Component {
                     name={formData.name}
                     date={formData.date}
                     time={formData.time}
+                    limit={formData.limit}
                     description={formData.description}
                     sports={formData.sports}
                     errorName={errors.name}

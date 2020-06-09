@@ -48,7 +48,7 @@ export const addTraining = formData => {
 }
 
 export const bookTraining = id => {
-  return axios.put(`/api/trainings/${id}/`, withHeaders())
+  return axios.put(`/api/trainings/${id}/`, {}, withHeaders())
 }
 
 export const addImages = formData => {

@@ -1,16 +1,31 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { isAuthenticated, logout } from '../../lib/auth'
+import { isAuthenticated } from '../../lib/auth'
+import { getPortfolio } from '../../lib/api'
 class Navbar extends React.Component{
-  state = { isOpen: false }
+  state = { 
+    user: [],
+    isOpen: false 
+  }
+
+  async componentDidMount() {
+    try {
+      const res = await getPortfolio()
+      this.setState( { user: res.data } )
+      // if (res.data.user_type === 1) {
+      //   this.setState({ user: res.data, isStudent: true })
+      // } else if (res.data.user_type === 2) {
+      //   this.setState({ user: res.data, isAthlete: true })
+      // }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   handleToggle = () => {
     this.setState({ isOpen: !this.state.isOpen })
   }
-  handleLogout = () => {
-    logout()
-    // toast('Come back Soon')
-    this.props.history.push('/')
-  }
+
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({ isOpen: false })
@@ -19,7 +34,7 @@ class Navbar extends React.Component{
   render() {
     const { isOpen } = this.state
     return (
-      <nav className="navbar is-dark">
+      <nav className="navbar">
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item">
@@ -35,14 +50,14 @@ class Navbar extends React.Component{
           </div>
           <div className={`navbar-menu ${isOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
-              {isAuthenticated() && <Link to="/portfolio" className="navbar-item">
-              Home
+              {isAuthenticated() && <Link to="/portfolio">
+                <img className='navbar-item' src="./images/home.png"></img>
               </Link>}
-              {isAuthenticated() && <Link to="/profile" className="navbar-item">
-              My Profile
+              {isAuthenticated() && <Link to="/trainings">
+                <img className='navbar-item' src="./images/trainings.png"></img>
               </Link>}
-              {isAuthenticated() && <Link to="/trainings" className="navbar-item">
-              Trainings
+              {isAuthenticated() && <Link to="/profile">
+                <img className='navbar-image navbar-item' src={this.state.user.profile_image}></img>
               </Link>}
               {!isAuthenticated() && <Link to="/login" className="navbar-item">
               Login
@@ -50,7 +65,6 @@ class Navbar extends React.Component{
               {!isAuthenticated() && <Link to="/register" className="navbar-item">
               Register
               </Link>}
-              {isAuthenticated() && <span onClick={this.handleLogout} className="navbar-item">Logout</span>}
             </div>
           </div>
         </div>

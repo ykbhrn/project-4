@@ -1,5 +1,6 @@
 import React from 'react'
 import { getPortfolio } from '../../lib/api'
+import { isAuthenticated, logout } from '../../lib/auth'
 import { Link } from 'react-router-dom'
 import Trainings from './Trainings'
 import Images from './Images'
@@ -90,10 +91,16 @@ class ProfilePage extends React.Component {
     }
   }
 
+  handleLogout = () => {
+    logout()
+    // toast('Come back Soon')
+    this.props.history.push('/')
+  }
+
 
   render() {
     if (!this.state.user) return null
-    console.log(this.state.user.trainings)
+    console.log(this.state.user)
 
     return (
       <section className="section m-scene">
@@ -104,6 +111,10 @@ class ProfilePage extends React.Component {
           </div>
         </Link>
         }
+
+        {isAuthenticated() && <div onClick={this.handleLogout} className="logout">
+          <img src='./images/logout.png' />
+        </div>}
 
         {this.state.showChoices &&
           <>
@@ -146,8 +157,12 @@ class ProfilePage extends React.Component {
         <div className='portfolio-container'>
           {this.state.showTrainings &&
         <>
-  
-          <h1 className="title is-2 has-text-centered">Next Booked Trainings</h1>
+          <div className="profile-header">
+            {!this.state.showChoices &&
+                <img className='profile-image' src={this.state.user.profile_image}></img>
+            }
+            <h1 className="title is-2 has-text-centered">Next Booked Trainings</h1>
+          </div>
           <hr />
           <div className="columns is-multiline scene_element scene_element--fadein">
 
@@ -226,7 +241,12 @@ class ProfilePage extends React.Component {
 
           {this.state.showImages &&
           <>
-            <h1 className="title is-2 has-text-centered">Your Photos</h1>
+            <div className="profile-header">
+              {!this.state.showChoices &&
+                <img className='profile-image' src={this.state.user.profile_image}></img>
+              }
+              <h1 className="title is-2 has-text-centered">Your Photos</h1>
+            </div>
             <hr />
             <div className="columns is-multiline scene_element scene_element--fadein">
               {this.state.user.images.map(image => (
@@ -244,7 +264,12 @@ class ProfilePage extends React.Component {
 
           {this.state.showVideos &&
           <>
-            <h1 className="title is-2 has-text-centered">Your Videos</h1>
+            <div className="profile-header">
+              {!this.state.showChoices &&
+                <img className='profile-image' src={this.state.user.profile_image}></img>
+              }
+              <h1 className="title is-2 has-text-centered">Your Videos</h1>
+            </div>
             <hr />
             <div className="columns is-multiline scene_element scene_element--fadein">
 
@@ -264,7 +289,12 @@ class ProfilePage extends React.Component {
 
           {this.state.showArticles &&
           <>
-            <h1 className="title is-2 has-text-centered">Your Articles</h1>
+            <div className="profile-header">
+              {!this.state.showChoices &&
+                <img className='profile-image' src={this.state.user.profile_image}></img>
+              }
+              <h1 className="title is-2 has-text-centered">Your Articles</h1>
+            </div>
             <hr />
           </>
           }
