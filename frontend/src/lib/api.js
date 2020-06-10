@@ -27,6 +27,10 @@ export const getPortfolio = () => {
   return axios.get('/api/profile', withHeaders())
 }
 
+export const getPublicPortfolio = id => {
+  return axios.get(`/api/profile/${id}`)
+}
+
 export const registerUser = formData => {
   return axios.post('/api/register', formData)
 }

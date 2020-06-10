@@ -52,46 +52,35 @@ class IndexPortfolio extends React.Component {
     return (
       <>
         <section className="section m-scene">
-          <div className="profile-choices-container">
-          
-            {this.state.showImages &&
+
+          {this.state.showImages &&
         <Link to={this.portfolioUrl}>
           <img className='add-portfolio' src='./images/addimage.png'></img>
         </Link>
-            }
-            {this.state.showVideos &&
+          }
+          {this.state.showVideos &&
         <Link to={this.portfolioUrl}>
           <img className='add-portfolio' src='./images/addvideo.png'></img>
         </Link>
-            }
-            {this.state.showArticles &&
+          }
+          {this.state.showArticles &&
         <Link to={this.portfolioUrl}>
           <img className='add-portfolio' src='./images/addarticle.png'></img>
         </Link>
-            }
+          }
 
-            <div className={`small-profile-choices ${ this.state.showImages ? 'selected-menu-choice' : ''}`}
-              onClick={() => {
-                this.clickShow('images')
-              }}
-            >
-          Photos
-            </div>
+          <div className="profile-choices-container index">
+            <span onClick={() => {
+              this.clickShow('images')
+            }} className={`small-profile-choices ${this.state.showImages ? 'selected-menu-choice' : ''}`}>Images</span>
 
-            <div className={`small-profile-choices ${ this.state.showVideos ? 'selected-menu-choice' : ''}`}
-              onClick={() => {
-                this.clickShow('videos')
-              }}
-            >
-          Videos
-            </div>
-            <div className={`small-profile-choices ${ this.state.showArticles ? 'selected-menu-choice' : ''}`}
-              onClick={() => {
-                this.clickShow('articles')
-              }}
-            >
-          Articles
-            </div>
+            <span onClick={() => {
+              this.clickShow('videos')
+            }} className={`small-profile-choices ${this.state.showVideos ? 'selected-menu-choice' : ''}`}>Videos</span>
+      
+            <span onClick={() => {
+              this.clickShow('articles')
+            }} className={`small-profile-choices ${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Articles</span>
 
           </div>
 

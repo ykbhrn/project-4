@@ -53,13 +53,13 @@ class Navbar extends React.Component{
           <div className={`navbar-menu ${isOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
               {isAuthenticated() && <Link to="/portfolio">
-                <img className='navbar-item' src="./images/home.png"></img>
+                <img className='navbar-item' src="/images/home.png" />
               </Link>}
               {isAuthenticated() && <Link to="/trainings">
-                <img className='navbar-item' src="./images/trainings.png"></img>
+                <img className='navbar-item' src="/images/trainings.png" />
               </Link>}
               {isAuthenticated() && <Link to="/profile">
-                <img className='navbar-image navbar-item' src={this.state.user.profile_image}></img>
+                <img className='navbar-image navbar-item' src={this.state.user.profile_image} />
               </Link>}
               {!isAuthenticated() && <Link to="/login" className="navbar-item">
               Login

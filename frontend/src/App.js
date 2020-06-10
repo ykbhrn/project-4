@@ -10,6 +10,7 @@ import AddArticle from './components/portfolio/AddArticle'
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
 import MyProfilePage from './components/common/MyProfilePage'
+import PublicProfilePage from './components/common/PublicProfile'
 import TrainingsPage from './components/common/TrainingsPage'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
@@ -23,12 +24,12 @@ const App = () => (
     {isAuthenticated() && <Navbar /> }
     <Switch>
       <Route exact path='/' component={Home} />
-      <SecureRoute path='/portfolio/:videos/:id' component={SinglePortfolio} />
+      <Route path='/portfolio/:videos/:id' component={SinglePortfolio} />
       <Route path='/portfolio/:id' component={SinglePortfolio} />
-      <Route path='/:reload/portfolio' component={IndexPortfolio} />
       <Route path='/portfolio' component={IndexPortfolio} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
+      <Route path='/profile/:id' component={PublicProfilePage} />
       <SecureRoute path='/profile' component={MyProfilePage} />
       <SecureRoute path='/trainings' component={TrainingsPage} />
       <SecureRoute path='/done/:type' component={AddDone} />

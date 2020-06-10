@@ -27,9 +27,7 @@ class Login extends React.Component {
     try {
       this.setState({ loading: true })
       const res = await loginUser(this.state.formData)
-      setToken(res.data.token)
-      // toast(res.data.message)
-      
+      setToken(res.data.token)      
       this.setState({ redirect: true })
       
     } catch (err) {

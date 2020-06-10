@@ -99,22 +99,22 @@ class ProfilePage extends React.Component {
 
         {this.state.showImages &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='./images/addimage.png'></img>
+          <img className='add-portfolio' src='/images/addimage.png' />
         </Link>
         }
         {this.state.showVideos &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='./images/addvideo.png'></img>
+          <img className='add-portfolio' src='/images/addvideo.png' />
         </Link>
         }
         {this.state.showArticles &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='./images/addarticle.png'></img>
+          <img className='add-portfolio' src='/images/addarticle.png' />
         </Link>
         }
 
         {isAuthenticated() && <div onClick={this.handleLogout} className="logout">
-          <img src='./images/logout.png' />
+          <img src='/images/logout.png' />
         </div>}
 
         {this.state.showChoices &&
@@ -129,7 +129,7 @@ class ProfilePage extends React.Component {
               this.clickShow('training')
             }}
           > 
-            {this.state.showChoices && <img src='./images/nexttrainings.png'></img>}
+            {this.state.showChoices && <img src='/images/nexttrainings.png' />}
             <span className={`${this.state.showTrainings ? 'selected-menu-choice' : ''}`}>Next Trainings</span>
           </div>
 
@@ -138,7 +138,7 @@ class ProfilePage extends React.Component {
               this.clickShow('images')
             }}
           >
-            {this.state.showChoices && <img src='./images/yourphotos.png'></img> }
+            {this.state.showChoices && <img src='/images/yourphotos.png' /> }
             <span className={`${this.state.showImages ? 'selected-menu-choice' : ''}`}>Your Photos</span>
           </div>
 
@@ -147,7 +147,7 @@ class ProfilePage extends React.Component {
               this.clickShow('videos')
             }}
           > 
-            {this.state.showChoices && <img src='./images/yourvideos.png'></img> }
+            {this.state.showChoices && <img src='/images/yourvideos.png' />}
             <span className={`${this.state.showVideos ? 'selected-menu-choice' : ''}`}>Your Videos</span>
           </div>
 
@@ -157,7 +157,7 @@ class ProfilePage extends React.Component {
               this.clickShow('articles')
             }}
           > 
-            {this.state.showChoices && <img src='./images/yourarticles.png'></img> }
+            {this.state.showChoices && <img src='/images/yourarticles.png' /> }
             <span className={`${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Your Articles</span>
           </div>
           }
@@ -168,7 +168,7 @@ class ProfilePage extends React.Component {
         <>
           <div className="profile-header">
             {!this.state.showChoices &&
-                <img className='profile-image' src={this.state.user.profile_image}></img>
+                <img className='profile-image' src={this.state.user.profile_image} />
             }
             <h1 className="title is-2 has-text-centered">Next Booked Trainings</h1>
           </div>
@@ -226,7 +226,6 @@ class ProfilePage extends React.Component {
             <h1 className="title is-2 has-text-centered">Trainings Without Booking</h1>
             <hr />  
             <div className="columns is-multiline scene_element scene_element--fadein">
-
               {this.state.user.trainings.map(training => (
                 <>
                   {!this.handleBookedTraining(training.bookings) &&
@@ -252,7 +251,7 @@ class ProfilePage extends React.Component {
           <>
             <div className="profile-header">
               {!this.state.showChoices &&
-                <img className='profile-image' src={this.state.user.profile_image}></img>
+                <img className='profile-image' src={this.state.user.profile_image} />
               }
               <h1 className="title is-2 has-text-centered">Your Photos</h1>
             </div>
@@ -275,7 +274,7 @@ class ProfilePage extends React.Component {
           <>
             <div className="profile-header">
               {!this.state.showChoices &&
-                <img className='profile-image' src={this.state.user.profile_image}></img>
+                <img className='profile-image' src={this.state.user.profile_image} />
               }
               <h1 className="title is-2 has-text-centered">Your Videos</h1>
             </div>
@@ -300,7 +299,7 @@ class ProfilePage extends React.Component {
           <>
             <div className="profile-header">
               {!this.state.showChoices &&
-                <img className='profile-image' src={this.state.user.profile_image}></img>
+                <img className='profile-image' src={this.state.user.profile_image} />
               }
               <h1 className="title is-2 has-text-centered">Your Articles</h1>
             </div>
