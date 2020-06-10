@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { isAuthenticated } from './lib/auth'
 
 
-// import Home from './components/common/Home'
 import IndexPortfolio from './components/portfolio/IndexPortfolio'
 import SinglePortfolio from './components/portfolio/SinglePortfolio'
 import AddPortfolio from './components/portfolio/AddPortfolio'
@@ -20,7 +20,7 @@ import SecureRoute from './components/common/SecureRoute'
 
 const App = () => (
   <BrowserRouter>
-    <Navbar />
+    {isAuthenticated() && <Navbar /> }
     <Switch>
       <Route exact path='/' component={Home} />
       <SecureRoute path='/portfolio/:videos/:id' component={SinglePortfolio} />

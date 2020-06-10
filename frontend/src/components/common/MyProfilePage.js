@@ -86,8 +86,7 @@ class ProfilePage extends React.Component {
 
   handleLogout = () => {
     logout()
-    // toast('Come back Soon')
-    this.props.history.push('/')
+    return  window.location.assign('/')
   }
 
 
@@ -120,7 +119,7 @@ class ProfilePage extends React.Component {
 
         {this.state.showChoices &&
           <>
-            <h1 className="title is-2 has-text-centered">{`${this.state.timeMessage} ${this.state.user.username}`}</h1>
+            <h1 className="title is-2 has-text-centered greeting">{`${this.state.timeMessage} ${this.state.user.username}`}</h1>
             <hr />
           </>
         }

@@ -110,83 +110,83 @@ class Register extends React.Component {
     const { formData, errors } = this.state
     console.log(this.state.formData.sports)
     return (
-      <div className="register-container">
-        <section className="register-section">
-          {this.renderRedirect()}
-          <div className="columns">
-            <form onSubmit={this.handleSubmit} className="column">
-              <div className="has-text-centered title">Sign Up</div>
+      <>
+        <Link to="/" className="navbar-item">
+          <span className="logo-navbar">gyminy</span>
+        </Link>
+        <div className="register-container">
+          <div className="register-section">
+            {this.renderRedirect()}
+            <div>
+              <form onSubmit={this.handleSubmit} >
+                <div className="has-text-centered title register-title">Join Our Virtual Gym</div>
 
-              <div className="field">
-                {/* <label className="label">Name</label> */}
-                <div className="control">
-                  <input
-                    className={`input ${errors.username ? 'is-danger' : ''}`}
-                    placeholder="Username"
-                    name="username"
-                    onChange={this.handleChange}
-                    value={formData.username}
-                  />
-                </div>
-                {errors.username ? <small className="help is-danger">{errors.username}</small> : ''}
-              </div>
+                <div className="input-container">
+                  <div className="field">
+                    <label className="label">Username:</label>        
+                    <input
+                      className={`input ${errors.username ? 'is-danger' : ''}`}
+                      placeholder="Username"
+                      name="username"
+                      onChange={this.handleChange}
+                      value={formData.username}
+                    />
+                    {errors.username ? <small className="help is-danger">{errors.username}</small> : ''}
+                  </div>
 
-              <div className="field">
-                {/* <label className="label">Email</label> */}
-                <div className="control">
-                  <input
-                    className={`input ${errors.email ? 'is-danger' : ''}`}
-                    placeholder="Email"
-                    name="email"
-                    onChange={this.handleChange}
-                    value={formData.email}
-                  />
-                </div>
-                {this.state.errors.email ? <small className="help is-danger">{errors.email}</small> : ''}
-              </div>
-
-              <div className="field">
-                {/* <label className="label">Password</label> */}
-                <div className="control">
-                  <input
-                    className={`input ${errors.password ? 'is-danger' : ''}`}
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    onChange={this.handleChange}
-                    value={formData.password}
-                  />
-                </div>
-                {errors.password && <small className="help is-danger">{errors.password}</small>}
-              </div>
-
-              <div className="field">
-                {/* <label className="label">Password Confirmation</label> */}
-                <div className="control">
-                  <input
-                    type="password"
-                    className={`input ${errors.password_confirmation ? 'is-danger' : ''}`}
-                    placeholder="Password Confirmation"
-                    name="password_confirmation"
-                    onChange={this.handleChange}
-                    value={formData.password_confirmation}
-                  />
-                </div>
-                {errors.password_confirmation && <small className="help is-danger">{errors.password_confirmation}</small>}
-              </div>
-
-              <div className="register-forms-container field">
-                <div className='register-forms'>
-                   What sports you are interested in? 
-                  <SportSelect
-                    handleSelect={this.handleSelect}
-                  />
-                  {errors.sports && <small className="help is-danger">{errors.sports}</small>}
+                  <div className="field">
+                    <label className="label">Email:</label>
+                    <input
+                      className={`input ${errors.email ? 'is-danger' : ''}`}
+                      placeholder="Email"
+                      name="email"
+                      onChange={this.handleChange}
+                      value={formData.email}
+                    />
+                    {this.state.errors.email ? <small className="help is-danger">{errors.email}</small> : ''}
+                  </div>
                 </div>
 
-                <div className='register-forms'>
-                  Are you interested to find trainings and advices(student) or offer trainings(athlete)?
-                  <div className="control">
+
+                <div className="input-container">
+                  <div className="field">
+                    <label className="label">Password:</label>
+                    <input
+                      className={`input ${errors.password ? 'is-danger' : ''}`}
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      onChange={this.handleChange}
+                      value={formData.password}
+                    />
+                    {errors.password && <small className="help is-danger">{errors.password}</small>}
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Password Confirmation:</label>
+                    <input
+                      type="password"
+                      className={`input ${errors.password_confirmation ? 'is-danger' : ''}`}
+                      placeholder="Password Confirmation"
+                      name="password_confirmation"
+                      onChange={this.handleChange}
+                      value={formData.password_confirmation}
+                    />
+                    {errors.password_confirmation && <small className="help is-danger">{errors.password_confirmation}</small>}
+                  </div>
+                </div>
+
+                <div className="register-forms-container field">
+                  <div className='register-forms'>
+                    <label className="label">What sports you are interested in?</label>
+                    <SportSelect
+                      handleSelect={this.handleSelect}
+                    />
+                    {errors.sports && <small className="help is-danger">{errors.sports}</small>}
+                  </div>
+
+                  <div className='register-forms register-type'>   
+                    <label className="label">Do You Wanna Offer Trainings(Athlete) Or Find Trainings(Student)</label>
                     <label className='radio'>
                       <input type="radio" 
                         name="user_type"
@@ -207,38 +207,40 @@ class Register extends React.Component {
                   </div>
                   {errors.user_type && <small className="help is-danger">{errors.user_type}</small>}
                 </div>
-              </div>
 
-              <div className="field">
-                <div className="control">
-                  <input
-                    className='input'
-                    placeholder="Your profile image"
-                    name="profile_image"
-                    onChange={this.handleChange}
-                  />
+                <div className="input-container">
+                  <div className="field">
+                    <label className="label">Bio:</label>     
+                    <textarea
+                      className='textarea'
+                      rows="4"
+                      cols="40"
+                      placeholder="Your Bio"
+                      name="bio"
+                      onChange={this.handleChange}
+                      value={formData.bio}
+                    />
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Profile Picture Url:</label>     
+                    <input
+                      className='input'
+                      placeholder="Your profile image"
+                      name="profile_image"
+                      onChange={this.handleChange}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="field">
-                <div className="control">
-                  <input
-                    className='input'
-                    placeholder="Your Bio"
-                    name="bio"
-                    onChange={this.handleChange}
-                    value={formData.bio}
-                  />
+                <div className="field">
+                  <button type="submit"  className={`button is-fullwidth register-button ${this.state.loading ? 'is-loading' : ''}`}>Register</button>
                 </div>
-              </div>
-
-              <div className="field">
-                <button type="submit"  className={`button is-fullwidth is-dark register-button ${this.state.loading ? 'is-loading' : ''}`}>Register</button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </>
     )
   }
 }

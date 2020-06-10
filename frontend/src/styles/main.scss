@@ -1,21 +1,32 @@
 @import '~bulma/bulma.sass';
 
 $main: #F7B733;
+$logo-font: 'Cinzel', serif;
+$slogan: 'Dosis', sans-serif;
 // #e1b382
 
 html{
   background: #f0f4f8;
 }
 
+.home-container{
+  background-image: url('./images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
 .register-container{
   display: flex;
   justify-content: center;
+  width: 100vw;
+  align-items: center;
+  margin-top: -40px;
 }
 
 .radio{
   display: inline-block;
-  width: 200px;
-  margin-left: 100px;
+  
 }
 
 .register-forms-container{
@@ -36,6 +47,11 @@ html{
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.register-type{
+  margin-left: 40px;
 }
 
 .register-forms-span{
@@ -46,8 +62,17 @@ html{
 .register-section{
   margin-top: 10px;
   padding: 0 50px 0 50px;
-  width: 90vw;
 }
+
+.register-section .input{
+  width: 360px;
+}
+
+.input-container{
+  display: flex;
+  justify-content: space-between;
+}
+
 .select,.is-multiple{
   margin-top: 5px;
 }
@@ -104,7 +129,7 @@ html{
 .add-portfolio{
   position: absolute;
   top: 0px;
-  left: 42%;
+  left: 48%;
   animation: heartbeat 4s infinite;
   z-index: 1000;
 }
@@ -209,6 +234,7 @@ html{
 .logo{
   font-family: 'Cinzel', serif;
   font-size: 90px;
+
 }
 
 .logo-navbar{
@@ -218,4 +244,58 @@ html{
 
 .navbar{
   border-bottom: 1px solid $main;
+}
+
+.greeting{
+  color: $main;
+}
+
+.sign-container{
+  display: flex;
+  justify-content: left;
+  align-items: end;
+  margin: 18% 0px 0 20px;
+}
+
+.sign-card{
+  width: 400px;
+}
+
+.logo-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  margin-left: 20px;
+}
+
+.slogan{
+  font-size: 33px;
+  font-family: $slogan;
+}
+
+.logo-navbar-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-navbar{
+  margin: 30px 60px 0 0;
+}
+
+.home-navbar-item{
+  color: white;
+  font-family: $slogan;
+  font-size: 20px;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+.register-title{
+  color: $main;
+}
+
+.register-button{
+  background: $main;
+  color: white;
 }
