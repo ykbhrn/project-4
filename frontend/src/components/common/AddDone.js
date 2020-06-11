@@ -67,7 +67,7 @@ class AddDone extends React.Component {
             {this.props.match.params.type === 'booking' && 
             <>
               <div className="subtitle done-booking">
-            Training Slot Was Succesfully Booked, Instructor Will Send You Zoom Invitation Link 15 Minutes Before Training Started
+              Training Slot Was Succesfully Booked, Instructor Will Send You Zoom Invitation Link 15 Minutes Before Training Started
               </div>
               <button onClick={this.finishBooking}>
                 Go Back To The {this.props.match.params.username} Profile

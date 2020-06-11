@@ -11,9 +11,9 @@ class AddPortfolio extends React.Component {
   state = {
     formData: {
       url: '',
-      description: '',
-      isLoading: false
+      description: ''
     },
+    isLoading: false,
     redirect: false,
     error: ''
   }
@@ -31,21 +31,19 @@ class AddPortfolio extends React.Component {
     this.setState({ formData, error: '' })
   }
 
-  handleSubmit = async event => {
-    event.preventDefault()
-    try {
-      if (this.portfolioName === 'images') {
-        await addImages(this.state.formData)
-      } else if (this.portfolioName === 'videos') {
-        await addVideos(this.state.formData)
-      }
-      this.props.history.push('/portfolio')
-
-      // this.setState({ redirect: true })
-    } catch (err) {
-      this.setState({ error: 'Invalid Credentials' })
+handleSubmit = async event => {
+  event.preventDefault()
+  try {
+    if (this.props.match.params.portfolio === 'images') {
+      await addImages(this.state.formData) 
+    } else if (this.props.match.params.portfolio === 'videos') {
+      await addVideos(this.state.formData) 
     }
+    this.setState({ redirect: true })    
+  } catch (err) {
+    this.setState({ error: 'Invalid Credentials' })
   }
+}
 
 
   renderRedirect = () => {
@@ -132,8 +130,8 @@ class AddPortfolio extends React.Component {
             </>
             }
             {!this.state.isLoading && 
-                  <div type="submit" className='button'> Post It 
-                  </div>
+                  <button type="submit" className='button'> Post It 
+                  </button>
             }    
   
           </form>

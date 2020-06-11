@@ -4,7 +4,7 @@ import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
 
-const uploadUrl = 'https://api.cloudinary.com/v1_1/djq7pruxd/upload'
+const uploadUrl = ' https://api.cloudinary.com/v1_1/djq7pruxd/upload'
 const uploadPreset = 'ins6nrmj'
 
 class AddArticle extends React.Component {
@@ -145,8 +145,8 @@ class AddArticle extends React.Component {
             </>
             }
             {!this.state.isLoading &&
-              <div type="submit" className='button'> Post It
-              </div>
+              <button type="submit" className='button'> Post It
+              </button>
             }
 
           </form>

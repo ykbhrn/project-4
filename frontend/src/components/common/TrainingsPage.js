@@ -26,6 +26,8 @@ class TrainingsPage extends React.Component {
     isStudent: false,
     isAthlete: false,
     isGroupTraining: false,
+    trainingOwnerId: '',
+    trainingOwnerUsername: '',
     errors: {
       name: '',
       date: '',
@@ -51,10 +53,10 @@ class TrainingsPage extends React.Component {
   }
 
 
-  async handleBooking(id) {
+  async handleBooking(id, ownerId, ownerUsername ) {
     try {
       const res = await bookTraining(id)
-      this.setState({ studentRedirect: true })
+      this.setState({ studentRedirect: true, trainingOwnerId: ownerId, trainingOwnerUsername: ownerUsername })
       console.log(res.data)
     } catch (err) {
       console.log(err)
@@ -134,7 +136,7 @@ class TrainingsPage extends React.Component {
       return <Redirect to="/done/training" />
     }
     if (this.state.studentRedirect) {
-      return <Redirect to="/done/booking" />
+      return <Redirect to={`/done/booking/${this.state.user.id}/${this.state.user.username}`} />
     }
   }
 
@@ -373,7 +375,7 @@ class TrainingsPage extends React.Component {
                             <div className="field">
                               <button
                                 onClick={() => {
-                                  this.handleBooking(training.id)
+                                  this.handleBooking(training.id, training.owner.id, training.owner.username)
                                 }}
                                 className='button is-fullwidth is-dark'>Book Time Slot</button>
                             </div>
