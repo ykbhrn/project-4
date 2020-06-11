@@ -7,6 +7,7 @@ import IndexPortfolio from './components/portfolio/IndexPortfolio'
 import SinglePortfolio from './components/portfolio/SinglePortfolio'
 import AddPortfolio from './components/portfolio/AddPortfolio'
 import AddArticle from './components/portfolio/AddArticle'
+import SingleArticle from './components/portfolio/SingleArticle'
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
 import MyProfilePage from './components/common/MyProfilePage'
@@ -26,6 +27,7 @@ const App = () => (
       <Route exact path='/' component={Home} />
       <Route path='/portfolio/:videos/:id' component={SinglePortfolio} />
       <Route path='/portfolio/:id' component={SinglePortfolio} />
+      <Route path='/articles/:id' component={SingleArticle} />
       <Route path='/portfolio' component={IndexPortfolio} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />

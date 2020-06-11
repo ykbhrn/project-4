@@ -6,6 +6,7 @@ class AddArticle extends React.Component {
   state = {
     formData: {
       imageUrl: '',
+      titleImageUrl: '',
       text: '',
       title: ''
     },
@@ -56,6 +57,7 @@ class AddArticle extends React.Component {
                     value={formData.title}
                   />
                 </div>
+                {error && <small className="help is-danger">{error}</small>}
               </div>
 
               <div className="field">
@@ -82,6 +84,18 @@ class AddArticle extends React.Component {
                   />
                 </div>
                 {error && <small className="help is-danger">{error}</small>}
+              </div>
+
+              <div className="field">
+                <div className="control">
+                  <input
+                    className='input'
+                    placeholder='Title Image Url'
+                    name="titleImageUrl"
+                    onChange={this.handleChange}
+                    value={formData.titleImageUrl}
+                  />
+                </div>
               </div>
 
               <div className="field">

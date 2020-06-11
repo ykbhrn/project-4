@@ -70,3 +70,7 @@ export const addArticles = formData => {
 export const getAllArticles = () => {
   return axios.get('/api/articles')
 }
+
+export const getSingleArticle = id => {
+  return axios.get(`/api/articles/${id}`)
+}

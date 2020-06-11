@@ -5,6 +5,7 @@ $font-color: #4a4a4a;
 $logo-font: 'Cinzel', serif;
 $slogan: 'Dosis', sans-serif;
 $article-font: BlinkMacSystemFont;
+$article-text-font: Roboto,sans-serif;
 // #e1b382
 
 html{
@@ -255,11 +256,47 @@ a{
 .subtitle-article{
   font-family: $article-font;
   padding: 10px 25px;
+  height: 170px;
   overflow: hidden;
 }
 
 .article-text{
   width: 400px
+}
+
+.article-image-container{
+  width: 100vw;
+  height: 400px;
+  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -20px;
+}
+
+.single-article-container{
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single-article-title{
+  width: 1000px;
+  margin-top: 20px;
+}
+
+.single-article-text{
+  width: 960px;
+  font-family: $article-text-font;
+  font-size: 20px;
+  background: white;
+  padding: 30px 80px;
+}
+
+.single-article-author{
+
 }
 
 
