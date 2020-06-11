@@ -44,7 +44,7 @@ class SinglePortfolio extends React.Component {
           <div className="columns scene_element scene_element--fadein">
             <div className="column is-half">
               <figure className="image">
-                <img className="show-image" src={portfolio.url} alt={portfolio.title} />
+                <video className="show-image" src={portfolio.url} alt={portfolio.title} controls/>
               </figure>
               <br />
             </div>

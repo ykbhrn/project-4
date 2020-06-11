@@ -1,12 +1,18 @@
 import React from 'react'
 import { addImages, addVideos } from '../../lib/api'
 import { Redirect, Link } from 'react-router-dom'
+import axios from 'axios'
+
+const uploadUrl = 'https://api.cloudinary.com/v1_1/djq7pruxd/upload'
+const uploadPreset = 'ins6nrmj'
+
 
 class AddPortfolio extends React.Component {
   state = {
     formData: {
       url: '',
-      description: ''
+      description: '',
+      isLoading: false
     },
     redirect: false,
     error: ''
@@ -21,11 +27,13 @@ class AddPortfolio extends React.Component {
     event.preventDefault()
     try {
       if (this.props.match.params.portfolio === 'images') {
-        await addImages(this.state.formData) 
+        await addImages(this.state.formData)
       } else if (this.props.match.params.portfolio === 'videos') {
-        await addVideos(this.state.formData) 
+        await addVideos(this.state.formData)
       }
-      this.setState({ redirect: true })    
+      this.props.history.push('/portfolio')
+
+      // this.setState({ redirect: true })
     } catch (err) {
       this.setState({ error: 'Invalid Credentials' })
     }
@@ -33,7 +41,7 @@ class AddPortfolio extends React.Component {
 
 
   renderRedirect = () => {
-    if (this.state.redirect){  
+    if (this.state.redirect) {
       return <Redirect to="/portfolio" />
     }
   }
@@ -47,8 +55,34 @@ class AddPortfolio extends React.Component {
     }
   }
 
+  setUrl = imgUrl => {
+    const formData = { ...this.state.formData, url: imgUrl }
+    this.setState({ formData })
+  }
+
+  // sendData = () => {
+  //   this.setUrl(this.state.url)
+  // }
+
+  handleUpload = async event => {
+    try {
+      this.setState({ isLoading: true })
+      const data = new FormData()
+      data.append('file', event.target.files[0])
+      data.append('upload_preset', uploadPreset)
+      const res = await axios.post(uploadUrl, data)
+      console.log(res.data)
+      this.setState({ isLoading: false })
+      this.setUrl(res.data.url)
+    } catch (err) {
+      console.log('err=', err)
+    }
+  }
+
   render() {
     const { formData, error } = this.state
+    console.log(formData.url)
+    console.log(formData)
     return (
       <section className="section">
         {this.renderRedirect()}
@@ -57,17 +91,18 @@ class AddPortfolio extends React.Component {
         <div className="container">
           <div className="columns">
             <form onSubmit={this.handleSubmit} className="column">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className={`input ${error ? 'is-danger' : '' }`}
-                    placeholder={`${this.portfolioType()} Url`}
-                    name="url"
-                    onChange={this.handleChange}
-                    value={formData.url}
-                  />
-                </div>
+
+              <div>
+                <label className="label">Upload Image</label>
+                <input
+                  className={`input ${error.url ? 'is-danger' : ''}`}
+                  type="file"
+                  onChange={this.handleUpload}
+                />
+                {formData.url ? <video src={formData.url} alt="User's Upload"></video> : ''}
               </div>
+              {error.url && <small className="help is-danger">{error.url}</small>}
+
               <div className="field">
                 <div className="control">
                   <input
@@ -75,20 +110,27 @@ class AddPortfolio extends React.Component {
                     placeholder={`Describe Your ${this.portfolioType()}`}
                     name="description"
                     onChange={this.handleChange}
-                    value={formData.image}
+                    value={formData.description}
                   />
                 </div>
                 {error && <small className="help is-danger">{error}</small>}
               </div>
 
               <div className="field">
-                <button type="submit"  className='button is-fullwidth'>Post</button>
+                {this.state.isLoading && <>
+                  <img src='/images/loading.svg' />
+                </>
+                }
+                {!this.state.isLoading && 
+                  <div type="submit" className='button is-fullwidth'> Post
+                  </div>
+                }    
               </div>
-
+  
             </form>
           </div>
         </div>
-      </section>
+      </section >
     )
   }
 }
