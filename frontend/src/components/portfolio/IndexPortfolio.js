@@ -51,7 +51,7 @@ class IndexPortfolio extends React.Component {
     console.log(this.state.videos)
     return (
       <>
-        <section className="section m-scene">
+        <section className="m-scene">
 
           {this.state.showImages &&
         <Link to={this.portfolioUrl}>

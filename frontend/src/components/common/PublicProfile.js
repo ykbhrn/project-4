@@ -1,6 +1,6 @@
 import React from 'react'
-import { getPublicPortfolio } from '../../lib/api'
-import { Link } from 'react-router-dom'
+import { getPublicPortfolio, bookTraining } from '../../lib/api'
+import { Redirect ,Link } from 'react-router-dom'
 import Trainings from './Trainings'
 import Images from './Images'
 import Videos from './Videos'
@@ -15,7 +15,8 @@ class PublicProfilePage extends React.Component {
     showArticles: false,
     showVideos: false,
     isStudent: false,
-    isAthlete: false
+    isAthlete: false,
+    redirect: false
   }
 
   async componentDidMount() {
@@ -29,6 +30,22 @@ class PublicProfilePage extends React.Component {
       }
     } catch (err) {
       console.log(err)
+    }
+  }
+
+  async handleBooking(id) {
+    try {
+      const res = await bookTraining(id)
+      this.setState({ redirect: true })
+      console.log(res.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to={`/done/booking/${this.state.user.id}/${this.state.user.username}`} />
     }
   }
 
@@ -52,12 +69,61 @@ class PublicProfilePage extends React.Component {
     }
   }
 
+  handleBookingForm = (limit, bookings) => {
+    let capacity
+
+    if (bookings === 0){
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+        </>
+      } else if (this.state.isStudent){
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+        </>
+      } 
+    } else if (bookings >= limit) {
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+          <div>
+              Training Is Fully Booked
+          </div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>
+            Training Is Fully Booked
+          </div>
+        </>
+      }
+    } else {
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
+        </>
+      }
+    }
+  }
+
   render() {
     if (!this.state.user) return null
     console.log(this.state.user)
 
     return (
       <section className="public-profile-container">
+        {this.renderRedirect()}
         <div className="profile-header-container">
           <div className="profile-header">
             <img className='profile-image' src={this.state.user.profile_image} />
@@ -75,82 +141,95 @@ class PublicProfilePage extends React.Component {
             <span onClick={() => {
               this.clickShow('videos')
             }} className={`small-profile-choices ${this.state.showVideos ? 'selected-menu-choice' : ''}`}>Videos</span>
-      
+
 
             {this.state.isAthlete &&
-            <>
-              <span onClick={() => {
-                this.clickShow('articles')
-              }} className={`small-profile-choices ${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Articles</span>
-            
+              <>
+                <span onClick={() => {
+                  this.clickShow('articles')
+                }} className={`small-profile-choices ${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Articles</span>
 
-              <span onClick={() => {
-                this.clickShow('training')
-              }} className={`small-profile-choices ${this.state.showTrainings ? 'selected-menu-choice' : ''}`}>Trainings</span>
-            </>
+
+                <span onClick={() => {
+                  this.clickShow('training')
+                }} className={`small-profile-choices ${this.state.showTrainings ? 'selected-menu-choice' : ''}`}>Trainings</span>
+              </>
             }
           </div>
         </div>
-      
+
         <div className='portfolio-container'>
           {this.state.showTrainings &&
-        <>
-          <div className="columns is-multiline scene_element scene_element--fadein">
-            
-            {this.state.user.trainings.map(training => (
-              <Trainings
-                key={training.id}
-                id={training.id}
-                name={training.name}
-                date={training.date}
-                time={training.time}
-                sports={training.sports.map(sport => (`${sport.name}  `))}
-                description={training.description}
-                username={training.owner.username}
-              />
-            ))}            
-          </div>
-        </>
+            <>
+              <div className="columns is-multiline scene_element scene_element--fadein">
+
+                {this.state.user.trainings.map(training => (
+                  <>
+                    {!training.isFull &&
+                      <div
+                        key={training.id}
+                        className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
+                        <div className="card">
+                          <h4 className="card-header-title">{training.name}</h4>
+                          <div>Instructor: <Link to={`/profile/${training.owner.id}`}><span className="card-header-title">{training.owner.username}</span></Link></div>
+                          <div>Date: <span className="card-header-title">{training.date}</span></div>
+                          <div>Time: <span className="card-header-title">{training.time}</span></div>
+                          <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
+                          <div>Description: <span className="card-header-title">{training.description}</span></div>
+                          {this.handleBookingForm(training.limit, training.bookings)}
+                          <div className="field">
+                            <button
+                              onClick={() => {
+                                this.handleBooking(training.id)
+                              }}
+                              className='button is-fullwidth is-dark'>Book Time Slot</button>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </>
+                ))}
+              </div>
+            </>
           }
 
-
           {this.state.showImages &&
-          <>
-            <div className="columns is-multiline scene_element scene_element--fadein">
-              {this.state.user.images.map(image => (
-                <Images
-                  key={image.id}
-                  id={image.id}
-                  title={image.title}
-                  url={image.url}
-                  description={image.description}
-                />
-              ))}
-            </div>
-          </>
+            <>
+              <div className="columns is-multiline scene_element scene_element--fadein">
+                {this.state.user.images.map(image => (
+                  <Images
+                    key={image.id}
+                    id={image.id}
+                    title={image.title}
+                    url={image.url}
+                    description={image.description}
+                  />
+                ))}
+              </div>
+            </>
           }
 
           {this.state.showVideos &&
-          <>
-            <div className="columns is-multiline scene_element scene_element--fadein">
+            <>
+              <div className="columns is-multiline scene_element scene_element--fadein">
 
-              {this.state.user.videos.map(video => (
-                <Videos
-                  key={video.id}
-                  id={video.id}
-                  title={video.title}
-                  url={video.url}
-                  description={video.description}
-                />
-              ))}
+                {this.state.user.videos.map(video => (
+                  <Videos
+                    key={video.id}
+                    id={video.id}
+                    title={video.title}
+                    url={video.url}
+                    description={video.description}
+                  />
+                ))}
 
-            </div>
-          </>
+              </div>
+            </>
           }
 
           {this.state.showArticles &&
-          <>          
-          </>
+            <>
+            </>
           }
 
         </div>

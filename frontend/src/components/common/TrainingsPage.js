@@ -49,16 +49,10 @@ class TrainingsPage extends React.Component {
       console.log(err)
     }
   }
-  
+
 
   async handleBooking(id) {
     try {
-      // const withHeaders = () => {
-      //   return {
-      //     headers: { Authorization: `Bearer ${getToken()}` }
-      //   }
-      // }
-      // console.log(withHeaders().headers)
       const res = await bookTraining(id)
       this.setState({ studentRedirect: true })
       console.log(res.data)
@@ -144,25 +138,51 @@ class TrainingsPage extends React.Component {
     }
   }
 
-  capacityLimit = (limit, bookings) => {
+  handleBookingForm = (limit, bookings) => {
     let capacity
-    if (limit === 1) {
-      return <>
-        <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
-      </>
-    } else {
-      return <>
-        <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
-        <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
-      </>
-    }
-  }
 
-  handleBookedTraining = (booking) => {
-    if (booking > 0) {
-      return true
-    } else if (booking == 0) {
-      return false
+    if (bookings === 0) {
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+        </>
+      } else if (this.state.isStudent) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+        </>
+      }
+    } else if (bookings >= limit) {
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+          <div>
+            Training Is Fully Booked
+          </div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>
+            Training Is Fully Booked
+          </div>
+        </>
+      }
+    } else {
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
+        </>
+      }
     }
   }
 
@@ -176,180 +196,163 @@ class TrainingsPage extends React.Component {
         <section className="section m-scene">
 
           {this.state.isAthlete &&
-              <>
-                <div className="profile-choices-container">
-                  <div className='small-profile-choices'
-                    onClick={() => {
-                      this.clickShow('requests')
-                    }}
-                  >
-                    <span className={`${this.state.showRequests ? 'selected-menu-choice' : ''}`}>New training requests</span>
-                  </div>
+            <>
+              <div className="profile-choices-container index">
 
-                  <div className='small-profile-choices'
-                    onClick={() => {
-                      this.clickShow('booked')
-                    }}
-                  >
-                    <span className={`${this.state.showBookedTrainings ? 'selected-menu-choice' : ''}`}>Booked Trainings</span>
-                  </div>
+                <span onClick={() => {
+                  this.clickShow('requests')
+                }} className={`small-profile-choices ${this.state.showRequests ? 'selected-menu-choice' : ''}`}>
+                  New Training Requests</span>
 
-                  <div className='small-profile-choices'
-                    onClick={() => {
-                      this.clickShow('not')
-                    }}
-                  >
-                    <span className={`${this.state.showNotBookedTrainings ? 'selected-menu-choice' : ''}`}>Not Booked Yet</span>
-                  </div>
+                <span onClick={() => {
+                  this.clickShow('booked')
+                }} className={`small-profile-choices ${this.state.showBookedTrainings ? 'selected-menu-choice' : ''}`}>
+                  Booked Trainings</span>
 
-                  <div className='small-profile-choices'
-                    onClick={() => {
-                      this.clickShow('add')
-                    }}
-                  >
-                    <span className={`${this.state.showAdd ? 'selected-menu-choice' : ''}`}>Add new training slots</span>
+                <span onClick={() => {
+                  this.clickShow('not')
+                }} className={`small-profile-choices ${this.state.showNotBookedTrainings ? 'selected-menu-choice' : ''}`}>
+                  Not Booked Yet</span>
+
+                <span onClick={() => {
+                  this.clickShow('add')
+                }} className={`small-profile-choices ${this.state.showAdd ? 'selected-menu-choice' : ''}`}>
+                  Add New Training Slots</span>
+
+              </div>
+
+              {this.state.showRequests &&
+                <div className='portfolio-container'>
+                  Requests here
+                </div>
+              }
+
+              {this.state.showBookedTrainings &&
+                <div className='portfolio-container'>
+                  <h1 className="title is-2 has-text-centered">Your Next Trainings</h1>
+                  <hr />
+                  <div className="columns is-multiline scene_element scene_element--fadein">
+
+                    {this.state.user.trainings.map(training => (
+                      <>
+                        <Trainings
+                          key={training.id}
+                          id={training.id}
+                          name={training.name}
+                          date={training.date}
+                          time={training.time}
+                          username={training.owner.username}
+                          userId={training.owner.id}
+                          sports={training.sports.map(sport => (`${sport.name}  `))}
+                          description={training.description}
+                          limit={training.limit}
+                          bookingForm={this.handleBookingForm}
+                          bookings={training.bookings}
+                        />
+                      </>
+                    ))}
+
                   </div>
                 </div>
+              }
 
-                {this.state.showRequests &&
-                  <div>
-                    Requests here
+              {this.state.showNotBookedTrainings &&
+                <div className='portfolio-container'>
+                  <h1 className="title is-2 has-text-centered">Your Trainings Without Booking</h1>
+                  <hr />
+                  <div className="columns is-multiline scene_element scene_element--fadein">
+
+                    {this.state.user.trainings.map(training => (
+                      <>
+                        <Trainings
+                          key={training.id}
+                          id={training.id}
+                          name={training.name}
+                          date={training.date}
+                          time={training.time}
+                          username={training.owner.username}
+                          userId={training.owner.id}
+                          sports={training.sports.map(sport => (`${sport.name}  `))}
+                          description={training.description}
+                          limit={training.limit}
+                          bookings={training.bookings}
+                          bookingForm={this.handleBookingForm}
+                        />
+                      </>
+                    ))}
+
                   </div>
-                }
+                </div>
+              }
 
-                {this.state.showBookedTrainings &&
-                  <>
-                    <h1 className="title is-2 has-text-centered">Next Trainings</h1>
-                    <hr />
-                    <div className="columns is-multiline scene_element scene_element--fadein">
-
-                      {this.state.user.trainings.map(training => (
-                        <>
-                          {this.handleBookedTraining(training.bookings) &&
-                            <Trainings
-                              key={training.id}
-                              id={training.id}
-                              name={training.name}
-                              date={training.date}
-                              time={training.time}
-                              sports={training.sports.map(sport => (`${sport.name}  `))}
-                              description={training.description}
-                              isFull={training.isFull} 
-                              bookings={training.bookings}
-                              limit={training.limit}
-                            />
-                          }
-                        </>
-                      ))}
-
-                    </div>
-                  </>
-                }
-
-                {this.state.showNotBookedTrainings &&
-                  <>
-                    <h1 className="title is-2 has-text-centered">Trainings Without Booking</h1>
-                    <hr />
-                    <div className="columns is-multiline scene_element scene_element--fadein">
-
-                      {this.state.user.trainings.map(training => (
-                        <>
-                          {!this.handleBookedTraining(training.bookings) &&
-                            <Trainings
-                              key={training.id}
-                              id={training.id}
-                              name={training.name}
-                              date={training.date}
-                              time={training.time}
-                              sports={training.sports.map(sport => (`${sport.name}  `))}
-                              description={training.description}
-                              limit={training.limit}
-                            />
-                          }
-                        </>
-                      ))}
-
-                    </div>
-                  </>
-                }
-
-                {this.state.showAdd &&
-                  <AddTraining
-                    renderRedirect={this.renderRedirect}
-                    handleChange={this.handleChange}
-                    handleSelect={this.handleSelect}
-                    handleSubmit={this.handleSubmit}
-                    handleErrors={this.handleErrors}
-                    name={formData.name}
-                    date={formData.date}
-                    time={formData.time}
-                    limit={formData.limit}
-                    description={formData.description}
-                    sports={formData.sports}
-                    errorName={errors.name}
-                    errorDate={errors.date}
-                    errorTime={errors.time}
-                    errorDescription={errors.description}
-                    errorSports={errors.sports}
-                  />
-                }
-              </>
+              {this.state.showAdd &&
+                <AddTraining
+                  renderRedirect={this.renderRedirect}
+                  handleChange={this.handleChange}
+                  handleSelect={this.handleSelect}
+                  handleSubmit={this.handleSubmit}
+                  handleErrors={this.handleErrors}
+                  name={formData.name}
+                  date={formData.date}
+                  time={formData.time}
+                  limit={formData.limit}
+                  description={formData.description}
+                  sports={formData.sports}
+                  errorName={errors.name}
+                  errorDate={errors.date}
+                  errorTime={errors.time}
+                  errorDescription={errors.description}
+                  errorSports={errors.sports}
+                />
+              }
+            </>
           }
           {this.state.isStudent &&
-              <>            
-                <div className="profile-choices-container">
+            <>
+              <div className="profile-choices-container index">
 
-                  <div className='small-profile-choices'
-                    onClick={() => {
-                      this.clickShow('requests')
-                    }}
-                  >
-                    <span className={`${this.state.showRequests ? 'selected-menu-choice student-choice' : ''}`}>Find New Trainings</span>
-                  </div>
-                
-                  <div className='small-profile-choices'
-                    onClick={() => {
-                      this.clickShow('booked')
-                    }}
-                  >
-                    <span className={`${this.state.showBookedTrainings ? 'selected-menu-choice student-choice' : ''}`}>My Next Trainings</span>
-                  </div>
-                </div>
+                <span onClick={() => {
+                  this.clickShow('requests')
+                }} className={`small-profile-choices ${this.state.showRequests ? 'selected-menu-choice' : ''}`}>Find New Trainings</span>
 
-                {this.state.showBookedTrainings &&
-                <div className="columns is-multiline scene_element scene_element--fadein">
+                <span onClick={() => {
+                  this.clickShow('booked')
+                }} className={`small-profile-choices ${this.state.showBookedTrainings ? 'selected-menu-choice' : ''}`}>My Next Trainings</span>
 
-                  {this.state.user.student_trainings.map(training => (
-                    <>
-                      <div
-                        key={training.id}
-                        className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
-                        <div className="card">
-                            id: {training.id}
-                          {/* < Link to={`/trainings/${training.id}`}> */}
-                          <h4 className="card-header-title">{training.name}</h4>
-                          <div>Instructor: <span className="card-header-title">{training.owner.username}</span></div>
-                          <div>Date: <span className="card-header-title">{training.date}</span></div>
-                          <div>Time: <span className="card-header-title">{training.time}</span></div>
-                          <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
-                          <div>Description: <span className="card-header-title">{training.description}</span></div>
-                          {this.capacityLimit(training.limit, training.bookings)}
-                          <div className="field">
-                            <button
-                              onClick={() => {
-                                this.handleBooking(training.id)
-                              }}
-                              className='button is-fullwidth is-dark'>Book Time Slot</button>
+              </div>
+
+              {this.state.showBookedTrainings &&
+                <div className='portfolio-container'>
+                  <h1 className="title is-2 has-text-centered">My Next Trainings</h1>
+                  <hr />
+                  <div className="columns is-multiline scene_element scene_element--fadein">
+
+                    {this.state.user.student_trainings.map(training => (
+                      <>
+                        <div
+                          key={training.id}
+                          className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
+                          <div className="card">
+                            {/* < Link to={`/trainings/${training.id}`}> */}
+                            <h4 className="card-header-title">{training.name}</h4>
+                            <div>Instructor: <Link to={`/profile/${training.owner.id}`}><span className="card-header-title">{training.owner.username}</span></Link></div>
+                            <div>Date: <span className="card-header-title">{training.date}</span></div>
+                            <div>Time: <span className="card-header-title">{training.time}</span></div>
+                            <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
+                            <div>Description: <span className="card-header-title">{training.description}</span></div>
+                            {/* </Link > */}
                           </div>
-                          {/* </Link > */}
                         </div>
-                      </div>
-                    </>
-                  ))}
+                      </>
+                    ))}
+                  </div>
                 </div>
-                }
+              }
 
-                {this.state.showRequests &&
+              {this.state.showRequests &&
+              <div className='portfolio-container'>
+                <h1 className="title is-2 has-text-centered">All Available Trainings</h1>
+                <hr />
                 <div className="columns is-multiline scene_element scene_element--fadein">
 
                   {this.state.trainings.map(training => (
@@ -359,15 +362,14 @@ class TrainingsPage extends React.Component {
                           key={training.id}
                           className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
                           <div className="card">
-                            id: {training.id}
                             {/* < Link to={`/trainings/${training.id}`}> */}
                             <h4 className="card-header-title">{training.name}</h4>
-                            <div>Instructor: <span className="card-header-title">{training.owner.username}</span></div>
+                            <div>Instructor: <Link to={`/profile/${training.owner.id}`}><span className="card-header-title">{training.owner.username}</span></Link></div>
                             <div>Date: <span className="card-header-title">{training.date}</span></div>
                             <div>Time: <span className="card-header-title">{training.time}</span></div>
                             <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
                             <div>Description: <span className="card-header-title">{training.description}</span></div>
-                            {this.capacityLimit(training.limit, training.bookings)}
+                            {this.handleBookingForm(training.limit, training.bookings)}
                             <div className="field">
                               <button
                                 onClick={() => {
@@ -382,8 +384,9 @@ class TrainingsPage extends React.Component {
                     </>
                   ))}
                 </div>
-                }
-              </>
+              </div>
+              }
+            </>
           }
         </section>
       </>

@@ -32,6 +32,7 @@ const App = () => (
       <Route path='/profile/:id' component={PublicProfilePage} />
       <SecureRoute path='/profile' component={MyProfilePage} />
       <SecureRoute path='/trainings' component={TrainingsPage} />
+      <SecureRoute path='/done/:type/:id/:username' component={AddDone} />
       <SecureRoute path='/done/:type' component={AddDone} />
       <SecureRoute path='/add/:portfolio' component={AddPortfolio} />
       <SecureRoute path='/newarticle' component={AddArticle} />

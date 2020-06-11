@@ -1,12 +1,17 @@
 @import '~bulma/bulma.sass';
 
 $main: #F7B733;
+$font-color: #4a4a4a;
 $logo-font: 'Cinzel', serif;
 $slogan: 'Dosis', sans-serif;
+$article-font: BlinkMacSystemFont;
 // #e1b382
 
 html{
   background: #f0f4f8;
+}
+a{
+  color: $main;
 }
 
 .home-container{
@@ -50,6 +55,15 @@ html{
   flex-wrap: wrap;
 }
 
+.category{
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.category label{
+  margin-right: 20px;
+}
+
 .register-type{
   margin-left: 40px;
 }
@@ -64,8 +78,17 @@ html{
   padding: 0 50px 0 50px;
 }
 
+.register-section.add-training .button{
+  margin: 40px 0 0 40%;
+  display: inline-block;
+}
+
 .register-section .input{
   width: 360px;
+}
+
+.field{
+  margin-right: 40px;
 }
 
 .input-container{
@@ -122,6 +145,13 @@ html{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding: 50px;
+}
+
+.done-booking{
+  padding-bottom: 20px;
+  width: 600px;
+  border-bottom: 3px solid $main;
 }
 
 .selected-menu-choice{
@@ -167,6 +197,7 @@ html{
 .article-container{
   display: flex;
   justify-content: space-around;
+  align-items: stretch;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100vw;
@@ -176,24 +207,59 @@ html{
 .card-article{
   display: flex;
   flex-direction: column;
-  background: white;
-  width: 400px;
-  height: 350px;
-  margin-bottom: 30px;
-  box-shadow: inset -20px -136px 41px -26px rgba(0,0,0,0.9);
-  color: white;
-  z-index: 255555;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 600px;
+  margin-bottom: 80px;
+  color: $font-color;
+
 }
 
 
 .article-title{
-  overflow: hidden;
-  padding: 15px 10px;
+  padding: 0 10px;
+  font-family: $article-font;
+  margin: 10px 0;
+  font-size: 30px;
+  line-height: 1;
+  text-align: center;
+}
+
+.article-text a {
+  color: $font-color;
+}
+
+.article-author{
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 0 0 57px;
+}
+
+.article-author a{
+  color: $main;
+}
+
+.article-border{
+  border-bottom: 2px solid $font-color;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .image-article{
   width: 400px;
   height: 300px;
+}
+
+.subtitle-article{
+  font-family: $article-font;
+  padding: 10px 25px;
+  overflow: hidden;
+}
+
+.article-text{
+  width: 400px
 }
 
 
@@ -208,16 +274,19 @@ html{
   height: 100px;
   border-radius: 50%;
   margin-right: 30px;
+  border: 2px solid $main;
 }
 
 .profile-header{
   display: flex;
-  justify-content: left;
+  justify-content: center;
+  margin-top: 20px;
   align-items: center;
+  text-align: left;
 }
 
 .navbar-image{
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 .navbar-item{
@@ -327,4 +396,14 @@ html{
 
 .public-profile-container{
 
+}
+
+.m-scene{
+  padding-top: 20px;
+}
+
+.add-training{
+  margin-top: 90px;
+  border: 2px solid $main;
+  padding: 40px;
 }

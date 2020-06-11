@@ -4,14 +4,13 @@ import SportSelect from '../common/SportSelect'
 
 const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, handleErrors, name, date, time, description, sports, limit, errorName, errorDate, errorTime, errorDescription, errorSports } ) => (
   
-  <section className="section">
+  <div className="register-container">
     {renderRedirect()}
-    <div className="columns">
-      <form onSubmit={handleSubmit} className="column">
-        <div className="has-text-centered title">Add New Training</div>
-
-        <div className="field">
-          <div className="control">
+    <div className="register-section add-training">
+      <form onSubmit={handleSubmit}>
+        <div className="input-container">
+          <div className="field">
+            <label className="label">Training Name:</label>    
             <input
               className={`input ${errorName ? 'is-danger' : ''}`}
               placeholder="Name of the training"
@@ -19,12 +18,11 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
               onChange={handleChange}
               value={name}
             />
+            {errorName ? <small className="help is-danger">{errorName}</small> : ''}
           </div>
-          {errorName ? <small className="help is-danger">{errorName}</small> : ''}
-        </div>
 
-        <div className="field">
-          <div className="control">
+          <div className="field">
+            <label className="label">Date:</label>    
             <input
               type='date'
               className={`input ${errorDate ? 'is-danger' : ''}`}
@@ -33,12 +31,15 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
               onChange={handleChange}
               value={date}
             />
+            {errorDate ? <small className="help is-danger">{errorDate}</small> : ''}
           </div>
-          {errorDate ? <small className="help is-danger">{errorDate}</small> : ''}
+
         </div>
 
-        <div className="field">
-          <div className="control">
+        <div className="input-container">
+
+          <div className="field">
+            <label className="label">Time:</label>    
             <input
               type='time'
               className={`input ${errorTime ? 'is-danger' : ''}`}
@@ -47,12 +48,11 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
               onChange={handleChange}
               value={time}
             />
+            {errorTime && <small className="help is-danger">{errorTime}</small>}
           </div>
-          {errorTime && <small className="help is-danger">{errorTime}</small>}
-        </div>
 
-        <div className="field">
-          <div className="control">
+          <div className="field">
+            <label className="label">Students Capacity Limit:</label>    
             <input
               type='number'
               className='input'
@@ -60,13 +60,16 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
               name="limit"
               onChange={handleChange}
               defaultValue='1'
-              
             />
+
           </div>
+
         </div>
 
-        <div className="field">
-          <div className="control">
+        <div className="input-container">
+
+          <div className="field">
+            <label className="label">Description:</label>    
             <input
               className={`input ${errorDescription ? 'is-danger' : ''}`}
               placeholder="Please, Describe Your Training"
@@ -74,23 +77,24 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
               onChange={handleChange}
               value={description}
             />
+            {errorDescription && <small className="help is-danger">{errorDescription}</small>}
           </div>
-          {errorDescription && <small className="help is-danger">{errorDescription}</small>}
-        </div>
 
-        <div className='register-forms'>
-          What Is The Training Category? 
-          <SportSelect
-            handleSelect={handleSelect}
-          />
-          {errorSports && <small className="help is-danger">{errorSports}</small>}
+          <div className='register-forms field category'>
+            <label className="label">Training Category</label>
+            <SportSelect
+              handleSelect={handleSelect}
+            />
+            {errorSports && <small className="help is-danger">{errorSports}</small>}
+          </div>
+
         </div>
 
         <div className="field">
-          <button type="submit"  className='button is-fullwidth is-dark'>Add Training</button>
+          <button type="submit"  className='button'>Add Training</button>
         </div>
       </form>
     </div>
-  </section>
+  </div>
 )
 export default Trainings

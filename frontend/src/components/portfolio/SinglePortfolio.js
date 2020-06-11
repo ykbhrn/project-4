@@ -2,6 +2,7 @@
 import React from 'react'
 // import { Link } from 'react-router-dom' 
 import { getSingleImage, getSingleVideo } from '../../lib/api'
+import { Link } from 'react-router-dom'
 
 
 class SinglePortfolio extends React.Component {
@@ -35,7 +36,9 @@ class SinglePortfolio extends React.Component {
       <section className="section m-scene">
         <div className="container">
 
-          <h2 className="title has-text-centered">{portfolio.owner.username}</h2>
+          <Link to={`/profile/${portfolio.owner.id}`}>
+            <h2 className="title has-text-centered">{portfolio.owner.username}</h2>
+          </Link>
           <hr />
           
           <div className="columns scene_element scene_element--fadein">

@@ -89,6 +89,54 @@ class ProfilePage extends React.Component {
     return  window.location.assign('/')
   }
 
+  handleBookingForm = (limit, bookings) => {
+    let capacity
+
+    if (bookings === 0){
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+        </>
+      } else if (this.state.isStudent){
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+        </>
+      } 
+    } else if (bookings >= limit) {
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+          <div>
+              Training Is Fully Booked
+          </div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>
+            Training Is Fully Booked
+          </div>
+        </>
+      }
+    } else {
+      if (limit === 1) {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+        </>
+      } else {
+        return <>
+          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
+        </>
+      }
+    }
+  }
+
 
   render() {
     if (!this.state.user) return null
@@ -161,17 +209,17 @@ class ProfilePage extends React.Component {
             <span className={`${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Your Articles</span>
           </div>
           }
+
         </div>
       
         <div className='portfolio-container'>
           {this.state.showTrainings &&
         <>
           <div className="profile-header">
-            {!this.state.showChoices &&
-                <img className='profile-image' src={this.state.user.profile_image} />
-            }
-            <h1 className="title is-2 has-text-centered">Next Booked Trainings</h1>
-          </div>
+           
+            <img className='profile-image' src={this.state.user.profile_image} />
+            
+            <div className="title is-2">{this.state.user.username} <br /><span className="subtitle is-5">Booked Trainings</span></div>          </div>
           <hr />
           <div className="columns is-multiline scene_element scene_element--fadein">
 
@@ -189,6 +237,10 @@ class ProfilePage extends React.Component {
                       sports={training.sports.map(sport => (`${sport.name}  `))}
                       description={training.description}
                       username={training.owner.username}
+                      userId={training.owner.id}
+                      limit={training.limit}
+                      bookings={training.bookings}
+                      bookingForm={this.handleBookingForm}
                     />
                   }
                 </>
@@ -210,6 +262,10 @@ class ProfilePage extends React.Component {
                       sports={training.sports.map(sport => (`${sport.name}  `))}
                       description={training.description}
                       username={training.owner.username}
+                      userId={training.owner.id}
+                      limit={training.limit}
+                      bookings={training.bookings}
+                      bookingForm={this.handleBookingForm}
                     />
                   }
                 </>
@@ -221,40 +277,13 @@ class ProfilePage extends React.Component {
         </>
           }
 
-          {/* {this.state.showOtherTrainings &&
-          <>
-            <h1 className="title is-2 has-text-centered">Trainings Without Booking</h1>
-            <hr />  
-            <div className="columns is-multiline scene_element scene_element--fadein">
-              {this.state.user.trainings.map(training => (
-                <>
-                  {!this.handleBookedTraining(training.bookings) &&
-                <Trainings
-                  key={training.id}
-                  id={training.id}
-                  name={training.name}
-                  date={training.date}
-                  time={training.time}
-                  sports={training.sports.map(sport => ( `${sport.name}  `))}
-                  description={training.description}
-                  username={training.owner.username}
-                />
-                  }
-                </>
-              ))}
-            
-            </div>
-          </>
-        }  */}
-
           {this.state.showImages &&
           <>
             <div className="profile-header">
-              {!this.state.showChoices &&
-                <img className='profile-image' src={this.state.user.profile_image} />
-              }
-              <h1 className="title is-2 has-text-centered">Your Photos</h1>
-            </div>
+  
+              <img className='profile-image' src={this.state.user.profile_image} />
+              
+              <div className="title is-2">{this.state.user.username} <br /><span className="subtitle is-5">Photos</span></div>            </div>
             <hr />
             <div className="columns is-multiline scene_element scene_element--fadein">
               {this.state.user.images.map(image => (
@@ -273,11 +302,10 @@ class ProfilePage extends React.Component {
           {this.state.showVideos &&
           <>
             <div className="profile-header">
-              {!this.state.showChoices &&
-                <img className='profile-image' src={this.state.user.profile_image} />
-              }
-              <h1 className="title is-2 has-text-centered">Your Videos</h1>
-            </div>
+             
+              <img className='profile-image' src={this.state.user.profile_image} />
+              
+              <div className="title is-2">{this.state.user.username} <br /><span className="subtitle is-5">Videos</span></div>            </div>
             <hr />
             <div className="columns is-multiline scene_element scene_element--fadein">
 
@@ -294,20 +322,40 @@ class ProfilePage extends React.Component {
             </div>
           </>
           }
+        </div>
 
-          {this.state.showArticles &&
+        {this.state.showArticles &&
           <>
             <div className="profile-header">
-              {!this.state.showChoices &&
-                <img className='profile-image' src={this.state.user.profile_image} />
-              }
-              <h1 className="title is-2 has-text-centered">Your Articles</h1>
+             
+              <img className='profile-image' src={this.state.user.profile_image} />
+              
+              <div className="title is-2">{this.state.user.username} <br /><span className="subtitle is-5">Articles</span></div>
+            </div>
+            <div className="article-container">
+              {this.state.user.articles.map( article => (
+                <div key={article.id}>
+                  <div className="card-article">
+
+                    < Link to = {`/portfolio/${article.id}`}> 
+                      <img className='image-article' src={article.imageUrl} alt={article.title} />
+                    </Link >    
+                    
+                    <div className='article-text'>
+                      < Link to = {`/portfolio/${article.id}`}> 
+                        <div className="article-title">{article.title}</div>
+                        <div className='article-border'></div>
+                      </ Link>
+                      <div className="subtitle-article">{article.text}</div>
+                    </div>
+
+                  </div>
+                </div>
+              ))}
             </div>
             <hr />
           </>
-          }
-
-        </div>
+        }
 
       </section>
     )
