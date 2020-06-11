@@ -72,7 +72,7 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
             <label className="label">Description:</label>    
             <input
               className={`input ${errorDescription ? 'is-danger' : ''}`}
-              placeholder="Please, Describe Your Training"
+              placeholder="Describe Your Training"
               name="description"
               onChange={handleChange}
               value={description}

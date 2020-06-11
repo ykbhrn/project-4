@@ -17,6 +17,14 @@ class AddPortfolio extends React.Component {
     redirect: false,
     error: ''
   }
+  portfolioName = this.props.match.params.portfolio
+
+  isImage = () => {
+    if (this.portfolioName === 'images') {
+      return true
+    }
+    return false
+  }
 
   handleChange = event => {
     const formData = { ...this.state.formData, [event.target.name]: event.target.value }
@@ -26,9 +34,9 @@ class AddPortfolio extends React.Component {
   handleSubmit = async event => {
     event.preventDefault()
     try {
-      if (this.props.match.params.portfolio === 'images') {
+      if (this.portfolioName === 'images') {
         await addImages(this.state.formData)
-      } else if (this.props.match.params.portfolio === 'videos') {
+      } else if (this.portfolioName === 'videos') {
         await addVideos(this.state.formData)
       }
       this.props.history.push('/portfolio')
@@ -47,11 +55,11 @@ class AddPortfolio extends React.Component {
   }
 
   portfolioType = () => {
-    let portfolioType
-    if (this.props.match.params.portfolio === 'images') {
-      return portfolioType = 'Image'
-    } else if (this.props.match.params.portfolio === 'videos') {
-      return portfolioType = 'Video'
+    let result
+    if (this.portfolioName === 'images') {
+      return result = 'Photo'
+    } else if (this.portfolioName === 'videos') {
+      return result = 'Video'
     }
   }
 
@@ -84,51 +92,55 @@ class AddPortfolio extends React.Component {
     console.log(formData.url)
     console.log(formData)
     return (
-      <section className="section">
+      <section className="add-form-section">
         {this.renderRedirect()}
-        <h1 className="title is-2 has-text-centered">Add New {this.portfolioType()}</h1>
+        <h1 className="title">Add New {this.portfolioType()}</h1>
 
-        <div className="container">
-          <div className="columns">
-            <form onSubmit={this.handleSubmit} className="column">
+        <div className="add-form-container">
+          <form onSubmit={this.handleSubmit}>
 
-              <div>
-                <label className="label">Upload Image</label>
-                <input
-                  className={`input ${error.url ? 'is-danger' : ''}`}
-                  type="file"
-                  onChange={this.handleUpload}
-                />
-                {formData.url ? <video src={formData.url} alt="User's Upload"></video> : ''}
-              </div>
-              {error.url && <small className="help is-danger">{error.url}</small>}
+            <label className="label">Choose Your {this.portfolioType()}</label>
+            <div className="upload-portfolio">
+              <input
+                className={`input ${error.url ? 'is-danger' : ''}`}
+                type="file"
+                onChange={this.handleUpload}
+              />
+              {this.isImage() && 
+              <>
+                {formData.url ? <img src={formData.url} alt="User's Upload" /> : ''}
+              </>
+              }
 
-              <div className="field">
-                <div className="control">
-                  <input
-                    className={`input ${error ? 'is-danger' : ''}`}
-                    placeholder={`Describe Your ${this.portfolioType()}`}
-                    name="description"
-                    onChange={this.handleChange}
-                    value={formData.description}
-                  />
-                </div>
-                {error && <small className="help is-danger">{error}</small>}
-              </div>
+              {!this.isImage() && 
+              <>
+                {formData.url ? <video src={formData.url} alt="User's Upload" controls/> : ''}
+              </>
+              }
+            </div>
+            {error.url && <small className="help is-danger">{error.url}</small>}
 
-              <div className="field">
-                {this.state.isLoading && <>
-                  <img src='/images/loading.svg' />
-                </>
-                }
-                {!this.state.isLoading && 
-                  <div type="submit" className='button is-fullwidth'> Post
+            <textarea
+              className={`textarea ${error ? 'is-danger' : ''}`}
+              placeholder={'Few Word To Describe It?'}
+              rows="3"
+              cols="40"
+              name="description"
+              onChange={this.handleChange}
+              value={formData.description}
+            />
+            {error && <small className="help is-danger">{error}</small>}
+
+            {this.state.isLoading && <>
+              <img src='/images/loading.svg' className='loading-image' />
+            </>
+            }
+            {!this.state.isLoading && 
+                  <div type="submit" className='button'> Post It {this.isImage()}
                   </div>
-                }    
-              </div>
+            }    
   
-            </form>
-          </div>
+          </form>
         </div>
       </section >
     )
