@@ -1,6 +1,11 @@
 import React from 'react'
 import { addArticles } from '../../lib/api'
 import { Redirect, Link } from 'react-router-dom'
+import axios from 'axios'
+
+
+const uploadUrl = 'https://api.cloudinary.com/v1_1/djq7pruxd/upload'
+const uploadPreset = 'ins6nrmj'
 
 class AddArticle extends React.Component {
   state = {
@@ -10,6 +15,7 @@ class AddArticle extends React.Component {
       text: '',
       title: ''
     },
+    isLoading: false,
     redirect: false,
     error: ''
   }
@@ -22,8 +28,8 @@ class AddArticle extends React.Component {
   handleSubmit = async event => {
     event.preventDefault()
     try {
-      await addArticles(this.state.formData) 
-      this.setState({ redirect: true })    
+      await addArticles(this.state.formData)
+      this.setState({ redirect: true })
     } catch (err) {
       this.setState({ error: 'Invalid Credentials' })
     }
@@ -31,79 +37,119 @@ class AddArticle extends React.Component {
 
 
   renderRedirect = () => {
-    if (this.state.redirect){  
+    if (this.state.redirect) {
       return <Redirect to="/portfolio" />
+    }
+  }
+
+  setUrl = imgUrl => {
+    const formData = { ...this.state.formData, imageUrl: imgUrl }
+    this.setState({ formData })
+  }
+
+  handleUpload = async event => {
+    try {
+      this.setState({ isLoading: true })
+      const data = new FormData()
+      data.append('file', event.target.files[0])
+      data.append('upload_preset', uploadPreset)
+      const res = await axios.post(uploadUrl, data)
+      console.log(res.data)
+      this.setState({ isLoading: false })
+      this.setUrl(res.data.url)
+    } catch (err) {
+      console.log('err=', err)
+    }
+  }
+
+  setBigUrl = imgUrl => {
+    const formData = { ...this.state.formData, titleImageUrl: imgUrl }
+    this.setState({ formData })
+  }
+
+  handleBigUpload = async event => {
+    try {
+      this.setState({ isLoading: true })
+      const data = new FormData()
+      data.append('file', event.target.files[0])
+      data.append('upload_preset', uploadPreset)
+      const res = await axios.post(uploadUrl, data)
+      console.log(res.data)
+      this.setState({ isLoading: false })
+      this.setBigUrl(res.data.url)
+    } catch (err) {
+      console.log('err=', err)
     }
   }
 
 
   render() {
     const { formData, error } = this.state
+    console.log(this.state.formData)
     return (
-      <section className="section">
+      <section className="add-article-section">
         {this.renderRedirect()}
         <h1 className="title is-2 has-text-centered">Add New Article</h1>
 
-        <div className="container">
-          <div className="columns">
-            <form onSubmit={this.handleSubmit} className="column">
-              <div className="field">
-                <div className="control">
-                  <input
-                    className={`input ${error ? 'is-danger' : '' }`}
-                    placeholder='Article Title'
-                    name="title"
-                    onChange={this.handleChange}
-                    value={formData.title}
-                  />
-                </div>
-                {error && <small className="help is-danger">{error}</small>}
-              </div>
+        <div className="add-article-container">
+          <form onSubmit={this.handleSubmit}>
+            <label className="label">Title</label>
+            <div className="field">
+              <input
+                className={`input ${error ? 'is-danger' : ''}`}
+                placeholder='Article Title'
+                name="title"
+                onChange={this.handleChange}
+                value={formData.title}
+              />
+              {error && <small className="help is-danger">{error}</small>}
+            </div>
 
-              <div className="field">
-                <div className="control">
-                  <input
-                    className={`input ${error ? 'is-danger' : ''}`}
-                    placeholder='Text'
-                    name="text"
-                    onChange={this.handleChange}
-                    value={formData.text}
-                  />
-                </div>
-                {error && <small className="help is-danger">{error}</small>}
-              </div>
+            <label className="label">Small Image</label>
+            <div className="upload-portfolio">
+              <input
+                className={`input ${error.imageUrl ? 'is-danger' : ''}`}
+                type="file"
+                onChange={this.handleUpload}
+              />
+              {formData.imageUrl ? <img src={formData.imageUrl} alt="User's Upload" controls /> : ''}
+            </div>
+            {error.imageUrl && <small className="help is-danger">{error.imageUrl}</small>}
 
-              <div className="field">
-                <div className="control">
-                  <input
-                    className={`input ${error ? 'is-danger' : ''}`}
-                    placeholder='Url for Article Image'
-                    name="imageUrl"
-                    onChange={this.handleChange}
-                    value={formData.imageUrl}
-                  />
-                </div>
-                {error && <small className="help is-danger">{error}</small>}
-              </div>
+            <label className="label">Big Image</label>
+            <div className="upload-portfolio">
+              <input
+                className={`input ${error.titleImageUrl ? 'is-danger' : ''}`}
+                type="file"
+                onChange={this.handleBigUpload}
+              />
+              {formData.titleImageUrl ? <img src={formData.titleImageUrl} alt="User's Upload" controls /> : ''}
+            </div>
+            {error.titleImageUrl && <small className="help is-danger">{error.titleImageUrl}</small>}
 
-              <div className="field">
-                <div className="control">
-                  <input
-                    className='input'
-                    placeholder='Title Image Url'
-                    name="titleImageUrl"
-                    onChange={this.handleChange}
-                    value={formData.titleImageUrl}
-                  />
-                </div>
-              </div>
+            <div className="field">
+              <textarea
+                className={`textarea ${error ? 'is-danger' : ''}`}
+                rows='15'
+                cols='70'
+                placeholder='Text'
+                name="text"
+                onChange={this.handleChange}
+                value={formData.text}
+              />
+              {error && <small className="help is-danger">{error}</small>}
+            </div>
 
-              <div className="field">
-                <button type="submit"  className='button is-fullwidth'>Post</button>
+            {this.state.isLoading && <>
+              <img src='/images/loading.svg' className='loading-image' />
+            </>
+            }
+            {!this.state.isLoading &&
+              <div type="submit" className='button'> Post It
               </div>
+            }
 
-            </form>
-          </div>
+          </form>
         </div>
       </section>
     )

@@ -68,10 +68,6 @@ class AddPortfolio extends React.Component {
     this.setState({ formData })
   }
 
-  // sendData = () => {
-  //   this.setUrl(this.state.url)
-  // }
-
   handleUpload = async event => {
     try {
       this.setState({ isLoading: true })
@@ -136,7 +132,7 @@ class AddPortfolio extends React.Component {
             </>
             }
             {!this.state.isLoading && 
-                  <div type="submit" className='button'> Post It {this.isImage()}
+                  <div type="submit" className='button'> Post It 
                   </div>
             }    
   
