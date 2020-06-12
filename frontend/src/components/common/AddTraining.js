@@ -59,7 +59,7 @@ const Trainings = ( { renderRedirect, handleChange, handleSelect, handleSubmit, 
               placeholder="Training Capacity Limit"
               name="limit"
               onChange={handleChange}
-              defaultValue='1'
+              value={limit}
             />
 
           </div>

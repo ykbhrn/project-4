@@ -5,7 +5,7 @@ from user_type.models import UserType
 class User(AbstractUser):
   email = models.CharField(max_length=50, unique=True)
   profile_image = models.CharField(max_length=300)
-  bio = models.CharField(max_length=300, blank=True)
+  bio = models.CharField(max_length=1000, blank=True)
   sports = models.ManyToManyField(
     'sports.Sport',
     related_name='users'

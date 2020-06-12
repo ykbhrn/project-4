@@ -14,7 +14,7 @@ class TrainingsPage extends React.Component {
       date: '',
       time: '',
       description: '',
-      limit: '',
+      limit: 1,
       sports: []
     },
     // showRequests: true,

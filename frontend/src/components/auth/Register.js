@@ -80,7 +80,7 @@ class Register extends React.Component {
     let password = ''
     let passwordConfirmation = ''
     let sports = ''
-    let userType = ''
+    let userType = 1
 
     if (errors.username){
       username = 'Your Username Is Required'
@@ -215,7 +215,7 @@ class Register extends React.Component {
                     <label className='radio'>
                       <input type="radio" 
                         name="user_type"
-                        value="1"
+                        value={1}
                         onChange={this.handleChange}
                       ></input>
                       <span className="register-forms-span">Student</span>
@@ -224,7 +224,7 @@ class Register extends React.Component {
                     <label className='radio'>
                       <input type="radio" 
                         name="user_type"
-                        value="2"
+                        value={2}
                         onChange={this.handleChange}
                       ></input>
                       <span className="register-forms-span">Athlete</span>
