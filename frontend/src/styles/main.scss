@@ -524,3 +524,33 @@ a{
   margin: 0 20px;
   width: 230px;
 }
+
+// Index page show big photos
+
+.show-big-image{
+  display: flex;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-image-card{
+  position: fixed;
+  display: flex;
+}
+
+.big-image{
+  width: 600px;
+  height: 600px;
+  display: inline-block;
+}
+
+.big-image-description{
+  height: 600px;
+  width: 300px;
+  background: white;
+}

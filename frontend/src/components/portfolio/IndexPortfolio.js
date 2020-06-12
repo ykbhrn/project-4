@@ -11,7 +11,9 @@ class IndexPortfolio extends React.Component {
     videos: [],
     showImages: true,
     showVideos: false,
-    showArticles: false
+    showArticles: false,
+    showBigPortfolio: false,
+    displayPhotoUrl: ''
   }
 
   async componentDidMount() {
@@ -45,10 +47,17 @@ class IndexPortfolio extends React.Component {
     }
   }
 
+  handleBigPortfolio = id => {
+    this.setState({ showBigPortfolio: true, displayPhotoUrl: id })
+  }
+
+  hideBig = () => {
+    this.setState({ showBigPortfolio: false })
+  }
 
   render() {
     // if (!this.state.images) return null
-    console.log(this.state.videos)
+    console.log(this.state.showBigPortfolio)
     return (
       <>
         <section className="m-scene">
@@ -95,6 +104,10 @@ class IndexPortfolio extends React.Component {
                     title={image.title}
                     url={image.url}
                     description={image.description}
+                    handleBigPortfolio={this.handleBigPortfolio}
+                    showBigPortfolio={this.state.showBigPortfolio}
+                    displayPhotoUrl={this.state.displayPhotoUrl}
+                    hideBig={this.hideBig}
                   />
                 ))}
               </div>
@@ -109,6 +122,7 @@ class IndexPortfolio extends React.Component {
                     title={video.title}
                     url={video.url}
                     description={video.description}
+                    showBigPortfolio={this.handleBigPortfolio}
                   />
                 ))}
               </div>
