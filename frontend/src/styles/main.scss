@@ -151,8 +151,19 @@ a{
 
 .done-booking{
   padding-bottom: 20px;
-  width: 600px;
+  width: 620px;
   border-bottom: 3px solid $main;
+}
+
+.done .subtitle{
+  text-align: center;
+}
+
+.done-subtitle-wrap{
+  margin-top: -140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .selected-menu-choice{
@@ -502,4 +513,14 @@ a{
   flex-direction: column;
   align-items: start;
   padding: 40px; 
+}
+
+.done-button{
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.done-button .button{
+  margin: 0 20px;
+  width: 230px;
 }

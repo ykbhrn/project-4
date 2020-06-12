@@ -116,7 +116,7 @@ class AddArticle extends React.Component {
             </div>
             {error.imageUrl && <small className="help is-danger">{error.imageUrl}</small>}
 
-            <label className="label">Big Image</label>
+            <label className="label">Big Image(not mandatory)</label>
             <div className="upload-portfolio">
               <input
                 className={`input ${error.titleImageUrl ? 'is-danger' : ''}`}

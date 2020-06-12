@@ -8,7 +8,9 @@ class AddDone extends React.Component {
     redirect: false,
     progress: 100,
     timeBeforeRedirect: 5000,
-    finishBooking: false
+    finishBooking: false,
+    isTrainingOwner: false,
+    isYou: false
   }
 
   componentDidMount() {
@@ -34,7 +36,11 @@ class AddDone extends React.Component {
       } else if (this.props.match.params.type === 'register') {
         return  window.location.assign('/portfolio')
       } else if (this.props.match.params.type === 'booking') {
-        return  window.location.assign(`/profile/${this.props.match.params.id}`)
+        if (this.state.isTrainingOwner) {
+          return  window.location.assign(`/profile/${this.props.match.params.id}`)
+        } else if (this.state.isYou) {
+          return  window.location.assign('/profile')
+        }
       } 
     }
   }
@@ -48,9 +54,16 @@ class AddDone extends React.Component {
     } 
   }
 
-  finishBooking = async () => {
-    await this.setState({ finishBooking: true, timeBeforeRedirect: 700 })
-    this.componentDidMount()
+  finishBooking = async (who) => {
+
+    if (who === 'trainingOwner') {
+      await this.setState({ finishBooking: true, timeBeforeRedirect: 700, isTrainingOwner: true })
+      this.componentDidMount()
+    } else if (who === 'you') {
+      await this.setState({ finishBooking: true, timeBeforeRedirect: 700, isYou: true })
+      this.componentDidMount()
+    }
+    
   }
 
   render() {
@@ -59,22 +72,33 @@ class AddDone extends React.Component {
         {/* Dont redirect if user just booked the slot */}
         {this.renderRedirect()}
         <div className="hero-body done">
-          <div>
-            <h1 className="title is-1"> 
-              {/* Check what kind of request we want */}
-              {this.handleType()} 
-            </h1>
-            {this.props.match.params.type === 'booking' && 
-            <>
+          <h1 className="title is-1"> 
+            {/* Check what kind of request we want */}
+            {this.handleType()} 
+          </h1>
+          {this.props.match.params.type === 'booking' && 
+            <div className="done-subtitle-wrap">
               <div className="subtitle done-booking">
               Training Slot Was Succesfully Booked, Instructor Will Send You Zoom Invitation Link 15 Minutes Before Training Started
               </div>
-              <button onClick={this.finishBooking}>
-                Go Back To The {this.props.match.params.username} Profile
-              </button>
-            </>
-            }
-          </div>
+              <div className='done-button'>
+                <button 
+                  className="button"
+                  onClick={() => {
+                    this.finishBooking('trainingOwner')
+                  }} >
+                Go To {this.props.match.params.username} Profile
+                </button>
+                <button 
+                  className="button"
+                  onClick={() => {
+                    this.finishBooking('you')
+                  }} >
+                Go To Your Profile
+                </button>
+              </div>
+            </div>
+          }
           <progress className="progress is-large is-link" value={this.state.progress} max="100"></progress>
         </div>
       </section>
