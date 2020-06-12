@@ -3,6 +3,11 @@ import { registerUser, loginUser } from '../../lib/api'
 import { Redirect, Link } from 'react-router-dom'
 import { setToken } from '../../lib/auth'
 import SportSelect from '../common/SportSelect'
+import axios from 'axios'
+
+
+const uploadUrl = 'https://api.cloudinary.com/v1_1/djq7pruxd/upload'
+const uploadPreset = 'ins6nrmj'
 
 class Register extends React.Component {
   state = {
@@ -14,10 +19,10 @@ class Register extends React.Component {
       sports: [],
       user_type: '',
       bio: '',
-      profile_image: 'https://image.flaticon.com/icons/svg/17/17004.svg'
+      profile_image: 'https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png'
     },
     redirect: false,
-    loading: false,
+    isLoading: false,
     errors: {
       username: '',
       email: '',
@@ -105,10 +110,30 @@ class Register extends React.Component {
     }
   }
 
+  setUrl = imgUrl => {
+    const formData = { ...this.state.formData, profile_image: imgUrl }
+    this.setState({ formData })
+  }
+
+  handleUpload = async event => {
+    try {
+      this.setState({ isLoading: true })
+      const data = new FormData()
+      data.append('file', event.target.files[0])
+      data.append('upload_preset', uploadPreset)
+      const res = await axios.post(uploadUrl, data)
+      console.log(res.data)
+      this.setState({ isLoading: false })
+      this.setUrl(res.data.url)
+    } catch (err) {
+      console.log('err=', err)
+    }
+  }
+
 
   render() {
     const { formData, errors } = this.state
-    console.log(this.state.formData.sports)
+    console.log(this.state.formData)
     return (
       <>
         <Link to="/" className="navbar-item">
@@ -223,19 +248,31 @@ class Register extends React.Component {
                   </div>
 
                   <div className="field">
-                    <label className="label">Profile Picture Url:</label>     
-                    <input
-                      className='input'
-                      placeholder="Your profile image"
-                      name="profile_image"
-                      onChange={this.handleChange}
-                    />
+                    <label className="label">Upload Your Profile Picture</label>
+                    <div className="upload-portfolio-register">
+                      <input
+                        className='input'
+                        type="file"
+                        onChange={this.handleUpload}
+                      />
+                      <div>
+                        {formData.profile_image ? <img src={formData.profile_image} alt="User's Upload" /> : ''}
+                      </div>
+                    </div>
                   </div>
+
                 </div>
 
+                {this.state.isLoading && 
+                <>
+                  <img src='/images/loading.svg' className='loading-image-register' />
+                </>
+                }
+                {!this.state.isLoading &&
                 <div className="field">
                   <button type="submit"  className={`button is-fullwidth register-button ${this.state.loading ? 'is-loading' : ''}`}>Register</button>
                 </div>
+                }
               </form>
             </div>
           </div>

@@ -17,9 +17,9 @@ class TrainingsPage extends React.Component {
       limit: '',
       sports: []
     },
-    showRequests: true,
+    // showRequests: true,
     showAdd: false,
-    showBookedTrainings: false,
+    showBookedTrainings: true,
     showNotBookedTrainings: false,
     redirect: false,
     studentRedirect: false,
@@ -28,6 +28,17 @@ class TrainingsPage extends React.Component {
     isGroupTraining: false,
     trainingOwnerId: '',
     trainingOwnerUsername: '',
+    showBigPortfolio: false,
+    displayName: '',
+    displayDate: '',
+    displayTime: '',
+    displaySports: '',
+    displayDescription: '',
+    displayBookings: '',
+    displayUsername: '',
+    displayUserId: '',
+    displayLimit: '',
+    displayProfileUrl: '',
     errors: {
       name: '',
       date: '',
@@ -52,16 +63,33 @@ class TrainingsPage extends React.Component {
     }
   }
 
-
-  async handleBooking(id, ownerId, ownerUsername ) {
-    try {
-      const res = await bookTraining(id)
-      this.setState({ studentRedirect: true, trainingOwnerId: ownerId, trainingOwnerUsername: ownerUsername })
-      console.log(res.data)
-    } catch (err) {
-      console.log(err)
-    }
+  handleBigPortfolio = (name, date, time, sports, description, bookings, username, userId, limit, profileUrl) => {
+    this.setState({ showBigPortfolio: true, displayName: name, displayDate: date, displayTime: time, displaySports: sports,
+      displayDescription: description, displayBookings: bookings, displayUsername: username, displayUserId: userId,
+      displayLimit: limit, displayProfileUrl: profileUrl })
   }
+
+  handleBigTrainingPortfolio = (name, date, time, sports, description, bookings, username, userId, limit, profileUrl, id) => {
+    this.setState({ showBigPortfolio: true, displayName: name, displayDate: date, displayTime: time, displaySports: sports,
+      displayDescription: description, displayBookings: bookings, displayUsername: username, displayUserId: userId,
+      displayLimit: limit, displayProfileUrl: profileUrl, displayId: id })
+  }
+
+  hideBig = () => {
+    this.setState({ showBigPortfolio: false })
+  }
+
+
+   handleBooking = async (id, ownerId, ownerUsername) => {
+     try {
+       await this.setState({ trainingOwnerId: ownerId, trainingOwnerUsername: ownerUsername })
+       const res = await bookTraining(id)
+       this.setState({ studentRedirect: true })
+       console.log(res.data)
+     } catch (err) {
+       console.log(err)
+     }
+   }
 
   handleChange = event => {
     console.log('change event: ', event.target.name)
@@ -136,7 +164,7 @@ class TrainingsPage extends React.Component {
       return <Redirect to="/done/training" />
     }
     if (this.state.studentRedirect) {
-      return <Redirect to={`/done/booking/${this.state.user.id}/${this.state.user.username}`} />
+      return <Redirect to={`/done/booking/${this.state.trainingOwnerId}/${this.state.trainingOwnerUsername}`} />
     }
   }
 
@@ -146,29 +174,29 @@ class TrainingsPage extends React.Component {
     if (bookings === 0) {
       if (limit === 1) {
         return <>
-          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+          Capacity Limit: <span className="card-header-title"> Individual Training </span>
         </>
       } else if (this.state.isStudent) {
         return <>
-          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
-          <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
+          Capacity Limit: <span className="card-header-title">{limit} Students </span>
+          Booked: <span className="card-header-title">{bookings} Students</span>
         </>
       } else {
         return <>
-          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          Capacity Limit: <span className="card-header-title">{limit} Students </span>
         </>
       }
     } else if (bookings >= limit) {
       if (limit === 1) {
         return <>
-          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+          Capacity Limit: <span className="card-header-title"> Individual Training </span>
           <div>
             Training Is Fully Booked
           </div>
         </>
       } else {
         return <>
-          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
+          Capacity Limit: <span className="card-header-title">{limit} Students </span>
           <div>
             Training Is Fully Booked
           </div>
@@ -177,20 +205,20 @@ class TrainingsPage extends React.Component {
     } else {
       if (limit === 1) {
         return <>
-          <div>Capacity Limit: <span className="card-header-title"> Individual Training </span></div>
+          Capacity Limit: <span className="card-header-title"> Individual Training </span>
         </>
       } else {
         return <>
-          <div>Capacity Limit: <span className="card-header-title">{limit} Students </span></div>
-          <div>Booked: <span className="card-header-title">{bookings} Students</span></div>
+          Capacity Limit: <span className="card-header-title">{limit} Students </span>
+          Booked: <span className="card-header-title">{bookings} Students</span>
         </>
       }
     }
   }
 
   render() {
-    console.log(this.state.trainings)
-    console.log(this.state.user)
+    console.log(this.state.trainingOwnerId)
+    console.log(this.state.trainingOwnerUsername)
     const { formData, errors } = this.state
     return (
       <>
@@ -201,10 +229,10 @@ class TrainingsPage extends React.Component {
             <>
               <div className="profile-choices-container index">
 
-                <span onClick={() => {
+                {/* <span onClick={() => {
                   this.clickShow('requests')
                 }} className={`small-profile-choices ${this.state.showRequests ? 'selected-menu-choice' : ''}`}>
-                  New Training Requests</span>
+                  New Training Requests</span> */}
 
                 <span onClick={() => {
                   this.clickShow('booked')
@@ -223,11 +251,11 @@ class TrainingsPage extends React.Component {
 
               </div>
 
-              {this.state.showRequests &&
+              {/* {this.state.showRequests &&
                 <div className='portfolio-container'>
                   Requests here
                 </div>
-              }
+              } */}
 
               {this.state.showBookedTrainings &&
                 <div className='portfolio-container'>
@@ -250,6 +278,20 @@ class TrainingsPage extends React.Component {
                           limit={training.limit}
                           bookingForm={this.handleBookingForm}
                           bookings={training.bookings}
+                          profileUrl={training.owner.profile_image}
+                          handleBigPortfolio={this.handleBigPortfolio}
+                          showBigPortfolio={this.state.showBigPortfolio}
+                          hideBig={this.hideBig}
+                          displayName={this.state.displayName}
+                          displayDate={this.state.displayDate}
+                          displayTime={this.state.displayTime}
+                          displaySports={this.state.displaySports}
+                          displayDescription={this.state.displayDescription}
+                          displayBookings={this.state.displayBookings}
+                          displayUsername={this.state.displayUsername}
+                          displayUserId={this.state.displayUserId}
+                          displayLimit={this.state.displayLimit}
+                          displayProfileUrl={this.state.displayProfileUrl}
                         />
                       </>
                     ))}
@@ -277,8 +319,22 @@ class TrainingsPage extends React.Component {
                           sports={training.sports.map(sport => (`${sport.name}  `))}
                           description={training.description}
                           limit={training.limit}
-                          bookings={training.bookings}
                           bookingForm={this.handleBookingForm}
+                          bookings={training.bookings}
+                          profileUrl={training.owner.profile_image}
+                          handleBigPortfolio={this.handleBigPortfolio}
+                          showBigPortfolio={this.state.showBigPortfolio}
+                          hideBig={this.hideBig}
+                          displayName={this.state.displayName}
+                          displayDate={this.state.displayDate}
+                          displayTime={this.state.displayTime}
+                          displaySports={this.state.displaySports}
+                          displayDescription={this.state.displayDescription}
+                          displayBookings={this.state.displayBookings}
+                          displayUsername={this.state.displayUsername}
+                          displayUserId={this.state.displayUserId}
+                          displayLimit={this.state.displayLimit}
+                          displayProfileUrl={this.state.displayProfileUrl}
                         />
                       </>
                     ))}
@@ -314,79 +370,103 @@ class TrainingsPage extends React.Component {
               <div className="profile-choices-container index">
 
                 <span onClick={() => {
-                  this.clickShow('requests')
-                }} className={`small-profile-choices ${this.state.showRequests ? 'selected-menu-choice' : ''}`}>Find New Trainings</span>
+                  this.clickShow('booked')
+                }} className={`small-profile-choices ${this.state.showBookedTrainings ? 'selected-menu-choice' : ''}`}>Find New Trainings</span>
 
                 <span onClick={() => {
-                  this.clickShow('booked')
-                }} className={`small-profile-choices ${this.state.showBookedTrainings ? 'selected-menu-choice' : ''}`}>My Next Trainings</span>
+                  this.clickShow('not')
+                }} className={`small-profile-choices ${this.state.showNotBookedTrainings ? 'selected-menu-choice' : ''}`}>My Next Trainings</span>
 
               </div>
 
-              {this.state.showBookedTrainings &&
+              {this.state.showNotBookedTrainings &&
                 <div className='portfolio-container'>
                   <h1 className="title is-2 has-text-centered">My Next Trainings</h1>
                   <hr />
                   <div className="columns is-multiline scene_element scene_element--fadein">
 
                     {this.state.user.student_trainings.map(training => (
-                      <>
-                        <div
-                          key={training.id}
-                          className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
-                          <div className="card">
-                            {/* < Link to={`/trainings/${training.id}`}> */}
-                            <h4 className="card-header-title">{training.name}</h4>
-                            <div>Instructor: <Link to={`/profile/${training.owner.id}`}><span className="card-header-title">{training.owner.username}</span></Link></div>
-                            <div>Date: <span className="card-header-title">{training.date}</span></div>
-                            <div>Time: <span className="card-header-title">{training.time}</span></div>
-                            <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
-                            <div>Description: <span className="card-header-title">{training.description}</span></div>
-                            {/* </Link > */}
-                          </div>
-                        </div>
-                      </>
+                      <Trainings
+                        key={training.id}
+                        id={training.id}
+                        name={training.name}
+                        date={training.date}
+                        time={training.time}
+                        username={training.owner.username}
+                        userId={training.owner.id}
+                        sports={training.sports.map(sport => (`${sport.name}  `))}
+                        description={training.description}
+                        limit={training.limit}
+                        bookingForm={this.handleBookingForm}
+                        bookings={training.bookings}
+                        profileUrl={training.owner.profile_image}
+                        handleBigPortfolio={this.handleBigTrainingPortfolio}
+                        showBigPortfolio={this.state.showBigPortfolio}
+                        hideBig={this.hideBig}
+                        displayName={this.state.displayName}
+                        displayDate={this.state.displayDate}
+                        displayTime={this.state.displayTime}
+                        displaySports={this.state.displaySports}
+                        displayDescription={this.state.displayDescription}
+                        displayBookings={this.state.displayBookings}
+                        displayUsername={this.state.displayUsername}
+                        displayUserId={this.state.displayUserId}
+                        displayLimit={this.state.displayLimit}
+                        displayProfileUrl={this.state.displayProfileUrl}
+                        handleBooking={this.handleBooking}
+                        displayId={this.state.displayId}
+                      />
                     ))}
                   </div>
                 </div>
               }
 
-              {this.state.showRequests &&
-              <div className='portfolio-container'>
-                <h1 className="title is-2 has-text-centered">All Available Trainings</h1>
-                <hr />
-                <div className="columns is-multiline scene_element scene_element--fadein">
+              {this.state.showBookedTrainings &&
+                <div className='portfolio-container'>
+                  <h1 className="title is-2 has-text-centered">All Available Trainings</h1>
+                  <hr />
+                  <div className="columns is-multiline scene_element scene_element--fadein">
 
-                  {this.state.trainings.map(training => (
-                    <>
-                      {!training.isFull &&
-                        <div
-                          key={training.id}
-                          className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
-                          <div className="card">
-                            {/* < Link to={`/trainings/${training.id}`}> */}
-                            <h4 className="card-header-title">{training.name}</h4>
-                            <div>Instructor: <Link to={`/profile/${training.owner.id}`}><span className="card-header-title">{training.owner.username}</span></Link></div>
-                            <div>Date: <span className="card-header-title">{training.date}</span></div>
-                            <div>Time: <span className="card-header-title">{training.time}</span></div>
-                            <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
-                            <div>Description: <span className="card-header-title">{training.description}</span></div>
-                            {this.handleBookingForm(training.limit, training.bookings)}
-                            <div className="field">
-                              <button
-                                onClick={() => {
-                                  this.handleBooking(training.id, training.owner.id, training.owner.username)
-                                }}
-                                className='button is-fullwidth is-dark'>Book Time Slot</button>
-                            </div>
-                            {/* </Link > */}
-                          </div>
-                        </div>
-                      }
-                    </>
-                  ))}
+                    {this.state.trainings.map(training => (
+                      <>
+                        {!training.isFull &&
+                      <Trainings
+                        key={training.id}
+                        id={training.id}
+                        name={training.name}
+                        date={training.date}
+                        time={training.time}
+                        username={training.owner.username}
+                        userId={training.owner.id}
+                        sports={training.sports.map(sport => (`${sport.name}  `))}
+                        description={training.description}
+                        limit={training.limit}
+                        bookingForm={this.handleBookingForm}
+                        bookings={training.bookings}
+                        profileUrl={training.owner.profile_image}
+                        handleBigPortfolio={this.handleBigTrainingPortfolio}
+                        showBigPortfolio={this.state.showBigPortfolio}
+                        hideBig={this.hideBig}
+                        displayName={this.state.displayName}
+                        displayDate={this.state.displayDate}
+                        displayTime={this.state.displayTime}
+                        displaySports={this.state.displaySports}
+                        displayDescription={this.state.displayDescription}
+                        displayBookings={this.state.displayBookings}
+                        displayUsername={this.state.displayUsername}
+                        displayUserId={this.state.displayUserId}
+                        displayLimit={this.state.displayLimit}
+                        displayProfileUrl={this.state.displayProfileUrl}
+                        handleBooking={this.handleBooking}
+                        displayId={this.state.displayId}
+                        bookTimeSlot={true}
+                        trainingPage={true}
+                      />
+                        }
+                      </>
+                    ))}
+                  </div>
                 </div>
-              </div>
               }
             </>
           }

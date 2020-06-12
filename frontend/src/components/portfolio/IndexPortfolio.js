@@ -13,7 +13,12 @@ class IndexPortfolio extends React.Component {
     showVideos: false,
     showArticles: false,
     showBigPortfolio: false,
-    displayPhotoUrl: ''
+    displayPhotoUrl: '',
+    displayTitle: '',
+    displayUsername: '',
+    displayUserId: '',
+    displayProfileUrl: '',
+    displayDescription: ''
   }
 
   async componentDidMount() {
@@ -47,8 +52,12 @@ class IndexPortfolio extends React.Component {
     }
   }
 
-  handleBigPortfolio = id => {
-    this.setState({ showBigPortfolio: true, displayPhotoUrl: id })
+  handleBigPortfolio = (url, title, userId, username, profileUrl, displayDescription ) => {
+    this.setState({ showBigPortfolio: true, displayPhotoUrl: url,
+      displayTitle: title, displayUserId: userId,
+      displayUsername: username, displayProfileUrl: profileUrl,
+      displayDescription: displayDescription
+    })
   }
 
   hideBig = () => {
@@ -57,7 +66,7 @@ class IndexPortfolio extends React.Component {
 
   render() {
     // if (!this.state.images) return null
-    console.log(this.state.showBigPortfolio)
+    console.log(this.state.images)
     return (
       <>
         <section className="m-scene">
@@ -104,10 +113,18 @@ class IndexPortfolio extends React.Component {
                     title={image.title}
                     url={image.url}
                     description={image.description}
+                    username={image.owner.username}
+                    userId={image.owner.id}
+                    profileUrl={image.owner.profile_image}
                     handleBigPortfolio={this.handleBigPortfolio}
                     showBigPortfolio={this.state.showBigPortfolio}
                     displayPhotoUrl={this.state.displayPhotoUrl}
                     hideBig={this.hideBig}
+                    displayTitle={this.state.displayTitle}
+                    displayUserId={this.state.displayUserId}
+                    displayUsername={this.state.displayUsername}
+                    displayProfileUrl={this.state.displayProfileUrl}
+                    displayDescription={this.state.displayDescription}
                   />
                 ))}
               </div>
@@ -122,7 +139,18 @@ class IndexPortfolio extends React.Component {
                     title={video.title}
                     url={video.url}
                     description={video.description}
-                    showBigPortfolio={this.handleBigPortfolio}
+                    username={video.owner.username}
+                    userId={video.owner.id}
+                    profileUrl={video.owner.profile_image}
+                    handleBigPortfolio={this.handleBigPortfolio}
+                    showBigPortfolio={this.state.showBigPortfolio}
+                    displayPhotoUrl={this.state.displayPhotoUrl}
+                    hideBig={this.hideBig}
+                    displayTitle={this.state.displayTitle}
+                    displayUserId={this.state.displayUserId}
+                    displayUsername={this.state.displayUsername}
+                    displayProfileUrl={this.state.displayProfileUrl}
+                    displayDescription={this.state.displayDescription}
                   />
                 ))}
               </div>

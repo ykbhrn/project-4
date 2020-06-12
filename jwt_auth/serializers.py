@@ -6,9 +6,9 @@ from user_type.serializers import UserTypeSerializer
 # import django.contrib.auth.password_validation as validations
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
-from images.serializers import ImageSerializer
-from videos.serializers import VideoSerializer
-from articles.serializers import ArticleSerializer
+from images.serializers import ImageSerializer, PopulatedImageSerializer
+from videos.serializers import VideoSerializer, PopulatedVideoSerializer
+from articles.serializers import ArticleSerializer, PopulatedArticleSerializer
 from trainings.serializers import PopulatedTrainingSerializer, TrainingSerializer
 
 User = get_user_model()
@@ -17,9 +17,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
-    images = ImageSerializer(many=True, required=False)
-    videos = VideoSerializer(many=True, required=False)
-    articles = ArticleSerializer(many=True, required=False)
+    images = PopulatedImageSerializer(many=True, required=False)
+    videos = PopulatedVideoSerializer(many=True, required=False)
+    articles = PopulatedArticleSerializer(many=True, required=False)
     trainings = PopulatedTrainingSerializer(many=True, required=False)
     student_trainings = PopulatedTrainingSerializer(many=True, required=False)
 

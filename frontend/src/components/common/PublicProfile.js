@@ -16,7 +16,23 @@ class PublicProfilePage extends React.Component {
     showVideos: false,
     isStudent: false,
     isAthlete: false,
-    redirect: false
+    redirect: false,
+    trainingOwnerId: '',
+    trainingOwnerUsername: '',
+    showBigPortfolio: false,
+    displayPhotoUrl: '',
+    displayTitle: '',
+    displayUsername: '',
+    displayUserId: '',
+    displayProfileUrl: '',
+    displayDescription: '',
+    displayName: '',
+    displayDate: '',
+    displayTime: '',
+    displaySports: '',
+    displayBookings: '',
+    displayLimit: '',
+    displayId: ''
   }
 
   async componentDidMount() {
@@ -33,7 +49,25 @@ class PublicProfilePage extends React.Component {
     }
   }
 
-  async handleBooking(id) {
+  handleBigPortfolio = (url, title, userId, username, profileUrl, displayDescription ) => {
+    this.setState({ showBigPortfolio: true, displayPhotoUrl: url,
+      displayTitle: title, displayUserId: userId,
+      displayUsername: username, displayProfileUrl: profileUrl,
+      displayDescription: displayDescription
+    })
+  }
+
+  handleBigTrainingPortfolio = (name, date, time, sports, description, bookings, username, userId, limit, profileUrl, id) => {
+    this.setState({ showBigPortfolio: true, displayName: name, displayDate: date, displayTime: time, displaySports: sports,
+      displayDescription: description, displayBookings: bookings, displayUsername: username, displayUserId: userId,
+      displayLimit: limit, displayProfileUrl: profileUrl, displayId: id })
+  }
+
+  hideBig = () => {
+    this.setState({ showBigPortfolio: false })
+  }
+
+  handleBooking = async (id) => {
     try {
       const res = await bookTraining(id)
       this.setState({ redirect: true })
@@ -166,26 +200,38 @@ class PublicProfilePage extends React.Component {
                 {this.state.user.trainings.map(training => (
                   <>
                     {!training.isFull &&
-                      <div
-                        key={training.id}
-                        className="column column is-one-third-desktop is-one-third-tablet is-8-mobile is-offset-2-mobile" >
-                        <div className="card">
-                          <h4 className="card-header-title">{training.name}</h4>
-                          <div>Instructor: <Link to={`/profile/${training.owner.id}`}><span className="card-header-title">{training.owner.username}</span></Link></div>
-                          <div>Date: <span className="card-header-title">{training.date}</span></div>
-                          <div>Time: <span className="card-header-title">{training.time}</span></div>
-                          <div>Sport: <span className="card-header-title">{training.sports.map(sport => (`${sport.name}  `))}</span></div>
-                          <div>Description: <span className="card-header-title">{training.description}</span></div>
-                          {this.handleBookingForm(training.limit, training.bookings)}
-                          <div className="field">
-                            <button
-                              onClick={() => {
-                                this.handleBooking(training.id)
-                              }}
-                              className='button is-fullwidth is-dark'>Book Time Slot</button>
-                          </div>
-                        </div>
-                      </div>
+                       <Trainings
+                         key={training.id}
+                         id={training.id}
+                         name={training.name}
+                         date={training.date}
+                         time={training.time}
+                         username={training.owner.username}
+                         userId={training.owner.id}
+                         sports={training.sports.map(sport => (`${sport.name}  `))}
+                         description={training.description}
+                         limit={training.limit}
+                         bookingForm={this.handleBookingForm}
+                         bookings={training.bookings}
+                         profileUrl={training.owner.profile_image}
+                         handleBigPortfolio={this.handleBigTrainingPortfolio}
+                         showBigPortfolio={this.state.showBigPortfolio}
+                         hideBig={this.hideBig}
+                         displayName={this.state.displayName}
+                         displayDate={this.state.displayDate}
+                         displayTime={this.state.displayTime}
+                         displaySports={this.state.displaySports}
+                         displayDescription={this.state.displayDescription}
+                         displayBookings={this.state.displayBookings}
+                         displayUsername={this.state.displayUsername}
+                         displayUserId={this.state.displayUserId}
+                         displayLimit={this.state.displayLimit}
+                         displayProfileUrl={this.state.displayProfileUrl}
+                         handleBooking={this.handleBooking}
+                         bookTimeSlot={true}
+                         displayId={this.state.displayId}
+                         trainingPage={false}
+                       />
                     }
                   </>
                 ))}
@@ -203,6 +249,18 @@ class PublicProfilePage extends React.Component {
                     title={image.title}
                     url={image.url}
                     description={image.description}
+                    username={image.owner.username}
+                    userId={image.owner.id}
+                    profileUrl={image.owner.profile_image}
+                    handleBigPortfolio={this.handleBigPortfolio}
+                    showBigPortfolio={this.state.showBigPortfolio}
+                    displayPhotoUrl={this.state.displayPhotoUrl}
+                    hideBig={this.hideBig}
+                    displayTitle={this.state.displayTitle}
+                    displayUserId={this.state.displayUserId}
+                    displayUsername={this.state.displayUsername}
+                    displayProfileUrl={this.state.displayProfileUrl}
+                    displayDescription={this.state.displayDescription}
                   />
                 ))}
               </div>
@@ -220,6 +278,18 @@ class PublicProfilePage extends React.Component {
                     title={video.title}
                     url={video.url}
                     description={video.description}
+                    username={video.owner.username}
+                    userId={video.owner.id}
+                    profileUrl={video.owner.profile_image}
+                    handleBigPortfolio={this.handleBigPortfolio}
+                    showBigPortfolio={this.state.showBigPortfolio}
+                    displayPhotoUrl={this.state.displayPhotoUrl}
+                    hideBig={this.hideBig}
+                    displayTitle={this.state.displayTitle}
+                    displayUserId={this.state.displayUserId}
+                    displayUsername={this.state.displayUsername}
+                    displayProfileUrl={this.state.displayProfileUrl}
+                    displayDescription={this.state.displayDescription}
                   />
                 ))}
 
