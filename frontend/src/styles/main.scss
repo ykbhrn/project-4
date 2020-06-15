@@ -546,19 +546,20 @@ a{
 .big-image-card{
   position: fixed;
   display: flex;
+  margin-top: 10px;
 }
 
 .big-image{
-  width: 600px;
-  height: 600px;
+  width: 570px;
+  height: 570px;
   display: inline-block;
 }
 
 .big-image-side{
-  height: 600px;
+  height: 570px;
   width: 330px;
   background: white;
-  margin-right: 20px
+  margin-right: 20px;
 }
 
 .close{
@@ -581,21 +582,78 @@ a{
 .profile-header-index{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin: 10px 0 -12px 0 ;
   align-items: center;
   text-align: left;
+}
+
+.profile-header-index a {
+  color: $font-color;
+  font-weight: 700;
 }
 
 .profile-image-index{
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin: 5px 10px 0 0;
   border: 2px solid $main;
 }
 
 .big-image-description{
-  padding: 20px;
+  padding: 10px 20px;
+}
+
+.show-comments{
+  padding: 0 12px;
+  // height: 393px;
+  // overflow: auto;
+}
+
+.description-and-comments{
+  height: 450px;
+  overflow: auto;
+}
+
+.single-comment{
+  margin: 10px 0;
+}
+
+.comment-add-container{
+  display: flex;
+}
+
+.comment-button{
+  cursor: pointer;
+  font-family: $article-text-font;
+  font-size: 14px;
+  color: $font-color;
+  padding: 4px
+}
+
+.profile-header-comment{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+}
+
+.profile-header-comment a{
+  color: $font-color;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.profile-image-comment{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 5px 10px 0 0;
+  border: 1px solid $main;
+}
+
+.hr-comment{
+  margin-bottom: 0
 }
 
 .index-video{
@@ -629,6 +687,10 @@ a{
   align-items: center;
 }
 
+.training-description{
+  padding: 20px;
+}
+
 .big-training-card{
   position: fixed;
   display: flex;
@@ -639,7 +701,7 @@ a{
   width: 870px;
   background: white;
   margin-right: 20px;
-  padding: 20px;
+  padding: 8px 20px;
   margin-top: 80px;
 }
 
@@ -649,7 +711,7 @@ a{
   justify-content: center;
   align-items: center;
   text-align: left;
-  margin-bottom: -20px;
+  margin-bottom: -8px;
 }
 
 .training-title{
@@ -658,4 +720,8 @@ a{
 
 .training-item{
   cursor: pointer;
+}
+
+hr{
+  margin: 1rem 0;
 }

@@ -73,3 +73,32 @@ class PublicProfileView(APIView):
     user = self.get_user(pk)
     serialized_user = PopulatedUserSerializer(user)
     return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+# class Follow(APIView):
+
+#   permission_classes = (IsAuthenticatedOrReadOnly, )
+
+#   def get_user(self, pk):
+#     try:
+#       return User.objects.get(pk=pk)
+#     except User.DoesNotExist:
+#       raise NotFound()
+
+
+#   def post(self, request, pk):
+#     followed_user = self.get_user(pk)
+#     following_user = self.get_user(request.user.id)
+#     serialized_user = PopulatedUserSerializer(following_user)
+#     serialized_followed_user = PopulatedUserSerializer(followed_user)
+
+    # followed_user.followers.add(following_user)
+    # following_user.following.add(followed_user)
+
+    # if followed_user.is_valid():
+    #   followed_user.save()
+
+    # if following_user.is_valid():
+    #   following_user.save()
+
+    # return Response(serialized_followed_user.data, status=status.HTTP_200_OK)
+

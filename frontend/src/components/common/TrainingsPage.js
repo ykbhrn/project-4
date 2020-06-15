@@ -216,6 +216,14 @@ class TrainingsPage extends React.Component {
     }
   }
 
+  handleBookedTraining = (booking) => {
+    if (booking > 0) {
+      return true
+    } else if (booking === 0) {
+      return false
+    }
+  }
+
   render() {
     console.log(this.state.trainingOwnerId)
     console.log(this.state.trainingOwnerUsername)
@@ -265,6 +273,7 @@ class TrainingsPage extends React.Component {
 
                     {this.state.user.trainings.map(training => (
                       <>
+                        {this.handleBookedTraining(training.bookings) &&
                         <Trainings
                           key={training.id}
                           id={training.id}
@@ -293,6 +302,7 @@ class TrainingsPage extends React.Component {
                           displayLimit={this.state.displayLimit}
                           displayProfileUrl={this.state.displayProfileUrl}
                         />
+                        }
                       </>
                     ))}
 
@@ -305,9 +315,9 @@ class TrainingsPage extends React.Component {
                   <h1 className="title is-2 has-text-centered">Your Trainings Without Booking</h1>
                   <hr />
                   <div className="columns is-multiline scene_element scene_element--fadein">
-
                     {this.state.user.trainings.map(training => (
                       <>
+                        {!this.handleBookedTraining(training.bookings) &&
                         <Trainings
                           key={training.id}
                           id={training.id}
@@ -336,6 +346,7 @@ class TrainingsPage extends React.Component {
                           displayLimit={this.state.displayLimit}
                           displayProfileUrl={this.state.displayProfileUrl}
                         />
+                        }
                       </>
                     ))}
 

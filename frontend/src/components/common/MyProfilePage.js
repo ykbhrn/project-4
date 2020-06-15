@@ -34,7 +34,9 @@ class ProfilePage extends React.Component {
     displayTime: '',
     displaySports: '',
     displayBookings: '',
-    displayLimit: ''
+    displayLimit: '',
+    displayComments: [],
+    displayPortfolioId: ''
   }
 
   async componentDidMount() {
@@ -51,12 +53,10 @@ class ProfilePage extends React.Component {
     }
   }
 
-  handleBigPortfolio = (url, title, userId, username, profileUrl, displayDescription ) => {
-    this.setState({ showBigPortfolio: true, displayPhotoUrl: url,
-      displayTitle: title, displayUserId: userId,
-      displayUsername: username, displayProfileUrl: profileUrl,
-      displayDescription: displayDescription
-    })
+  handleBigPortfolio = (url, title, userId, username, profileUrl, displayDescription, comments, id ) => {
+    this.setState({ showBigPortfolio: true, displayPhotoUrl: url, 
+      displayTitle: title, displayUserId: userId, displayUsername: username, displayProfileUrl: profileUrl,
+      displayDescription: displayDescription, displayComments: comments, displayPortfolioId: id })
   }
 
   handleBigTrainingPortfolio = (name, date, time, sports, description, bookings, username, userId, limit, profileUrl) => {
@@ -101,7 +101,7 @@ class ProfilePage extends React.Component {
   handleBookedTraining = (booking) => {
     if (booking > 0) {
       return true
-    } else if (booking == 0) {
+    } else if (booking === 0) {
       return false
     }
   }
@@ -358,6 +358,7 @@ class ProfilePage extends React.Component {
                   username={image.owner.username}
                   userId={image.owner.id}
                   profileUrl={image.owner.profile_image}
+                  comments={image.comments}
                   handleBigPortfolio={this.handleBigPortfolio}
                   showBigPortfolio={this.state.showBigPortfolio}
                   displayPhotoUrl={this.state.displayPhotoUrl}
@@ -367,6 +368,16 @@ class ProfilePage extends React.Component {
                   displayUsername={this.state.displayUsername}
                   displayProfileUrl={this.state.displayProfileUrl}
                   displayDescription={this.state.displayDescription}
+                  displayPortfolioId={this.state.displayPortfolioId}
+                  displayComments={this.state.displayComments.map( comment => (
+                    <div className='single-comment' key={comment.id}> 
+                      <div className="profile-header-comment">        
+                        <Link to={`/profile/${comment.owner.id}`}>
+                          <img className='profile-image-comment' src={comment.owner.profile_image}/></Link>
+                        <Link to={`/profile/${comment.owner.id}`}>{comment.owner.username}</Link>
+                      </div> {comment.text}
+                    </div>
+                  ))}
                 />
               ))}
             </div>
@@ -383,7 +394,7 @@ class ProfilePage extends React.Component {
             <hr />
             <div className="columns is-multiline scene_element scene_element--fadein">
 
-              {this.state.user.videos.map(video => (
+              {this.state.user.videos.slice(0).reverse().map(video => (
                 <Videos
                   key={video.id}
                   id={video.id}
@@ -393,6 +404,7 @@ class ProfilePage extends React.Component {
                   username={video.owner.username}
                   userId={video.owner.id}
                   profileUrl={video.owner.profile_image}
+                  comments={video.comments}
                   handleBigPortfolio={this.handleBigPortfolio}
                   showBigPortfolio={this.state.showBigPortfolio}
                   displayPhotoUrl={this.state.displayPhotoUrl}
@@ -402,6 +414,16 @@ class ProfilePage extends React.Component {
                   displayUsername={this.state.displayUsername}
                   displayProfileUrl={this.state.displayProfileUrl}
                   displayDescription={this.state.displayDescription}
+                  displayPortfolioId={this.state.displayPortfolioId}
+                  displayComments={this.state.displayComments.map( comment => (
+                    <div className='single-comment' key={comment.id}> 
+                      <div className="profile-header-comment">        
+                        <Link to={`/profile/${comment.owner.id}`}>
+                          <img className='profile-image-comment' src={comment.owner.profile_image}/></Link>
+                        <Link to={`/profile/${comment.owner.id}`}>{comment.owner.username}</Link>
+                      </div> {comment.text}
+                    </div>
+                  ))}
                 />
               ))}
 

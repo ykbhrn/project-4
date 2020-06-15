@@ -7,4 +7,5 @@ urlpatterns = [
     path('users', UserListView.as_view()),
     path('profile', ProfileView.as_view()),
     path('profile/<int:pk>', PublicProfileView.as_view()),
+    # path('follow/<int:pk>', Follow.as_view()),
 ]

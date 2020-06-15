@@ -74,3 +74,7 @@ export const getAllArticles = () => {
 export const getSingleArticle = id => {
   return axios.get(`/api/articles/${id}`)
 }
+
+export const postComment = formData => {
+  return axios.post('/api/comments/', formData, withHeaders())
+}

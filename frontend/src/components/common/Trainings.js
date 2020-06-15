@@ -28,7 +28,7 @@ const Trainings = ({ id, name, date, time, sports, description, bookings, userna
             <Link to={`/profile/${displayUserId}`}>{displayUsername}</Link>
           </div>
           <hr/>
-          <div className="big-image-description">
+          <div className="training-description">
             <h4 className="training-title title is-3 has-text-centered">{displayName}</h4>
             <Link to={`/profile/${userId}`}>Instructor: <span className="card-header-title">{displayUsername}</span></Link>
            Date: <span className="card-header-title">{displayDate}</span>
@@ -60,6 +60,20 @@ const Trainings = ({ id, name, date, time, sports, description, bookings, userna
             }
           </>
           }
+
+          <style>
+            {'\
+            .navbar{\
+              opacity: 0.5;\
+            }\
+            // .big-image{\
+            //   opacity: 2;\
+            // }\
+            .m-scene .image, .index-video, .card{\
+              opacity: 0.5;\
+            }\
+            '}
+          </style>
           
 
         </div>

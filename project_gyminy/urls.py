@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/videos/', include('videos.urls')),
     path('api/sports/', include('sports.urls')),
     path('api/types/', include('user_type.urls')),
+    path('api/comments/', include('comments.urls')),
     path('api/', include('jwt_auth.urls'))
 ]

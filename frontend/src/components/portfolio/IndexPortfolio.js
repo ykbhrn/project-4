@@ -18,7 +18,9 @@ class IndexPortfolio extends React.Component {
     displayUsername: '',
     displayUserId: '',
     displayProfileUrl: '',
-    displayDescription: ''
+    displayDescription: '',
+    displayComments: [],
+    displayPortfolioId: ''
   }
 
   async componentDidMount() {
@@ -52,11 +54,11 @@ class IndexPortfolio extends React.Component {
     }
   }
 
-  handleBigPortfolio = (url, title, userId, username, profileUrl, displayDescription ) => {
+  handleBigPortfolio = (url, title, userId, username, profileUrl, displayDescription, comments, id ) => {
     this.setState({ showBigPortfolio: true, displayPhotoUrl: url,
       displayTitle: title, displayUserId: userId,
       displayUsername: username, displayProfileUrl: profileUrl,
-      displayDescription: displayDescription
+      displayDescription: displayDescription, displayComments: comments, displayPortfolioId: id
     })
   }
 
@@ -106,7 +108,7 @@ class IndexPortfolio extends React.Component {
 
             {this.state.showImages &&
               <div className="columns is-multiline scene_element scene_element--fadein">
-                {this.state.images.map(image => (
+                {this.state.images.slice(0).reverse().map(image => (
                   <Images
                     key={image.id}
                     id={image.id}
@@ -115,6 +117,7 @@ class IndexPortfolio extends React.Component {
                     description={image.description}
                     username={image.owner.username}
                     userId={image.owner.id}
+                    comments={image.comments}
                     profileUrl={image.owner.profile_image}
                     handleBigPortfolio={this.handleBigPortfolio}
                     showBigPortfolio={this.state.showBigPortfolio}
@@ -125,6 +128,16 @@ class IndexPortfolio extends React.Component {
                     displayUsername={this.state.displayUsername}
                     displayProfileUrl={this.state.displayProfileUrl}
                     displayDescription={this.state.displayDescription}
+                    displayPortfolioId={this.state.displayPortfolioId}
+                    displayComments={this.state.displayComments.slice(0).reverse().map( comment => (
+                      <div className='single-comment' key={comment.id}> 
+                        <div className="profile-header-comment">        
+                          <Link to={`/profile/${comment.owner.id}`}>
+                            <img className='profile-image-comment' src={comment.owner.profile_image}/></Link>
+                          <Link to={`/profile/${comment.owner.id}`}>{comment.owner.username}</Link>
+                        </div> {comment.text}
+                      </div>
+                    ))}
                   />
                 ))}
               </div>
@@ -132,7 +145,7 @@ class IndexPortfolio extends React.Component {
 
             {this.state.showVideos &&
               <div className="columns is-multiline scene_element scene_element--fadein">
-                {this.state.videos.map(video => (
+                {this.state.videos.slice(0).reverse().map(video => (
                   <Videos
                     key={video.id}
                     id={video.id}
@@ -142,6 +155,7 @@ class IndexPortfolio extends React.Component {
                     username={video.owner.username}
                     userId={video.owner.id}
                     profileUrl={video.owner.profile_image}
+                    comments={video.comments}
                     handleBigPortfolio={this.handleBigPortfolio}
                     showBigPortfolio={this.state.showBigPortfolio}
                     displayPhotoUrl={this.state.displayPhotoUrl}
@@ -151,6 +165,16 @@ class IndexPortfolio extends React.Component {
                     displayUsername={this.state.displayUsername}
                     displayProfileUrl={this.state.displayProfileUrl}
                     displayDescription={this.state.displayDescription}
+                    displayPortfolioId={this.state.displayPortfolioId}
+                    displayComments={this.state.displayComments.map( comment => (
+                      <div className='single-comment' key={comment.id}> 
+                        <div className="profile-header-comment">        
+                          <Link to={`/profile/${comment.owner.id}`}>
+                            <img className='profile-image-comment' src={comment.owner.profile_image}/></Link>
+                          <Link to={`/profile/${comment.owner.id}`}>{comment.owner.username}</Link>
+                        </div> {comment.text}
+                      </div>
+                    ))}
                   />
                 ))}
               </div>

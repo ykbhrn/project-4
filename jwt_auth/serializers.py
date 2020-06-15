@@ -10,8 +10,17 @@ from images.serializers import ImageSerializer, PopulatedImageSerializer
 from videos.serializers import VideoSerializer, PopulatedVideoSerializer
 from articles.serializers import ArticleSerializer, PopulatedArticleSerializer
 from trainings.serializers import PopulatedTrainingSerializer, TrainingSerializer
+from comments.serializers import CommentSerializer
+
+# from followers.serializers import PopulatedFollowerSerializer
 
 User = get_user_model()
+
+# class SmallUserSerializer(serializers.ModelSerializer):
+
+#   class Meta:
+#     model = User
+#     fields = ('id', 'username',)
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -22,6 +31,9 @@ class UserSerializer(serializers.ModelSerializer):
     articles = PopulatedArticleSerializer(many=True, required=False)
     trainings = PopulatedTrainingSerializer(many=True, required=False)
     student_trainings = PopulatedTrainingSerializer(many=True, required=False)
+    comments = CommentSerializer(many=True, required=False)
+
+
 
     def validate(self, data):
         password = data.pop('password')
@@ -42,4 +54,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PopulatedUserSerializer(UserSerializer):
   user_type = UserTypeSerializer()
   sports = SportSerializer(many=True)
+  # followers = SmallUserSerializer(many=True)
+  # following = SmallUserSerializer(many=True)
+
   

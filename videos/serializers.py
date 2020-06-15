@@ -1,5 +1,7 @@
 from rest_framework import serializers 
 from django.contrib.auth import get_user_model
+from comments.serializers import PopulatedCommentSerializer
+
 
 from .models import Video
 User = get_user_model()
@@ -18,3 +20,4 @@ class VideoSerializer(serializers.ModelSerializer):
 
 class PopulatedVideoSerializer(VideoSerializer):
   owner = UserSerializer()
+  comments = PopulatedCommentSerializer(many=True)
