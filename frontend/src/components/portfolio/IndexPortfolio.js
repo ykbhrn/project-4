@@ -20,7 +20,8 @@ class IndexPortfolio extends React.Component {
     displayProfileUrl: '',
     displayDescription: '',
     displayComments: [],
-    displayPortfolioId: ''
+    displayPortfolioId: '',
+    newComments: false
   }
 
   async componentDidMount() {

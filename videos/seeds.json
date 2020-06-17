@@ -1,0 +1,38 @@
+[
+{
+  "model": "videos.video",
+  "pk": 3,
+  "fields": {
+    "url": "https://res.cloudinary.com/djq7pruxd/video/upload/v1591957501/images%20ykbhrn/e8brlotsayarxrvg6wm3.mp4",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam leo quam, rhoncus et turpis tempus, tempor blandit nulla. Donec eu libero non sem pulvinar condimentum. Morbi eget sapien sed mi tincidunt aliquet id sit amet urna. Donec vel enim tortor. Curabitur consequat, nisl nec sagittis fermentum, velit elit fermentum lacus, consequat ultrices lacus quam quis dolor",
+    "owner": 4
+  }
+},
+{
+  "model": "videos.video",
+  "pk": 4,
+  "fields": {
+    "url": "http://res.cloudinary.com/djq7pruxd/video/upload/v1592356018/images%20ykbhrn/dlufwxvkyl2kvcws2gfs.mp4",
+    "description": "Space Force",
+    "owner": 4
+  }
+},
+{
+  "model": "videos.video",
+  "pk": 5,
+  "fields": {
+    "url": "https://res.cloudinary.com/djq7pruxd/video/upload/v1592356331/images%20ykbhrn/wbmxzdrwmnr3gio6okmw.mp4",
+    "description": "5 minute Yoga",
+    "owner": 4
+  }
+},
+{
+  "model": "videos.video",
+  "pk": 6,
+  "fields": {
+    "url": "https://res.cloudinary.com/djq7pruxd/video/upload/v1592356661/images%20ykbhrn/Wrestling_Takedown_Techniques_Strength_Endurance_Exercise_ap8xsc.mp4",
+    "description": "Wrestling Takedown Techniques",
+    "owner": 5
+  }
+}
+]

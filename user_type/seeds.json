@@ -1,0 +1,16 @@
+[
+{
+  "model": "user_type.usertype",
+  "pk": 1,
+  "fields": {
+    "name": "student"
+  }
+},
+{
+  "model": "user_type.usertype",
+  "pk": 2,
+  "fields": {
+    "name": "athlete"
+  }
+}
+]

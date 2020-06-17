@@ -1,0 +1,208 @@
+[
+{
+  "model": "jwt_auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$OqF1Jk6t0jac$wypnQM6ii3tjq/neI4x/Svp97jCNc0d9Cj9S3E0uo4U=",
+    "last_login": "2020-06-17T17:03:44.305Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2020-06-17T16:44:37.448Z",
+    "email": "admin@email.com",
+    "profile_image": "",
+    "bio": "",
+    "user_type": 1,
+    "groups": [],
+    "user_permissions": [],
+    "sports": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$6zZT9qgtOFXr$6uYsHNesXxCQPAmyOLp99kEXEhpn4M4asOfxso2znVE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "marek23",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T16:49:44.913Z",
+    "email": "marek23@email.com",
+    "profile_image": "http://res.cloudinary.com/djq7pruxd/image/upload/v1592412573/images%20ykbhrn/gdcdrvbqwrrjvunagz5c.png",
+    "bio": "",
+    "user_type": 2,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      1,
+      10,
+      5
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$20XlhivGeB1H$PCGWytx17GO10asFjX8FJGKOeiqrCoe72EX2AReWmuc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "lucie456",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T16:51:41.029Z",
+    "email": "lucie456@email.com",
+    "profile_image": "http://res.cloudinary.com/djq7pruxd/image/upload/v1592412662/images%20ykbhrn/fy1rxdhfjo4tqh8acj8h.jpg",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros.",
+    "user_type": 1,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      8,
+      2,
+      4,
+      7
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$x3UTXP5h8RfG$cVZBdqpcJh08T0tjG/UidNyB4/7NwH1FxCnIJsBya2g=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "julia",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T16:55:01.975Z",
+    "email": "julia@email.com",
+    "profile_image": "http://res.cloudinary.com/djq7pruxd/image/upload/v1592412898/images%20ykbhrn/isqsbbvauxbecf6fvxgh.jpg",
+    "bio": "",
+    "user_type": 2,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      2,
+      6,
+      7,
+      8,
+      10
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$oV2JpWF8QUVN$AvXwD4LDKf0IsHH3OmNQRtmsrXInxpJm1eoxqlWe1No=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mike123",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T16:56:28.847Z",
+    "email": "mike123@email.com",
+    "profile_image": "http://res.cloudinary.com/djq7pruxd/image/upload/v1592412969/images%20ykbhrn/y0t1ve4ir0ih6ry0bofi.jpg",
+    "bio": "Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque.",
+    "user_type": 2,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      1,
+      4,
+      5,
+      9,
+      11
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$WNX2ippiqg2Z$2jn44f8C8mfxDGetgjDtyXjKAS1gRTfvgY5Bf4h1EZc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "jasonn",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T17:01:45.446Z",
+    "email": "jasonn@email.com",
+    "profile_image": "http://res.cloudinary.com/djq7pruxd/image/upload/v1592413302/images%20ykbhrn/rf8zyhoozositx7tyjfa.jpg",
+    "bio": "",
+    "user_type": 1,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$y6R3WBY5sgIF$CDI4UlcBu96/pmdt+t7/Eg096CedzV/dvI7774DNAuk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "carole",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T17:02:31.611Z",
+    "email": "carole@email.com",
+    "profile_image": "https://imgix.bustle.com/uploads/image/2018/5/9/fa2d3d8d-9b6c-4df4-af95-f4fa760e3c5c-2t4a9501.JPG?w=970&h=546&fit=crop&crop=faces&auto=format%2Ccompress&cs=srgb&q=70",
+    "bio": "",
+    "user_type": 2,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$KxA7brSaypUU$LiNnVpiesvnurCDuv4veOc/O17X30pePBZkhErA5Dq8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "tomas",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T17:04:10.989Z",
+    "email": "tomas@email.com",
+    "profile_image": "https://imgix.bustle.com/uploads/image/2018/5/9/fa2d3d8d-9b6c-4df4-af95-f4fa760e3c5c-2t4a9501.JPG?w=970&h=546&fit=crop&crop=faces&auto=format%2Ccompress&cs=srgb&q=70",
+    "bio": "",
+    "user_type": 2,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      4,
+      6
+    ]
+  }
+}
+]

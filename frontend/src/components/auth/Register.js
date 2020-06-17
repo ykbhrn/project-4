@@ -203,7 +203,7 @@ class Register extends React.Component {
 
                 <div className="register-forms-container field">
                   <div className='register-forms'>
-                    <label className="label">What sports you are interested in?</label>
+                    <label className="label">What are you interested in?</label>
                     <SportSelect
                       handleSelect={this.handleSelect}
                     />

@@ -37,13 +37,21 @@ class Videos extends React.Component{
       }
       // await this.setState({ formData })
       const response = await postComment(formData)
-      this.setState({ text: '' })
+      //reset formdata text ....it need to be in this way because there is two "text" in state and if i put just "text" than it reset wrong one
+      const textData = {
+        ...this.state.formData, text: ''
+      }
+      this.setState({ formData: textData })
       console.log(response)
       
     } catch (err) {
       console.log('response: ', err.response.data)
     }
     this.getData(displayPortfolioId)
+  }
+
+  hideNewComments = () => {
+    this.setState({ displayNewComments: false })
   }
 
   render ( ) {   
@@ -136,8 +144,9 @@ class Videos extends React.Component{
             </style>
   
           </div>
-  
-          <div className='close' onClick={hideBig}> <img src='/images/close.png' /> </div>
+          <div onClick={this.hideNewComments}>
+            <div className='close' onClick={hideBig}> <img src='/images/close.png' /> </div>
+          </div>
         </div>
       </div>
         }

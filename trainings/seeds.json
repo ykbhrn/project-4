@@ -1,0 +1,173 @@
+[
+{
+  "model": "trainings.training",
+  "pk": 1,
+  "fields": {
+    "name": "30 min HIIT",
+    "date": "2020-07-12",
+    "time": "12:30",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 1,
+    "isFull": false,
+    "owner": 2,
+    "students": [],
+    "sports": [
+      1
+    ]
+  }
+},
+{
+  "model": "trainings.training",
+  "pk": 2,
+  "fields": {
+    "name": "Breathing Techniques",
+    "date": "2020-07-12",
+    "time": "14:00",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 10,
+    "isFull": false,
+    "owner": 2,
+    "students": [],
+    "sports": [
+      10
+    ]
+  }
+},
+{
+  "model": "trainings.training",
+  "pk": 3,
+  "fields": {
+    "name": "Strength and Conditioning",
+    "date": "2020-07-01",
+    "time": "12:45",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 4,
+    "isFull": false,
+    "owner": 2,
+    "students": [],
+    "sports": [
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "trainings.training",
+  "pk": 4,
+  "fields": {
+    "name": "Group Pilates",
+    "date": "2020-07-02",
+    "time": "09:00",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 3,
+    "isFull": false,
+    "owner": 4,
+    "students": [],
+    "sports": [
+      8,
+      10,
+      11
+    ]
+  }
+},
+{
+  "model": "trainings.training",
+  "pk": 5,
+  "fields": {
+    "name": "Yoga Fundamentals",
+    "date": "2020-07-20",
+    "time": "02:20",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 14,
+    "isFull": false,
+    "owner": 4,
+    "students": [],
+    "sports": [
+      7,
+      10,
+      11
+    ]
+  }
+},
+{
+  "model": "trainings.training",
+  "pk": 6,
+  "fields": {
+    "name": "Yoga Group",
+    "date": "2020-07-19",
+    "time": "12:30",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 20,
+    "isFull": false,
+    "owner": 4,
+    "students": [],
+    "sports": [
+      7
+    ]
+  }
+},
+{
+  "model": "trainings.training",
+  "pk": 7,
+  "fields": {
+    "name": "MMA fundamentals",
+    "date": "2020-07-22",
+    "time": "08:00",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 7,
+    "isFull": false,
+    "owner": 5,
+    "students": [],
+    "sports": [
+      6,
+      9
+    ]
+  }
+},
+{
+  "model": "trainings.training",
+  "pk": 8,
+  "fields": {
+    "name": "Kicking Technique",
+    "date": "2020-06-19",
+    "time": "12:20",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 1,
+    "isFull": false,
+    "owner": 5,
+    "students": [],
+    "sports": [
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "trainings.training",
+  "pk": 9,
+  "fields": {
+    "name": "Group conditioning training",
+    "date": "2020-08-06",
+    "time": "07:00",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
+    "bookings": 0,
+    "limit": 9,
+    "isFull": false,
+    "owner": 5,
+    "students": [],
+    "sports": [
+      4,
+      5,
+      6
+    ]
+  }
+}
+]

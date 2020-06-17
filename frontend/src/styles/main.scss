@@ -76,7 +76,7 @@ a{
 
 .register-section{
   margin-top: 10px;
-  padding: 0 50px 0 50px;
+  padding: 0 20px;
 }
 
 .register-section.add-training .button{
@@ -461,6 +461,7 @@ a{
   color: white;
   font-family: $slogan;
   font-size: 20px;
+  font-weight: bold;
   display: inline-block;
   margin-left: 50px;
 }
@@ -472,11 +473,13 @@ a{
 .register-button{
   background: $main;
   color: white;
+  margin-top: -30px;
 }
 
 .loading-image-register{
   display: inline-block;
   margin-left: 40%;
+  margin-top: -30px;
 }
 
 .profile-header-container{

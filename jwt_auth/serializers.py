@@ -11,7 +11,7 @@ from videos.serializers import VideoSerializer, PopulatedVideoSerializer
 from articles.serializers import ArticleSerializer, PopulatedArticleSerializer
 from trainings.serializers import PopulatedTrainingSerializer, TrainingSerializer
 from comments.serializers import CommentSerializer
-from chat.serializers import ChatSerializer
+from chat.serializers import PopulatedChatSerializer
 
 # from followers.serializers import PopulatedFollowerSerializer
 
@@ -33,7 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
     trainings = PopulatedTrainingSerializer(many=True, required=False)
     student_trainings = PopulatedTrainingSerializer(many=True, required=False)
     comments = CommentSerializer(many=True, required=False)
-    chats = ChatSerializer(many=True, required=False)
+    chats = PopulatedChatSerializer(many=True, required=False)
 
 
     def validate(self, data):

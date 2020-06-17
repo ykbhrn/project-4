@@ -7,7 +7,7 @@ class AddDone extends React.Component {
     // backgroundImage: '',
     redirect: false,
     progress: 100,
-    timeBeforeRedirect: 5000,
+    timeBeforeRedirect: 3000,
     finishBooking: false,
     isTrainingOwner: false,
     isYou: false

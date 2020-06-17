@@ -1,0 +1,72 @@
+[
+{
+  "model": "sports.sport",
+  "pk": 1,
+  "fields": {
+    "name": "HIIT"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 2,
+  "fields": {
+    "name": "Aerobic"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 4,
+  "fields": {
+    "name": "Running"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 5,
+  "fields": {
+    "name": "Strength and conditioning"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 6,
+  "fields": {
+    "name": "Cardio"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 7,
+  "fields": {
+    "name": "Yoga"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 8,
+  "fields": {
+    "name": "Pilates"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 9,
+  "fields": {
+    "name": "Combat Sports"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 10,
+  "fields": {
+    "name": "Breathing techniques"
+  }
+},
+{
+  "model": "sports.sport",
+  "pk": 11,
+  "fields": {
+    "name": "Stretching techniques"
+  }
+}
+]

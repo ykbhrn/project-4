@@ -1,0 +1,145 @@
+[
+{
+  "model": "comments.comment",
+  "pk": 1,
+  "fields": {
+    "text": "Lorem ipsum dolor sit amet",
+    "owner": 5,
+    "image": 3,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:25:39.149Z",
+    "updated_at": "2020-06-17T01:25:39.149Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 2,
+  "fields": {
+    "text": "Morbi in tincidunt ante",
+    "owner": 5,
+    "image": 2,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:26:21.728Z",
+    "updated_at": "2020-06-17T01:26:21.728Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 3,
+  "fields": {
+    "text": "olor sit amet, consectetur adipiscing elit..",
+    "owner": 7,
+    "image": 7,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:39:13.137Z",
+    "updated_at": "2020-06-17T01:39:13.137Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 4,
+  "fields": {
+    "text": "olor sit amet, consectetur adipiscing elit..",
+    "owner": 7,
+    "image": 8,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:39:23.923Z",
+    "updated_at": "2020-06-17T01:39:23.923Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 5,
+  "fields": {
+    "text": "olor sit amet, consectetur adipiscing elit..",
+    "owner": 7,
+    "image": 1,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:39:31.089Z",
+    "updated_at": "2020-06-17T01:39:31.090Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 6,
+  "fields": {
+    "text": "pretty cool",
+    "owner": 7,
+    "image": 4,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:40:05.094Z",
+    "updated_at": "2020-06-17T01:40:05.094Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 7,
+  "fields": {
+    "text": "Morbi in tincidunt ante. Cras sodales mi sit amet elit congue, id dignissim neque semper.",
+    "owner": 9,
+    "image": 1,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:42:22.805Z",
+    "updated_at": "2020-06-17T01:42:22.805Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 8,
+  "fields": {
+    "text": "Morbi in tincidunt ante. Cras sodales mi sit amet elit congue, id dignissim neque semper.",
+    "owner": 3,
+    "image": 8,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:42:33.439Z",
+    "updated_at": "2020-06-17T01:42:33.439Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 9,
+  "fields": {
+    "text": "nice",
+    "owner": 9,
+    "image": 9,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T01:42:44.144Z",
+    "updated_at": "2020-06-17T01:42:44.144Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 10,
+  "fields": {
+    "text": "pretty cool",
+    "owner": 5,
+    "image": null,
+    "video": 6,
+    "article": null,
+    "created_at": "2020-06-17T01:43:43.268Z",
+    "updated_at": "2020-06-17T01:43:43.268Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 11,
+  "fields": {
+    "text": "i like this scene",
+    "owner": 5,
+    "image": null,
+    "video": 4,
+    "article": null,
+    "created_at": "2020-06-17T01:43:55.150Z",
+    "updated_at": "2020-06-17T01:43:55.150Z"
+  }
+}
+]

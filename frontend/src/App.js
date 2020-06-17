@@ -13,6 +13,7 @@ import Navbar from './components/common/Navbar'
 import MyProfilePage from './components/common/MyProfilePage'
 import PublicProfilePage from './components/common/PublicProfile'
 import TrainingsPage from './components/common/TrainingsPage'
+import Chat from './components/common/Chat'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import NotFound from './components/common/ErrorPage'
@@ -34,6 +35,7 @@ const App = () => (
       <Route path='/profile/:id' component={PublicProfilePage} />
       <SecureRoute path='/profile' component={MyProfilePage} />
       <SecureRoute path='/trainings' component={TrainingsPage} />
+      <SecureRoute path='/chat' component={Chat} />
       <SecureRoute path='/done/:type/:id/:username' component={AddDone} />
       <SecureRoute path='/done/:type' component={AddDone} />
       <SecureRoute path='/add/:portfolio' component={AddPortfolio} />

@@ -37,7 +37,11 @@ class Images extends React.Component{
       }
       // await this.setState({ formData })
       const response = await postComment(formData)
-      this.setState({ text: '' })
+      //reset formdata text ....it need to be in this way because there is two "text" in state and if i put just "text" than it reset wrong one
+      const textData = {
+        ...this.state.formData, text: ''
+      }
+      this.setState({ formData: textData })
       console.log(response)
       
     } catch (err) {
@@ -46,8 +50,12 @@ class Images extends React.Component{
     this.getData(displayPortfolioId)
   }
 
+  hideNewComments = () => {
+    this.setState({ displayNewComments: false })
+  }
+
   render ( ) {   
-    console.log(this.state.comments)
+    console.log(this.state)
     
     const { title, url, id, showBigPortfolio, username, userId, description, handleBigPortfolio, displayPhotoUrl, hideBig, profileUrl,
       displayTitle, displayUserId, displayUsername, displayProfileUrl, displayDescription, comments,
@@ -136,8 +144,9 @@ class Images extends React.Component{
             </style>
   
           </div>
-  
-          <div className='close' onClick={hideBig}> <img src='/images/close.png' /> </div>
+          <div onClick={this.hideNewComments}>
+            <div className='close' onClick={hideBig}> <img src='/images/close.png' /> </div>
+          </div>
         </div>
       </div>
         }
