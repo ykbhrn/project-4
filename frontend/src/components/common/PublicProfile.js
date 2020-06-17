@@ -1,5 +1,5 @@
 import React from 'react'
-import { getPublicPortfolio, bookTraining } from '../../lib/api'
+import { getPublicPortfolio, bookTraining, postChat } from '../../lib/api'
 import { Redirect ,Link } from 'react-router-dom'
 import Trainings from './Trainings'
 import Images from './Images'
@@ -9,7 +9,11 @@ import Articles from '../portfolio/Articles'
 class PublicProfilePage extends React.Component {
 
   state = {
+    formData: {
+      text: ''
+    },
     user: null,
+    showChat: false,
     showTrainings: false,
     showImages: true,
     showArticles: false,
@@ -49,6 +53,28 @@ class PublicProfilePage extends React.Component {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  handleChange = event => {
+    console.log('change event: ', event.target.name)
+    const formData = { ...this.state.formData, [event.target.name]: event.target.value }
+    this.setState({ formData })
+  }
+
+  handleSubmit = async event => {
+    event.preventDefault()
+    try {
+      const userId = this.props.match.params.id
+      const response = await postChat(this.state.formData, userId)
+      console.log(response.data)  
+    } catch (err) {
+      console.log('response: ', err.response.data)
+    }
+    this.setState({ showChat: false })
+  }
+
+  handleChat = () => {
+    this.setState({ showChat: this.state.showChat === false ? true : false })
   }
 
   handleBigPortfolio = (url, title, userId, username, profileUrl, displayDescription, comments, id ) => {
@@ -154,18 +180,41 @@ class PublicProfilePage extends React.Component {
 
   render() {
     if (!this.state.user) return null
-    console.log(this.state.user)
+    console.log(this.state.formData)
 
     return (
       <section className="public-profile-container">
         {this.renderRedirect()}
         <div className="profile-header-container">
           <div className="profile-header">
+
             <img className='profile-image' src={this.state.user.profile_image} />
 
             <div className="greeting-public"><span className='title is-2'>{this.state.user.username}</span>
-              <div className="user-type"><img src={`${this.state.isStudent ? '/images/student.png' : '/images/athlete.png'}`} />{this.state.user.user_type.name}</div>
-            </div>
+              <div className="user-type"><img src={`${this.state.isStudent ? '/images/student.png' : '/images/athlete.png'}`} />{this.state.user.user_type.name} | 
+                <div className="message" ><img src="/images/message.png" onClick={this.handleChat}/>
+                  {this.state.showChat && 
+                    <div className="chat-profile-form">
+                      <div className="profile-header-chat">              
+                        <img className='profile-image-index' src={this.state.user.profile_image}/>
+                        {this.state.user.username}  <span className='close-message' onClick={this.handleChat}> X </span>
+                      </div>
+
+                      <form onSubmit={(event) => {
+                        this.handleSubmit(event,)
+                      }}>
+                        <input className="input" 
+                          name='text'
+                          onChange={this.handleChange}
+                        />
+                        <button className="comment-button">Send</button>
+                      </form>
+                     
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>  
           </div>
 
           <div className="profile-choices-container">

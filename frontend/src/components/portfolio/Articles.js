@@ -21,7 +21,7 @@ class Articles extends React.Component {
     console.log(this.state.articles)
     return (
       <div className="article-container">
-        {this.state.articles.map( article => (
+        {this.state.articles.slice(0).reverse().map( article => (
           <div key={article.id}>
             <div className="card-article">
 

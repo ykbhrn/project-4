@@ -78,3 +78,11 @@ export const getSingleArticle = id => {
 export const postComment = formData => {
   return axios.post('/api/comments/', formData, withHeaders())
 }
+
+export const postChat = (formData, id) => {
+  return axios.post(`/api/chat/${id}/`, formData, withHeaders())
+}
+
+export const getChat = (id) => {
+  return axios.get(`/api/chat/${id}/`, withHeaders())
+}

@@ -118,7 +118,7 @@ class Videos extends React.Component{
                     value={this.state.formData.text}
                     onChange={this.handleChange}
                   />
-                  <button className="comment-button" type="submit">Add</button>
+                  <button className="comment-button" type="submit">Post</button>
                 </div>
               </form>
 
@@ -129,9 +129,6 @@ class Videos extends React.Component{
               .navbar{\
                 opacity: 0.5;\
               }\
-              // .big-image{\
-              //   opacity: 2;\
-              // }\
               .m-scene .image, .index-video{\
                 opacity: 0.5;\
               }\
