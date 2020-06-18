@@ -78,7 +78,7 @@ const Trainings = ({ id, name, date, time, sports, description, bookings, userna
 
         </div>
 
-        <div className='close-training' onClick={hideBig}> <img src='/images/close.png' /> </div>
+        <div className='close-training' onClick={hideBig}> <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484109/close_eo3yn4.png' /> </div>
       </div>
     </div>
     }
