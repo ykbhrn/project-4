@@ -62,7 +62,7 @@ class Chat extends React.Component {
       const res = await getChat(id)
       await this.setState({ chats: res.data, showMessages: true })
       await this.getUser()
-     
+
     } catch (err) {
       console.log(err)
 
@@ -75,24 +75,40 @@ class Chat extends React.Component {
       const notCurrentUser = chat.users.filter(user => {
         return user.id !== this.state.user.id
       })
-     
+
       return notCurrentUser.map(userForChat => {
         clicker++
         if (clicker <= 1) {
-          this.setState({ profileImage: userForChat.profile_image, 
-            username: userForChat.username, userId: userForChat.id, 
-            isStudent: userForChat.user_type === 1 ? true : false })
-        } 
+          this.setState({
+            profileImage: userForChat.profile_image,
+            username: userForChat.username, userId: userForChat.id,
+            isStudent: userForChat.user_type === 1 ? true : false
+          })
+        }
       })
     })
 
+  }
+
+  getUnique(arr, comp) {
+
+    // store the comparison  values in array
+    const unique = arr.map(e => e[comp])
+
+    // store the indexes of the unique objects
+      .map((e, i, final) => final.indexOf(e) === i && i)
+
+    // eliminate the false indexes & return unique objects
+      .filter((e) => arr[e]).map(e => arr[e])
+
+    return unique
   }
 
 
 
   render() {
     if (!this.state.user) return null
-    console.log(this.state)
+
     return (
       <div className="chat-profile-container">
         <div className="chat-profile-side">
@@ -101,7 +117,7 @@ class Chat extends React.Component {
             const notCurrentUser = chat.users.filter(user => {
               return user.id !== this.state.user.id
             })
-           
+          
             return notCurrentUser.map(userForChat => (
               <div onClick={() => {
                 this.getMessages(userForChat.id)
@@ -132,12 +148,18 @@ class Chat extends React.Component {
               </div>
             </div>
           </Link>
-         
+
           <div className="chat-history-container">
             <div className="chat-history">
-              {this.state.chats.slice(0).reverse().map(chat => (
-                <div key={chat.id} className="one-message-container"><span className="one-message">{chat.text}</span></div>
-              ))}
+              {this.state.chats.slice(0).reverse().map(chat => {
+                if (chat.users[0].id === this.state.user.id) {
+                  return <div key={chat.id} className="one-message-container"><span className="one-message">{chat.text}</span></div>
+                } else {
+                  return <div key={chat.id} className="one-message-container-other"><span className="one-message-other">{chat.text}</span></div>
+                }
+
+
+              })}
             </div>
           </div>
           <div className="messages-form-container">
@@ -155,7 +177,7 @@ class Chat extends React.Component {
 
         </div>
         }
-          
+
 
       </div>
     )

@@ -121,12 +121,12 @@
   "pk": 10,
   "fields": {
     "text": "pretty cool",
-    "owner": 5,
+    "owner": 6,
     "image": null,
     "video": 6,
     "article": null,
     "created_at": "2020-06-17T01:43:43.268Z",
-    "updated_at": "2020-06-17T01:43:43.268Z"
+    "updated_at": "2020-06-17T17:29:48.413Z"
   }
 },
 {
@@ -140,6 +140,58 @@
     "article": null,
     "created_at": "2020-06-17T01:43:55.150Z",
     "updated_at": "2020-06-17T01:43:55.150Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 12,
+  "fields": {
+    "text": "Praesent facilisis enim in porta accumsan. Ut aliquam arcu in vehicula consectetur. Maecenas sit amet iaculis orci. Ut mattis justo sit amet urna egestas, vel luctus metus consectetur.",
+    "owner": 2,
+    "image": 10,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T17:34:52.167Z",
+    "updated_at": "2020-06-17T17:34:52.167Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 13,
+  "fields": {
+    "text": "where is it?",
+    "owner": 2,
+    "image": 9,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T18:03:59.093Z",
+    "updated_at": "2020-06-17T18:03:59.093Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 14,
+  "fields": {
+    "text": "Praesent facilisis enim in porta accumsan. Ut aliquam arcu in vehicula consectetur. Maecenas sit amet iaculis orci. Ut mattis justo sit amet urna egestas, vel luctus metus consectetur.",
+    "owner": 2,
+    "image": 4,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T18:10:26.647Z",
+    "updated_at": "2020-06-17T18:10:26.647Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 15,
+  "fields": {
+    "text": "cool",
+    "owner": 2,
+    "image": 1,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-17T18:10:40.183Z",
+    "updated_at": "2020-06-17T18:10:40.183Z"
   }
 }
 ]

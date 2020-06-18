@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$180000$OqF1Jk6t0jac$wypnQM6ii3tjq/neI4x/Svp97jCNc0d9Cj9S3E0uo4U=",
-    "last_login": "2020-06-17T17:03:44.305Z",
+    "last_login": "2020-06-17T18:32:52.011Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -192,9 +192,9 @@
     "last_name": "",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2020-06-17T17:04:10.989Z",
+    "date_joined": "2020-06-17T17:04:10Z",
     "email": "tomas@email.com",
-    "profile_image": "https://imgix.bustle.com/uploads/image/2018/5/9/fa2d3d8d-9b6c-4df4-af95-f4fa760e3c5c-2t4a9501.JPG?w=970&h=546&fit=crop&crop=faces&auto=format%2Ccompress&cs=srgb&q=70",
+    "profile_image": "https://www.britishthoughts.uk/wp-content/uploads/2019/05/profile-face-great-fitness-athlete-sportsman-acting-models-mens.jpg",
     "bio": "",
     "user_type": 2,
     "groups": [],
@@ -202,6 +202,109 @@
     "sports": [
       4,
       6
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$7iDTHfBGLJPi$Uf7O728CJb+P/67bj2WH5soTE3QXadpBoLcPO4W8ME8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "maya",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T17:10:41Z",
+    "email": "maya@email.com",
+    "profile_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQsg6KXHm6o4SYhPycSwdsJnlGOWCVyIhWBWcg5y8_pki6coDzG&usqp=CAU",
+    "bio": "",
+    "user_type": 2,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      4,
+      6
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$wOt0bJBOrFts$+USvWpNubzfXd+jkRTRGhr7gz+cTwybf1vPSe+TjyXU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "miro",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T17:55:53.593Z",
+    "email": "miro@email.com",
+    "profile_image": "https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png",
+    "bio": "",
+    "user_type": 1,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$GBHcY4iU1rFb$A9sEihCZ7no3njmfZDLAZR8IvDc7E1M26DIhPpN//68=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "petra",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-17T17:56:47.725Z",
+    "email": "petra@email.com",
+    "profile_image": "http://res.cloudinary.com/djq7pruxd/image/upload/v1592416603/images%20ykbhrn/ehubgycwjkdwqwxhz9cr.jpg",
+    "bio": "",
+    "user_type": 1,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      8,
+      4
+    ]
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$O1K14VqnxIjg$K1jdQM9npK9r+B4cTKhRx5W/IlhL42UavCfXxvHhaqQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mikaela",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-18T01:32:58.294Z",
+    "email": "mikaela@email.com",
+    "profile_image": "http://res.cloudinary.com/djq7pruxd/image/upload/v1592443925/images%20ykbhrn/iozjk0iokk7t9obqoxzl.jpg",
+    "bio": "",
+    "user_type": 2,
+    "groups": [],
+    "user_permissions": [],
+    "sports": [
+      2,
+      4,
+      5,
+      6,
+      11
     ]
   }
 }

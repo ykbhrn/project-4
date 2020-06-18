@@ -7,11 +7,13 @@
     "date": "2020-07-12",
     "time": "12:30",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
-    "bookings": 0,
+    "bookings": 1,
     "limit": 1,
-    "isFull": false,
+    "isFull": true,
     "owner": 2,
-    "students": [],
+    "students": [
+      3
+    ],
     "sports": [
       1
     ]
@@ -43,11 +45,13 @@
     "date": "2020-07-01",
     "time": "12:45",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
-    "bookings": 0,
+    "bookings": 1,
     "limit": 4,
     "isFull": false,
     "owner": 2,
-    "students": [],
+    "students": [
+      3
+    ],
     "sports": [
       5,
       6
@@ -62,11 +66,13 @@
     "date": "2020-07-02",
     "time": "09:00",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
-    "bookings": 0,
+    "bookings": 1,
     "limit": 3,
     "isFull": false,
     "owner": 4,
-    "students": [],
+    "students": [
+      3
+    ],
     "sports": [
       8,
       10,
@@ -82,11 +88,13 @@
     "date": "2020-07-20",
     "time": "02:20",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
-    "bookings": 0,
+    "bookings": 1,
     "limit": 14,
     "isFull": false,
     "owner": 4,
-    "students": [],
+    "students": [
+      3
+    ],
     "sports": [
       7,
       10,
@@ -102,11 +110,13 @@
     "date": "2020-07-19",
     "time": "12:30",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
-    "bookings": 0,
+    "bookings": 1,
     "limit": 20,
     "isFull": false,
     "owner": 4,
-    "students": [],
+    "students": [
+      3
+    ],
     "sports": [
       7
     ]
@@ -158,11 +168,13 @@
     "date": "2020-08-06",
     "time": "07:00",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque pulvinar dapibus. Aliquam quis felis felis. In malesuada, neque in pellentesque posuere, dui leo faucibus ipsum, sit amet dignissim sapien lectus eget eros. Ut a neque non odio vehicula vehicula a non augue. Praesent consectetur blandit eros. Quisque non pretium ligula, et finibus velit. Phasellus id lectus lobortis, facilisis tellus luctus, ullamcorper nibh. Ut congue massa vitae dui faucibus, non fermentum nulla scelerisque. Quisque nec eros eu erat viverra imperdiet in lacinia nisi. Fusce elementum eros nec enim faucibus tincidunt. Donec in sapien ante. Aliquam sed luctus arcu.",
-    "bookings": 0,
+    "bookings": 1,
     "limit": 9,
     "isFull": false,
     "owner": 5,
-    "students": [],
+    "students": [
+      3
+    ],
     "sports": [
       4,
       5,

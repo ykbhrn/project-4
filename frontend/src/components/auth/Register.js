@@ -6,8 +6,8 @@ import SportSelect from '../common/SportSelect'
 import axios from 'axios'
 
 
-const uploadUrl = 'https://api.cloudinary.com/v1_1/djq7pruxd/upload'
-const uploadPreset = 'ins6nrmj'
+const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL
+const uploadPreset = process.env.REACT_APP_CLOUDINARY_BUCKET
 
 class Register extends React.Component {
   state = {

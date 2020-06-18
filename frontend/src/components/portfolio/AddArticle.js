@@ -4,8 +4,8 @@ import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
 
-const uploadUrl = ' https://api.cloudinary.com/v1_1/djq7pruxd/upload'
-const uploadPreset = 'ins6nrmj'
+const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL
+const uploadPreset = process.env.REACT_APP_CLOUDINARY_BUCKET
 
 class AddArticle extends React.Component {
   state = {

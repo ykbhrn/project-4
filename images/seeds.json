@@ -61,5 +61,32 @@
     "description": "Morning run",
     "owner": 5
   }
+},
+{
+  "model": "images.image",
+  "pk": 10,
+  "fields": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Nano_Action.JPG",
+    "description": "",
+    "owner": 4
+  }
+},
+{
+  "model": "images.image",
+  "pk": 11,
+  "fields": {
+    "url": "https://i.ytimg.com/vi/0YsUiWhyl94/maxresdefault.jpg",
+    "description": "Crossfit Championship",
+    "owner": 4
+  }
+},
+{
+  "model": "images.image",
+  "pk": 12,
+  "fields": {
+    "url": "https://www.bootcamppilates.com/wp-content/uploads/2017/12/the-beginners-guide-to-pilates.jpeg",
+    "description": "Pilates",
+    "owner": 3
+  }
 }
 ]
