@@ -265,7 +265,7 @@ class Register extends React.Component {
 
                 {this.state.isLoading && 
                 <>
-                  <img src='/images/loading.svg' className='loading-image-register' />
+                  <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/loading_ngtamg.svg' className='loading-image-register' />
                 </>
                 }
                 {!this.state.isLoading &&

@@ -88,5 +88,14 @@
     "description": "Pilates",
     "owner": 3
   }
+},
+{
+  "model": "images.image",
+  "pk": 13,
+  "fields": {
+    "url": "http://res.cloudinary.com/djq7pruxd/image/upload/v1592485987/images%20ykbhrn/ab3zeh5ljoja6ppapuns.jpg",
+    "description": "running",
+    "owner": 3
+  }
 }
 ]

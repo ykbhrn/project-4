@@ -125,7 +125,7 @@ handleSubmit = async event => {
             {error && <small className="help is-danger">{error}</small>}
 
             {this.state.isLoading && <>
-              <img src='/images/loading.svg' className='loading-image' />
+              <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/loading_ngtamg.svg' className='loading-image' />
             </>
             }
             {!this.state.isLoading && 

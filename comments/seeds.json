@@ -193,5 +193,31 @@
     "created_at": "2020-06-17T18:10:40.183Z",
     "updated_at": "2020-06-17T18:10:40.183Z"
   }
+},
+{
+  "model": "comments.comment",
+  "pk": 16,
+  "fields": {
+    "text": "Praesent facilisis enim in porta accumsan. Ut aliquam arcu in vehicula consectetur. Maecenas sit amet iaculis orci. Ut mattis justo sit amet urna egestas, vel luctus metus consectetur.",
+    "owner": 2,
+    "image": 12,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-18T09:23:49.207Z",
+    "updated_at": "2020-06-18T09:23:49.207Z"
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 17,
+  "fields": {
+    "text": "Morbi in tincidunt ante.",
+    "owner": 2,
+    "image": 3,
+    "video": null,
+    "article": null,
+    "created_at": "2020-06-18T13:08:54.530Z",
+    "updated_at": "2020-06-18T13:08:54.530Z"
+  }
 }
 ]

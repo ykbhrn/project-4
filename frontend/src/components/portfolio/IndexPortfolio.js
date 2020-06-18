@@ -76,17 +76,17 @@ class IndexPortfolio extends React.Component {
 
           {this.state.showImages &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='./images/addimage.png'></img>
+          <img className='add-portfolio' src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484109/addimage_nqxehf.png'></img>
         </Link>
           }
           {this.state.showVideos &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='./images/addvideo.png'></img>
+          <img className='add-portfolio' src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484109/addvideo_oufawy.png'></img>
         </Link>
           }
           {this.state.showArticles &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='./images/addarticle.png'></img>
+          <img className='add-portfolio' src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484109/addarticle_f8vkg3.png'></img>
         </Link>
           }
 

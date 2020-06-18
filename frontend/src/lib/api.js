@@ -8,7 +8,7 @@ const withHeaders = () => {
 }
 
 export const getAllImages = () => {
-  return axios.get('/api/images')
+  return axios.get('/api/images/')
 }
 
 export const getSingleImage = id => {
@@ -16,7 +16,7 @@ export const getSingleImage = id => {
 }
 
 export const getAllVideos = () => {
-  return axios.get('/api/videos')
+  return axios.get('/api/videos/')
 }
 
 export const getSingleVideo = id => {
@@ -24,7 +24,7 @@ export const getSingleVideo = id => {
 }
 
 export const getPortfolio = () => {
-  return axios.get('/api/profile', withHeaders())
+  return axios.get('/api/profile/', withHeaders())
 }
 
 export const getPublicPortfolio = id => {
@@ -32,19 +32,19 @@ export const getPublicPortfolio = id => {
 }
 
 export const registerUser = formData => {
-  return axios.post('/api/register', formData)
+  return axios.post('/api/register/', formData)
 }
 
 export const loginUser = formData => {
-  return axios.post('/api/login', formData)
+  return axios.post('/api/login/', formData)
 }
 
 export const getAllSports = () => {
-  return axios.get('/api/sports')
+  return axios.get('/api/sports/')
 }
 
 export const getAllTrainings = () => {
-  return axios.get('/api/trainings')
+  return axios.get('/api/trainings/')
 }
 
 export const addTraining = formData => {
@@ -52,7 +52,7 @@ export const addTraining = formData => {
 }
 
 export const bookTraining = id => {
-  return axios.put(`/api/trainings/${id}/`, {}, withHeaders())
+  return axios.put(`/api/trainings/${id}`, {}, withHeaders())
 }
 
 export const addImages = formData => {
@@ -68,7 +68,7 @@ export const addArticles = formData => {
 }
 
 export const getAllArticles = () => {
-  return axios.get('/api/articles')
+  return axios.get('/api/articles/')
 }
 
 export const getSingleArticle = id => {
@@ -80,9 +80,9 @@ export const postComment = formData => {
 }
 
 export const postChat = (formData, id) => {
-  return axios.post(`/api/chat/${id}/`, formData, withHeaders())
+  return axios.post(`/api/chat/${id}`, formData, withHeaders())
 }
 
 export const getChat = (id) => {
-  return axios.get(`/api/chat/${id}/`, withHeaders())
+  return axios.get(`/api/chat/${id}`, withHeaders())
 }

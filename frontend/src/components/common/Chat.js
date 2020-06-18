@@ -142,7 +142,7 @@ class Chat extends React.Component {
             <div className="profile-header profile-messages">
               <img className='profile-image' src={this.state.profileImage} />
               <div className="greeting-public"><span className='title is-2'>{this.state.username}</span>
-                <div className="user-type"><img src={`${this.state.isStudent ? '/images/student.png' : '/images/athlete.png'}`} />
+                <div className="user-type"><img src={`${this.state.isStudent ? 'https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/student_rtpzhv.png' : 'https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/athlete_gwre8y.png'}`} />
                   {this.state.user.user_type.name}
                 </div>
               </div>

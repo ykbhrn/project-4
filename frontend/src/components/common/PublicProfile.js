@@ -191,8 +191,8 @@ class PublicProfilePage extends React.Component {
             <img className='profile-image' src={this.state.user.profile_image} />
 
             <div className="greeting-public"><span className='title is-2'>{this.state.user.username}</span>
-              <div className="user-type"><img src={`${this.state.isStudent ? '/images/student.png' : '/images/athlete.png'}`} />{this.state.user.user_type.name} | 
-                <div className="message" ><img src="/images/message.png" onClick={this.handleChat}/>
+              <div className="user-type"><img src={`${this.state.isStudent ? 'https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/student_rtpzhv.png' : 'https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/athlete_gwre8y.png'}`} />{this.state.user.user_type.name} | 
+                <div className="message" ><img src="https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/message_ffjyj2.png" onClick={this.handleChat}/>
                   {this.state.showChat && 
                     <div className="chat-profile-form">
                       <div className="profile-header-chat">              

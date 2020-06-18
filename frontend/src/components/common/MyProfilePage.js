@@ -181,22 +181,22 @@ class ProfilePage extends React.Component {
 
         {this.state.showImages &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='/images/addimage.png' />
+          <img className='add-portfolio' src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484109/addimage_nqxehf.png' />
         </Link>
         }
         {this.state.showVideos &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='/images/addvideo.png' />
+          <img className='add-portfolio' src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484109/addvideo_oufawy.png' />
         </Link>
         }
         {this.state.showArticles &&
         <Link to={this.portfolioUrl}>
-          <img className='add-portfolio' src='/images/addarticle.png' />
+          <img className='add-portfolio' src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484109/addarticle_f8vkg3.png' />
         </Link>
         }
 
         {isAuthenticated() && <div onClick={this.handleLogout} className="logout">
-          <img src='/images/logout.png' />
+          <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/logout_vfd7q8.png' />
         </div>}
 
         {this.state.showChoices &&
@@ -211,7 +211,7 @@ class ProfilePage extends React.Component {
               this.clickShow('training')
             }}
           > 
-            {this.state.showChoices && <img src='/images/nexttrainings.png' />}
+            {this.state.showChoices && <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484110/nexttrainings_w7p1yq.png' />}
             <span className={`${this.state.showTrainings ? 'selected-menu-choice' : ''}`}>Next Trainings</span>
           </div>
 
@@ -220,7 +220,7 @@ class ProfilePage extends React.Component {
               this.clickShow('images')
             }}
           >
-            {this.state.showChoices && <img src='/images/yourphotos.png' /> }
+            {this.state.showChoices && <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484111/yourphotos_ob9jmp.png' /> }
             <span className={`${this.state.showImages ? 'selected-menu-choice' : ''}`}>Your Photos</span>
           </div>
 
@@ -229,7 +229,7 @@ class ProfilePage extends React.Component {
               this.clickShow('videos')
             }}
           > 
-            {this.state.showChoices && <img src='/images/yourvideos.png' />}
+            {this.state.showChoices && <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484111/yourvideos_alvfgs.png' />}
             <span className={`${this.state.showVideos ? 'selected-menu-choice' : ''}`}>Your Videos</span>
           </div>
 
@@ -239,7 +239,7 @@ class ProfilePage extends React.Component {
               this.clickShow('articles')
             }}
           > 
-            {this.state.showChoices && <img src='/images/yourarticles.png' /> }
+            {this.state.showChoices && <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484111/yourarticles_lcufmi.png' /> }
             <span className={`${this.state.showArticles ? 'selected-menu-choice' : ''}`}>Your Articles</span>
           </div>
           }

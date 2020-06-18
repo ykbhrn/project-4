@@ -145,7 +145,7 @@ class Images extends React.Component{
   
           </div>
           <div onClick={this.hideNewComments}>
-            <div className='close' onClick={hideBig}> <img src='/images/close.png' /> </div>
+            <div className='close' onClick={hideBig}> <img src='https://res.cloudinary.com/djq7pruxd/image/upload/v1592484109/close_eo3yn4.png' /> </div>
           </div>
         </div>
       </div>

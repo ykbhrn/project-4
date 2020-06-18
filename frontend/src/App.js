@@ -29,17 +29,17 @@ const App = () => (
       <Route path='/portfolio/:videos/:id' component={SinglePortfolio} />
       <Route path='/portfolio/:id' component={SinglePortfolio} />
       <Route path='/articles/:id' component={SingleArticle} />
-      <Route path='/portfolio' component={IndexPortfolio} />
-      <Route path="/register" component={Register} />
-      <Route path="/login" component={Login} />
+      <Route path='/portfolio/' component={IndexPortfolio} />
+      <Route path="/register/" component={Register} />
+      <Route path="/login/" component={Login} />
       <Route path='/profile/:id' component={PublicProfilePage} />
-      <SecureRoute path='/profile' component={MyProfilePage} />
-      <SecureRoute path='/trainings' component={TrainingsPage} />
-      <SecureRoute path='/chat' component={Chat} />
-      <SecureRoute path='/done/:type/:id/:username' component={AddDone} />
-      <SecureRoute path='/done/:type' component={AddDone} />
-      <SecureRoute path='/add/:portfolio' component={AddPortfolio} />
-      <SecureRoute path='/newarticle' component={AddArticle} />
+      <SecureRoute path='/profile/' component={MyProfilePage} />
+      <SecureRoute path='/trainings/' component={TrainingsPage} />
+      <SecureRoute path='/chat/' component={Chat} />
+      <SecureRoute path='/done/:type/:id/:username/' component={AddDone} />
+      <SecureRoute path='/done/:type/' component={AddDone} />
+      <SecureRoute path='/add/:portfolio/' component={AddPortfolio} />
+      <SecureRoute path='/newarticle/' component={AddArticle} />
       <Route path="/*" component={NotFound} />
     </Switch>
   </BrowserRouter>
