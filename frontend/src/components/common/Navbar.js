@@ -58,6 +58,9 @@ class Navbar extends React.Component{
               {isAuthenticated() && <Link to="/trainings">
                 <img className='navbar-item' src="/images/trainings.png" />
               </Link>}
+              {isAuthenticated() && <Link to="/chat">
+                <img className='navbar-item' src="/images/chat.png" />
+              </Link>}
               {isAuthenticated() && <Link to="/profile">
                 <img className='navbar-image navbar-item' src={this.state.user.profile_image} />
               </Link>}

@@ -1,12 +1,20 @@
 import React from 'react'
-import { getChat, getPortfolio } from '../../lib/api'
+import { getChat, postChat, getPortfolio } from '../../lib/api'
 import { Link } from 'react-router-dom'
 
 
 class Chat extends React.Component {
   state = {
+    formData: {
+      text: ''
+    },
     user: null,
-    showMessages: false
+    showMessages: false,
+    chats: [],
+    profileImage: '',
+    username: '',
+    userId: '',
+    isStudent: false
   }
 
   async componentDidMount() {
@@ -18,18 +26,73 @@ class Chat extends React.Component {
     }
   }
 
-  uniq(a) {
-    var seen = {}
-    return a.filter(function (item) {
-      return seen.hasOwnProperty(item) ? false : (seen[item] = true)
+  async getData(userId) { //* this function can be called whenever you need to update the info on the page
+    try {
+      const res = await getChat(userId)
+      await this.setState({ chats: res.data })
+    } catch (error) {
+      console.log(error)
+      // this.props.history.push('/notfound')
+    }
+  }
+
+  handleChange = event => {
+    console.log('change event: ', event.target.name)
+    const formData = { ...this.state.formData, [event.target.name]: event.target.value }
+    this.setState({ formData })
+  }
+
+  handleSubmit = async (event, userId) => {
+    event.preventDefault()
+    try {
+      const response = await postChat(this.state.formData, userId)
+      const textData = {
+        ...this.state.formData, text: ''
+      }
+      this.setState({ formData: textData })
+      console.log(response.data)
+    } catch (err) {
+      console.log('response: ', err.response.data)
+    }
+    this.getData(userId)
+  }
+
+  getMessages = async (id) => {
+    try {
+      const res = await getChat(id)
+      await this.setState({ chats: res.data, showMessages: true })
+      await this.getUser()
+     
+    } catch (err) {
+      console.log(err)
+
+    }
+  }
+
+  getUser = async () => {
+    let clicker = 0
+    this.state.chats.map(chat => {
+      const notCurrentUser = chat.users.filter(user => {
+        return user.id !== this.state.user.id
+      })
+     
+      return notCurrentUser.map(userForChat => {
+        clicker++
+        if (clicker <= 1) {
+          this.setState({ profileImage: userForChat.profile_image, 
+            username: userForChat.username, userId: userForChat.id, 
+            isStudent: userForChat.user_type === 1 ? true : false })
+        } 
+      })
     })
+
   }
 
 
 
   render() {
     if (!this.state.user) return null
-    // console.log(this.state)
+    console.log(this.state)
     return (
       <div className="chat-profile-container">
         <div className="chat-profile-side">
@@ -38,57 +101,61 @@ class Chat extends React.Component {
             const notCurrentUser = chat.users.filter(user => {
               return user.id !== this.state.user.id
             })
-            // const uniq = [ ...new Set(notCurrentUser) ]
-            // notCurrentUser.filter((item, index) => notCurrentUser.indexOf(item.id) === index )
-            // notCurrentUser.reduce((unique, item) => 
-            //   unique.includes(item.id) ? unique : [...unique, item.id], [])
-            const uniqueArray = notCurrentUser.filter((thing, index) => {
-              const _thing = JSON.stringify(thing)
-              return index === notCurrentUser.findIndex(obj => {
-                return JSON.stringify(obj) === _thing
-              })
-            })
+           
             return notCurrentUser.map(userForChat => (
-              <div key={userForChat.id} className="profile-header-chat-page">
-                <Link to={`/profile/${userForChat.id}`}>
-                  <img className='profile-image-index' src={userForChat.profile_image} /></Link>
-                <Link to={`/profile/${userForChat.id}`}>{userForChat.username}</Link>
+              <div onClick={() => {
+                this.getMessages(userForChat.id)
+              }}
+              key={userForChat.id} className="profile-header-chat-page">
+                <img className='profile-image-index' src={userForChat.profile_image} />{userForChat.username}
               </div>
             ))
           })}
         </div>
+        {/* Show this header when user have no messages */}
+        {this.state.user.chats.length === 0 &&
+        <div className="no-messages">
+          <h1 className="title is-2">You Have No Messages Yet</h1>
+        </div>
+        }
 
         {/* Chat history with specific user and sending message form*/}
+        {this.state.showMessages &&
         <div className="messages-section">
-
-          <div className="profile-header profile-messages">
-            <img className='profile-image' src={this.state.user.profile_image} />
-            <div className="greeting-public"><span className='title is-2'>{this.state.user.username}</span>
-              <div className="user-type"><img src={`${this.state.isStudent ? '/images/student.png' : '/images/athlete.png'}`} />
-                {this.state.user.user_type.name} 
+          <Link to={`/profile/${this.state.userId}`}>
+            <div className="profile-header profile-messages">
+              <img className='profile-image' src={this.state.profileImage} />
+              <div className="greeting-public"><span className='title is-2'>{this.state.username}</span>
+                <div className="user-type"><img src={`${this.state.isStudent ? '/images/student.png' : '/images/athlete.png'}`} />
+                  {this.state.user.user_type.name}
+                </div>
               </div>
             </div>
-          </div>
-          
+          </Link>
+         
           <div className="chat-history-container">
             <div className="chat-history">
-
+              {this.state.chats.slice(0).reverse().map(chat => (
+                <div key={chat.id} className="one-message-container"><span className="one-message">{chat.text}</span></div>
+              ))}
             </div>
           </div>
-
           <div className="messages-form-container">
             <form onSubmit={(event) => {
-              this.handleSubmit(event,)
+              this.handleSubmit(event, this.state.userId)
             }}>
-              <input className="input" 
+              <input className="input"
                 name='text'
                 onChange={this.handleChange}
+                value={this.state.formData.text}
               />
               <button className="comment-button">Send</button>
             </form>
-          </div>       
+          </div>
 
         </div>
+        }
+          
 
       </div>
     )
