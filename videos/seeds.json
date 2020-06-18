@@ -34,5 +34,14 @@
     "description": "Wrestling Takedown Techniques",
     "owner": 5
   }
+},
+{
+  "model": "videos.video",
+  "pk": 8,
+  "fields": {
+    "url": "https://res.cloudinary.com/djq7pruxd/video/upload/v1592472704/How_to_Properly_Hydrate_for_Sports_Performance_-_Phil_Daru_kwpe25.mp4",
+    "description": "Hydratation for sports performance",
+    "owner": 10
+  }
 }
 ]
