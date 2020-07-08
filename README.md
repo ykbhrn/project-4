@@ -4,6 +4,7 @@
 It is a "virtual gym" social app. There are two types of users, "athletes", and "students".
 Athletes can have a portfolio of their photos and videos, and they can write articles. Athletes can offer time slots for training via Zoom on their profile page. Students can book training time slots, have a portfolio of their photos and videos, but they cant add any articles.
 The time frame for the project was one week.
+
 ![Gyminy Home](readmeImages/home.png)
 -------------------------
 ## Brief
@@ -48,7 +49,9 @@ The time frame for the project was one week.
 ## How to use the App
 ### Login and  Register
 Sign up for a new account after clicking Join Us on the homepage.
+
 ![Home/SignUp page](readmeImages/register.png)
+
 ### Index Page
 After you sign up for an account, you will be automatically logged in and redirected to the index page. Here you can see photos, videos, and articles from other users.
 When you click on one of the photos/videos, you will see it on the full page and also a description and all the comments for photo/video.
@@ -63,7 +66,9 @@ As a Student, you would see all the available training, then on the navbar, you 
  
 ## Profile Page
 On your profile page, you can see all your photos, videos, next training, and if you're athlete, then also your articles.
+
 ![Profile Page](readmeImages/profile.png)
+
 ## Development
 The first day of the project was reserved for planning. I made wireframe in Balsamiq, I wrote down all the models I will need and deadlines throughout the week.
 I started to code the next day. First I set up a development environment, and then I created the first Django apps.
