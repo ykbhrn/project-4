@@ -3,7 +3,8 @@
 ## **Overview.**
 It is a "virtual gym" social app. There are two types of users, "athletes", and "students".
 Athletes can have a portfolio of their photos and videos, and they can write articles. Athletes can offer time slots for training via Zoom on their profile page. Students can book training time slots, have a portfolio of their photos and videos, but they cant add any articles.
-The time frame for the project was one week.
+
+***Timeframe*** for the project was one week
 
 ![Gyminy Home](readmeImages/home.png)
 -------------------------
@@ -70,23 +71,29 @@ On your profile page, you can see all your photos, videos, next training, and if
 ![Profile Page](readmeImages/profile.png)
 
 ## Development
-The first day of the project was reserved for planning. I made wireframe in Balsamiq, I wrote down all the models I will need and deadlines throughout the week.
-I started to code the next day. First I set up a development environment, and then I created the first Django apps.
+* The first day of the project was reserved for planning. I made wireframe in Balsamiq, I wrote down all the models I will need and deadlines throughout the week. 
+
+Website flow plan made on Balsamiq:
+
+![Wirefrme](readmeImages/wireframe.png)
+
+* I started to code the next day. First I set up a development environment, and then I created the first Django apps.
 First I made "user_type", "sports", "images", "videos", and "articles" apps.
 "Sports", and "user_type" need to be done as a first when the database is created because the User model require registration user type, and sports, which the user is interested in.
  
 ![User Model](readmeImages/userModel.png)
  
-After basic backend, I started to work on the frontend with React. I was thinking if I should finish backend and then start with a frontend, but I choose to make basic backend and then work simultaneously on backend, and frontend because I prefer to visualize things when I work and see how it looks, what should I change, and what should I add.
+* After basic backend, I started to work on the frontend with React. I was thinking if I should finish backend and then start with a frontend, but I choose to make basic backend and then work simultaneously on backend, and frontend because I prefer to visualize things when I work and see how it looks, what should I change, and what should I add.
  
 When I finished with the basic frontend, I had an idea of the way how the training time slot reservation system will work.
  
 ![Training Model](readmeImages/trainingModel.png)
  
-Most difficult thing in training reservation system was making sure that after Student booked a training, it will be saved in their database as a "student trainings", and also that it will be shown in Athletes database that student booked training, how many students booked training, and if training is already fully booked.
+* Most difficult thing in training reservation system was making sure that after Student booked a training, it will be saved in their database as a "student trainings", and also that it will be shown in Athletes database that student booked training, how many students booked training, and if training is already fully booked.
  ![Training View](readmeImages/trainingView.png)
  
 ## Wins
 Thanks to this project I have a better understanding of Django and I learned how to work with Django Rest Framework. All my previous project was done in JavaScript, so I was happy that I can practice Python syntax more.
+
 ## Challenge
 The big challenge was working on Django’s views. It gave me a lot of headaches, but that feeling after it worked was worth it.
