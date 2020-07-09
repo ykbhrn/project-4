@@ -109,6 +109,18 @@ When I finished with the basic frontend, I had an idea of the way how the **trai
 * **Single Photo/Video Display** - I didn't want to make a separate page to display single portfolio item, but I decided to make it in Instagram style, and after clicking on photo or video, show it in the middle of the index page with its comments and owner-user profile picture on the left side.
 It was very challenging on the front end side. Making that design was no problem at all, but using the right data in the right place was pretty hard.
 * Using **Cloudinary** to store all user photos and videos. I didn't have much experience with Cloudinary before, so I needed to use a lot of documentation to figure out how to properly use it.
+
+## Key Learnings
+* It was my first project using **Python**, and it helped me to understand it's syntax
+* Understanding of **Django, and Django Rest Framework**
+* Using **Cloudinary**
+* I get much better with **CSS** 
+
+## Bugs
+Private chat between users doesnt work properly now. When user open chat page, he can see username, and profile pictures of users who he has chat with. Once he click on the user, he can see al the messages with particullar user. One user should have just one icon on the left side, but right now it shows as many user icon as many messages are between him and current user. 
+
+
+
  
  
  
