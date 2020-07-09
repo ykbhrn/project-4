@@ -71,12 +71,21 @@ On your profile page, you can see all your photos, videos, next training, and if
 ![Profile Page](readmeImages/profile.png)
 
 ## Development
+
+### Timeline 
+* Day 1 - Planning 
+* Day 2 - 4 MVP was finished
+* Day 5 - 6 Extra feautures was finished, and also existing feautures were polished
+* Day 7 - Styling
+
+### Planning
 * The first day of the project was reserved for planning. I made wireframe in Balsamiq, I wrote down all the models I will need and deadlines throughout the week. 
 
 Website flow plan made on Balsamiq:
 
 ![Wirefrme](readmeImages/wireframe.png)
 
+### Code
 * I started to code the next day. First I set up a development environment, and then I created the first Django apps.
 First I made "user_type", "sports", "images", "videos", and "articles" apps.
 "Sports", and "user_type" need to be done as a first when the database is created because the User model require registration user type, and sports, which the user is interested in.
