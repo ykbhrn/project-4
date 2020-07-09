@@ -83,7 +83,7 @@ On your profile page, you can see all your photos, videos, next training, and if
 
 Website flow plan made on Balsamiq:
 
-![Wirefrme](readmeImages/wireframe.png)
+![Wireframe](readmeImages/wireframe.png)
 
 ### Code
 * I started to code the next day. First I set up a development environment, and then I created the first Django apps.
@@ -102,7 +102,14 @@ When I finished with the basic frontend, I had an idea of the way how the traini
  ![Training View](readmeImages/trainingView.png)
  
 ## Wins
-Thanks to this project I have a better understanding of Django and I learned how to work with Django Rest Framework. All my previous project was done in JavaScript, so I was happy that I can practice Python syntax more.
+* Thanks to this project I have a better understanding of Django and I learned how to work with Django Rest Framework. All my previous project was done in JavaScript, so I was happy that I can practice Python syntax more.
+* I learned how to properly plan project development. From having an idea of project, thinking about the way of promoting it, seting deadlines, making wireframe, choosing right design, fonts, colors, designing possible features of the project, and planing project in overall. 
 
 ## Challenge
-The big challenge was working on Django’s views. It gave me a lot of headaches, but that feeling after it worked was worth it.
+* The biggest challenge was working on **Django views**. It gave me a lot of headaches, but I still enjoyed it, and it was worth it.
+* **Single Photo/Video Display** - I didn't want to make separate page to display single portfolio item, but I decided to make it in instagram style, and after clicking on photo or video, show it in the middle of the index page with its comments and owner-user profile picture on the left side. 
+It was very challenging on the front end side. Making that design was not problem at all, but using right data on the right place was pretty hard.
+* Using **Cloudinary** to store all users photos and videos. I didn't have much experience with Cloudinary before, so I needed to use a lot of documantation to figure it out how to properly use it. 
+
+
+
